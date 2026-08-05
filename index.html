@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-<title>Y1 English Story 097 v2.2</title>
+<title>Y1 English Story 097 v2.4 Soft Voice</title>
 <style>
 :root{--bg:#eef7ff;--card:#fff;--ink:#142238;--muted:#718096;--blue:#287bd6;--blue2:#e8f2ff;--yellow:#fff0a6;--green:#2f9e6d;--red:#b64b4b;--purple:#7258d7}
 *{box-sizing:border-box}
@@ -13,7 +13,7 @@ body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Ari
 .wrap{max-width:980px;margin:auto;padding:14px 12px 32px}
 header{text-align:center;padding:8px 0 12px}h1{margin:0;font-size:clamp(26px,6vw,44px)}.sub{color:var(--muted);margin-top:5px}
 .panel{background:rgba(255,255,255,.97);border-radius:25px;box-shadow:0 12px 30px rgba(40,89,130,.14);padding:16px}
-.settings{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}.setting{background:#f3f7fb;border-radius:15px;padding:12px}.setting label{display:block;font-size:14px;color:var(--muted);font-weight:900;margin-bottom:7px}.setting select,.setting input{width:100%;font:inherit}.voiceinfo{font-size:12px;color:var(--muted);margin-top:6px;min-height:18px}
+.settings{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:12px}.setting{background:#f3f7fb;border-radius:15px;padding:12px}.setting label{display:block;font-size:14px;color:var(--muted);font-weight:900;margin-bottom:7px}.setting select,.setting input{width:100%;font:inherit}.voiceinfo{font-size:12px;color:var(--muted);margin-top:6px;min-height:18px}
 .topgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:8px 0 12px}.topbtn{border:0;border-radius:18px;padding:18px 10px;font-weight:900;background:#eaf2fb;color:#24517c;cursor:pointer;font-size:18px;min-height:84px}.topbtn.primary{background:var(--blue);color:#fff}.topbtn.stop{background:#ffe8e8;color:#a33}.topbtn .mini{display:block;font-size:12px;font-weight:750;opacity:.82;margin-top:4px}
 .status{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-bottom:12px}.badge{padding:7px 11px;border-radius:999px;background:#edf3fa;color:#526174;font-weight:850;font-size:13px}
 .stage{min-height:365px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:24px 16px;border-radius:21px;background:linear-gradient(180deg,#fff,#f8fbff);border:1px solid #dfeaf5}.speaker{font-weight:950;color:var(--blue);font-size:clamp(20px,4vw,30px);margin-bottom:18px}.line{font-weight:900;font-size:clamp(29px,6.5vw,52px);line-height:1.32;max-width:870px;white-space:pre-line}.line.highlight{background:linear-gradient(transparent 62%,var(--yellow) 62%);padding:0 4px}.translation{margin-top:19px;font-size:clamp(18px,4vw,28px);font-weight:780;color:#45556b;max-width:820px;white-space:pre-line}.wordmeaning{margin-top:18px;font-size:clamp(15px,3vw,21px);color:#929cab;opacity:.7}.hint{margin-top:21px;color:var(--muted);font-size:clamp(14px,3vw,19px);font-weight:780;min-height:26px}
@@ -28,7 +28,7 @@ header{text-align:center;padding:8px 0 12px}h1{margin:0;font-size:clamp(26px,6vw
 </head>
 <body>
 <div class="wrap">
-<header><h1>Y1 English Story</h1><div class="sub">Mini Story 097 · iPhone Safari · Chrome Compatible</div></header>
+<header><h1>Y1 English Story</h1><div class="sub">Mini Story 097 · Soft Voice · iPhone Safari · Chrome Compatible</div></header>
 <main class="panel">
 <div class="settings">
   <div class="setting">
@@ -36,7 +36,8 @@ header{text-align:center;padding:8px 0 12px}h1{margin:0;font-size:clamp(26px,6vw
     <select id="voiceType"><option value="us" selected>미국영어</option><option value="gb">영국영어</option><option value="au">호주영어</option></select>
     <div id="voiceInfo" class="voiceinfo"></div>
   </div>
-  <div class="setting"><label for="rate">읽기 속도 <span id="rateText">0.82×</span></label><input id="rate" type="range" min="0.65" max="1.00" step="0.01" value="0.82"></div>
+  <div class="setting"><label for="rate">읽기 속도 <span id="rateText">0.78×</span></label><input id="rate" type="range" min="0.65" max="1.00" step="0.01" value="0.78"></div>
+  <div class="setting"><label for="voiceStyle">음성 느낌</label><select id="voiceStyle"><option value="soft" selected>부드러운 음성</option><option value="clear">또렷한 학습 음성</option></select><div class="voiceinfo">속도·높낮이·문장 간격을 자동 조정합니다.</div></div>
 </div>
 <div class="topgrid">
   <button type="button" id="fullListenBtn" class="topbtn primary">▶ 재생<span class="mini">전체 스크립트</span></button>
@@ -100,14 +101,42 @@ function browserLabel(){const ua=navigator.userAgent||'';if(/KAKAOTALK/i.test(ua
 function loadVoices(){try{voices=synth?synth.getVoices():[];updateVoiceInfo()}catch(e){voices=[];updateVoiceInfo()}}
 if(synth){synth.onvoiceschanged=loadVoices;[0,100,300,700,1500,3000].forEach(ms=>setTimeout(loadVoices,ms))}
 function voiceProfile(){const t=$('voiceType').value;const region=t==='gb'?'GB':t==='au'?'AU':'US';return {lang:'en-'+region,region}}
-function chooseVoice(){const p=voiceProfile();const exact=voices.filter(v=>v.lang===p.lang||v.lang.startsWith(p.lang));const keyMap={GB:['Daniel','Arthur','Serena','Google UK English'],US:['Samantha','Alex','Tom','Google US English'],AU:['Karen','Lee','Gordon','Google Australian English']};for(const k of keyMap[p.region]){const v=exact.find(x=>x.name&&x.name.includes(k));if(v)return v}return exact.find(v=>/Premium|Enhanced|Natural/i.test(v.name||''))||exact.find(v=>v.localService)||exact[0]||voices.find(v=>v.lang&&v.lang.startsWith('en'))||null}
-function updateVoiceInfo(){const v=chooseVoice(),label=browserLabel();$('voiceBadge').textContent=v?v.name:voiceProfile().lang;$('voiceInfo').textContent=(v?'사용 음성: '+v.name:'기기 기본 영어 음성 사용')+' · '+label}
-$('voiceType').addEventListener('change',()=>{stopAll();loadVoices()});$('rate').addEventListener('input',()=>{$('rateText').textContent=Number($('rate').value).toFixed(2)+'×'});
+function chooseVoice(){
+  const p=voiceProfile();
+  const exact=voices.filter(v=>v.lang===p.lang||v.lang.startsWith(p.lang));
+  const quality=v=>/Premium|Enhanced|Natural|Neural|Siri/i.test((v.name||'')+' '+(v.voiceURI||''));
+  const keyMap={
+    GB:['Arthur','Daniel','Serena','Martha','Google UK English'],
+    US:['Samantha','Ava','Allison','Susan','Alex','Tom','Google US English'],
+    AU:['Karen','Lee','Gordon','Google Australian English']
+  };
+  const preferred=exact.filter(quality);
+  for(const k of keyMap[p.region]){
+    const v=preferred.find(x=>x.name&&x.name.includes(k))||exact.find(x=>x.name&&x.name.includes(k));
+    if(v)return v;
+  }
+  return preferred.find(v=>v.localService)||preferred[0]||exact.find(v=>v.localService)||exact[0]||voices.find(v=>v.lang&&v.lang.startsWith('en')&&quality(v))||voices.find(v=>v.lang&&v.lang.startsWith('en'))||null;
+}
+function updateVoiceInfo(){const v=chooseVoice(),label=browserLabel();$('voiceBadge').textContent=v?v.name:voiceProfile().lang;$('voiceInfo').textContent=(v?'사용 음성: '+v.name:'기기 기본 영어 음성 사용')+' · '+label+($('voiceStyle')?' · '+($('voiceStyle').value==='soft'?'부드럽게':'또렷하게'):'')}
+$('voiceType').addEventListener('change',()=>{stopAll();loadVoices()});$('rate').addEventListener('input',()=>{$('rateText').textContent=Number($('rate').value).toFixed(2)+'×'});$('voiceStyle').addEventListener('change',()=>{stopAll();$('hint').textContent=$('voiceStyle').value==='soft'?'부드러운 음성 모드가 적용되었습니다.':'또렷한 학습 음성 모드가 적용되었습니다.';});
 function currentTotal(){return mode==='words'?words.length:story.length}
 function render(){const item=mode==='words'?words[index]:story[index];$('translation').classList.add('hide');$('wordMeaning').classList.add('hide');if(mode==='words'){$('speaker').textContent='KEY WORD';$('line').textContent=item.word;$('wordMeaning').textContent=item.meaning;$('wordMeaning').classList.remove('hide');$('hint').textContent='뜻은 화면으로만 확인하고, 음성은 영어 단어만 읽습니다.'}else{$('speaker').textContent=item.speaker;$('line').textContent=item.text;if(mode==='translation'){$('translation').textContent=item.ko;$('translation').classList.remove('hide');$('hint').textContent='영어 음성을 들으며 해석을 확인하세요.'}else{$('hint').textContent='한 문장 재생으로 반복해서 듣고, 다음 버튼으로 이동하세요.'}}$('countBadge').textContent=(index+1)+' / '+currentTotal();$('bar').style.width=((index+1)/currentTotal()*100)+'%'}
-function makeUtterance(text,token,onStart,onEnd){const u=new SpeechSynthesisUtterance(text),p=voiceProfile();u.lang=p.lang;u.rate=Number($('rate').value);u.pitch=1;u.volume=1;const v=chooseVoice();if(v)u.voice=v;u.onstart=()=>{if(token!==playToken)return;if(onStart)onStart()};const finish=()=>{if(token!==playToken)return;if(onEnd)onEnd()};u.onend=finish;u.onerror=finish;return u}
+function makeUtterance(text,token,onStart,onEnd){
+  const u=new SpeechSynthesisUtterance(text),p=voiceProfile();
+  const style=$('voiceStyle').value;
+  u.lang=p.lang;
+  const baseRate=Number($('rate').value);
+  u.rate=style==='soft'?Math.max(0.65,baseRate-0.02):Math.min(1,baseRate+0.03);
+  u.pitch=style==='soft'?0.96:1.01;
+  u.volume=1;
+  const v=chooseVoice();if(v)u.voice=v;
+  u.onstart=()=>{if(token!==playToken)return;if(onStart)onStart()};
+  const finish=()=>{if(token!==playToken)return;if(onEnd)onEnd()};
+  u.onend=finish;u.onerror=finish;return u
+}
 function ensureSpeech(){if(!synth){alert('이 브라우저에서는 음성 읽기를 지원하지 않습니다. Safari 또는 Chrome으로 열어 주세요.');return false}loadVoices();try{synth.cancel();synth.resume()}catch(e){}return true}
 function stopAll(){playToken++;isPlayingAll=false;isPlayingWords=false;if(synth){try{synth.cancel();synth.resume()}catch(e){}}}
+function naturalPause(text){const style=$('voiceStyle').value;const base=style==='soft'?420:260;const extra=/[.!?]$/.test(String(text).trim())?180:0;return base+extra}
 function speakSequence(items,textFn,onItem,onDone){
   if(!ensureSpeech())return;
   stopAll();
@@ -117,7 +146,7 @@ function speakSequence(items,textFn,onItem,onDone){
     if(token!==playToken)return;
     if(i>=items.length){if(onDone)onDone();return;}
     const current=i++;
-    const u=makeUtterance(textFn(items[current]),token,()=>{if(onItem)onItem(current)},()=>{setTimeout(next,220)});
+    const spoken=textFn(items[current]);const u=makeUtterance(spoken,token,()=>{if(onItem)onItem(current)},()=>{setTimeout(next,naturalPause(spoken))});
     try{synth.speak(u)}catch(e){$('hint').textContent='음성 재생 오류: '+e.message;}
   };
   next();
@@ -179,6 +208,6 @@ $('recordBtn').addEventListener('click',openRecord);$('startRecord').addEventLis
 $('recordOverlay').addEventListener('click',e=>{if(e.target===$('recordOverlay'))closeRecord()});$('playlistOverlay').addEventListener('click',e=>{if(e.target===$('playlistOverlay'))$('playlistOverlay').classList.add('hide')});
 document.addEventListener('visibilitychange',()=>{if(document.hidden)stopAll()});
 window.addEventListener('pageshow',()=>{loadVoices();render()});
-render();updateVoiceInfo();
+$('rateText').textContent=Number($('rate').value).toFixed(2)+'×';render();updateVoiceInfo();
 </script>
 </body></html>
