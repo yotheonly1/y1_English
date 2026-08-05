@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<title>Y1 English Story 097 v2.2</title>
+<style>
+:root{--bg:#eef7ff;--card:#fff;--ink:#142238;--muted:#718096;--blue:#287bd6;--blue2:#e8f2ff;--yellow:#fff0a6;--green:#2f9e6d;--red:#b64b4b;--purple:#7258d7}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;background:linear-gradient(180deg,#dff1ff,#f8fbff);color:var(--ink);min-height:100vh}
+.wrap{max-width:980px;margin:auto;padding:14px 12px 32px}
+header{text-align:center;padding:8px 0 12px}h1{margin:0;font-size:clamp(26px,6vw,44px)}.sub{color:var(--muted);margin-top:5px}
+.panel{background:rgba(255,255,255,.97);border-radius:25px;box-shadow:0 12px 30px rgba(40,89,130,.14);padding:16px}
+.settings{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}.setting{background:#f3f7fb;border-radius:15px;padding:12px}.setting label{display:block;font-size:14px;color:var(--muted);font-weight:900;margin-bottom:7px}.setting select,.setting input{width:100%;font:inherit}.voiceinfo{font-size:12px;color:var(--muted);margin-top:6px;min-height:18px}
+.topgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:8px 0 12px}.topbtn{border:0;border-radius:18px;padding:18px 10px;font-weight:900;background:#eaf2fb;color:#24517c;cursor:pointer;font-size:18px;min-height:84px}.topbtn.primary{background:var(--blue);color:#fff}.topbtn.stop{background:#ffe8e8;color:#a33}.topbtn .mini{display:block;font-size:12px;font-weight:750;opacity:.82;margin-top:4px}
+.status{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-bottom:12px}.badge{padding:7px 11px;border-radius:999px;background:#edf3fa;color:#526174;font-weight:850;font-size:13px}
+.stage{min-height:365px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:24px 16px;border-radius:21px;background:linear-gradient(180deg,#fff,#f8fbff);border:1px solid #dfeaf5}.speaker{font-weight:950;color:var(--blue);font-size:clamp(20px,4vw,30px);margin-bottom:18px}.line{font-weight:900;font-size:clamp(29px,6.5vw,52px);line-height:1.32;max-width:870px;white-space:pre-line}.line.highlight{background:linear-gradient(transparent 62%,var(--yellow) 62%);padding:0 4px}.translation{margin-top:19px;font-size:clamp(18px,4vw,28px);font-weight:780;color:#45556b;max-width:820px;white-space:pre-line}.wordmeaning{margin-top:18px;font-size:clamp(15px,3vw,21px);color:#929cab;opacity:.7}.hint{margin-top:21px;color:var(--muted);font-size:clamp(14px,3vw,19px);font-weight:780;min-height:26px}
+.progress{height:9px;background:#e8eef5;border-radius:999px;overflow:hidden;margin:14px 0}.bar{height:100%;width:0;background:linear-gradient(90deg,#3a8ee6,#68c7a2);transition:width .22s}
+.bottomgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.bottomgrid button{border:0;border-radius:18px;padding:18px 10px;font-weight:900;cursor:pointer;font-size:18px;min-height:70px}.sentence{background:var(--blue);color:#fff}.next{background:var(--purple);color:#fff}.record{background:#ffe8e8;color:#a33}.playlist{background:#e9f7ef;color:#24764f}.bottomgrid button:disabled{opacity:.38;cursor:not-allowed}
+.small{font-size:12px;color:var(--muted);line-height:1.55;margin-top:12px}.hide{display:none!important}
+.uploadbox{margin-top:18px;background:#f7fbff;border:1px dashed #9fc7ee;border-radius:18px;padding:14px}.uploadtitle{font-weight:900;color:#24517c;margin-bottom:10px;font-size:18px}.uploadactions{display:grid;grid-template-columns:1fr 1fr;gap:9px}.uploadbtn{display:flex;align-items:center;justify-content:center;border:0;border-radius:13px;padding:14px 10px;font-weight:850;cursor:pointer;background:#e8f2ff;color:#205f9d}.uploadbtn.camera{background:var(--blue);color:#fff}.uploadinput{display:none}.previewwrap{display:none;margin-top:12px}.previewwrap.show{display:block}.previewimg{display:block;width:100%;max-height:320px;object-fit:contain;border-radius:14px;background:#eef3f8}.previewmeta{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-top:8px;color:var(--muted);font-size:12px}.removeimg{border:0;border-radius:10px;padding:8px 10px;background:#ffe8e8;color:#a33;font-weight:800}.scriptinput{width:100%;min-height:120px;margin-top:10px;border:1px solid #d9e5f0;border-radius:13px;padding:11px;font:inherit;resize:vertical;background:#fff}.applyrow{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:9px}.applybtn{border:0;border-radius:13px;padding:13px 10px;font-weight:850;background:#234f7d;color:#fff}.ocrbtn{background:#eaf3ff;color:#225f9e}.uploadnote{font-size:12px;color:#64778a;line-height:1.45;margin-top:8px}
+.overlay{position:fixed;inset:0;background:rgba(10,25,45,.72);z-index:999;display:flex;align-items:flex-end;justify-content:center;padding:14px}.sheet{width:min(920px,100%);max-height:92vh;background:#fff;border-radius:24px 24px 14px 14px;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 20px 50px rgba(0,0,0,.25)}.sheethead{padding:16px 18px;border-bottom:1px solid #e8edf3;display:flex;align-items:center;justify-content:space-between;gap:12px}.sheethead h2{font-size:20px;margin:0}.closebtn{border:0;border-radius:11px;background:#edf3fa;padding:9px 12px;font-weight:900;color:#41546a}.reader{overflow:auto;padding:18px;scroll-behavior:smooth}.readerline{padding:16px 14px;margin-bottom:10px;border-radius:14px;background:#f5f8fc;border:1px solid #e2ebf4}.readerline.active{background:#fff5bd;border-color:#efcf55}.readerline .rspeaker{font-weight:900;color:var(--blue);font-size:14px;margin-bottom:6px}.readerline .rtext{font-size:22px;font-weight:800;line-height:1.45}.recordbar{padding:13px 16px;border-top:1px solid #e8edf3;display:grid;grid-template-columns:1fr 1fr;gap:10px}.recordbar button{border:0;border-radius:14px;padding:14px;font-weight:900;font-size:16px}.recording{background:#d93737;color:#fff}.finish{background:#243b58;color:#fff}.timer{font-variant-numeric:tabular-nums;font-weight:900;color:#d93737}
+.playlistBody{overflow:auto;padding:16px}.recordItem{border:1px solid #dfe8f2;background:#f9fbfe;border-radius:15px;padding:12px;margin-bottom:10px}.recordMeta{display:flex;justify-content:space-between;gap:8px;font-size:13px;color:#64748b;margin-bottom:9px}.recordItem audio{width:100%}.recordActions{display:flex;gap:8px;justify-content:flex-end;margin-top:8px}.recordActions button,.recordActions a{border:0;border-radius:10px;padding:8px 10px;font-weight:800;text-decoration:none;font-size:13px}.download{background:#e8f2ff;color:#205f9d}.delete{background:#ffe8e8;color:#a33}.empty{text-align:center;color:var(--muted);padding:28px 10px}
+@media(max-width:680px){.settings{grid-template-columns:1fr}.topgrid,.bottomgrid{grid-template-columns:1fr 1fr}.stage{min-height:390px}.panel{padding:12px}.uploadactions{grid-template-columns:1fr 1fr}.wrap{padding-top:8px}.topbtn{font-size:17px;min-height:76px}.bottomgrid button{font-size:17px}.readerline .rtext{font-size:19px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header><h1>Y1 English Story</h1><div class="sub">Mini Story 097 · iPhone Safari · Chrome Compatible</div></header>
+<main class="panel">
+<div class="settings">
+  <div class="setting">
+    <label for="voiceType">음성 선택</label>
+    <select id="voiceType"><option value="us" selected>미국영어</option><option value="gb">영국영어</option><option value="au">호주영어</option></select>
+    <div id="voiceInfo" class="voiceinfo"></div>
+  </div>
+  <div class="setting"><label for="rate">읽기 속도 <span id="rateText">0.82×</span></label><input id="rate" type="range" min="0.65" max="1.00" step="0.01" value="0.82"></div>
+</div>
+<div class="topgrid">
+  <button type="button" id="fullListenBtn" class="topbtn primary">▶ 재생<span class="mini">전체 스크립트</span></button>
+  <button type="button" id="stopBtn" class="topbtn stop">■ 정지<span class="mini">음성 재생 중지</span></button>
+  <button type="button" id="translationBtn" class="topbtn">해석 보기<span class="mini">영어 음성 + 뜻</span></button>
+  <button type="button" id="wordsBtn" class="topbtn">주요 단어<span class="mini">선택 음성으로 단어 발음</span></button>
+</div>
+<div class="status"><span id="modeBadge" class="badge">전체 듣기</span><span id="countBadge" class="badge">1 / 13</span><span id="voiceBadge" class="badge">Voice</span></div>
+<section class="stage">
+  <div id="speaker" class="speaker">Weather Caster</div>
+  <div id="line" class="line highlight">Hello, everyone. How’s the weather today?</div>
+  <div id="translation" class="translation hide"></div>
+  <div id="wordMeaning" class="wordmeaning hide"></div>
+  <div id="hint" class="hint">상단 재생은 전체 스크립트를 처음부터 끝까지 읽습니다.</div>
+</section>
+<div class="progress"><div id="bar" class="bar"></div></div>
+<div class="bottomgrid">
+  <button type="button" id="sentenceBtn" class="sentence">▶ 한 문장 재생</button>
+  <button type="button" id="nextBtn" class="next">다음 ▶</button>
+  <button type="button" id="recordBtn" class="record">● 녹음</button>
+  <button type="button" id="playlistBtn" class="playlist">☰ 재생목록</button>
+</div>
+<div class="small">녹음은 마이크 권한을 허용한 뒤 전체 스크립트를 보며 읽는 방식입니다. 녹음 완료 파일은 이 브라우저의 기기 저장소에 날짜·시간별로 보관됩니다.</div>
+
+<div class="uploadbox">
+  <div class="uploadtitle">스크립트·교재 사진 업로드</div>
+  <div class="uploadactions"><label class="uploadbtn camera" for="cameraInput">📷 카메라로 촬영</label><label class="uploadbtn" for="libraryInput">🖼 사진 보관함</label></div>
+  <input id="cameraInput" class="uploadinput" type="file" accept="image/*" capture="environment"><input id="libraryInput" class="uploadinput" type="file" accept="image/*">
+  <div id="previewWrap" class="previewwrap"><img id="previewImg" class="previewimg" alt="업로드한 교재 사진 미리보기"><div class="previewmeta"><span id="previewName"></span><button id="removeImg" class="removeimg" type="button">사진 삭제</button></div></div>
+  <div class="uploadnote">사진을 선택한 뒤 ‘사진 글자 인식’을 눌러야 새 스크립트로 변환됩니다. 텍스트를 직접 붙여 넣은 경우에는 ‘스크립트 적용’을 누르세요.</div>
+  <textarea id="scriptInput" class="scriptinput" placeholder="예: Weather Caster: Hello, everyone.
+화자 표시 없이 영어 문장만 한 줄씩 입력해도 됩니다."></textarea>
+  <div class="applyrow"><button id="ocrBtn" class="applybtn ocrbtn" type="button">사진 글자 인식</button><button id="applyScriptBtn" class="applybtn" type="button">스크립트 적용</button></div>
+</div>
+</main></div>
+
+<div id="recordOverlay" class="overlay hide" role="dialog" aria-modal="true">
+  <div class="sheet">
+    <div class="sheethead"><div><h2>전체 스크립트 녹음</h2><div id="recordTimer" class="timer">00:00</div></div><button id="closeRecord" class="closebtn" type="button">닫기</button></div>
+    <div id="reader" class="reader"></div>
+    <div class="recordbar"><button id="startRecord" class="recording" type="button">● 녹음 시작</button><button id="finishRecord" class="finish" type="button" disabled>■ 녹음 완료</button></div>
+  </div>
+</div>
+<div id="playlistOverlay" class="overlay hide" role="dialog" aria-modal="true">
+  <div class="sheet">
+    <div class="sheethead"><h2>녹음 재생목록</h2><button id="closePlaylist" class="closebtn" type="button">닫기</button></div>
+    <div id="playlistBody" class="playlistBody"></div>
+  </div>
+</div>
+
+<script>
+ 'use strict';
+const $=id=>document.getElementById(id);
+let story=[
+{speaker:'Weather Caster',text:"Hello, everyone. How’s the weather today?",ko:'안녕하세요, 여러분. 오늘 날씨는 어떤가요?'},{speaker:'Children',text:"It’s raining.",ko:'비가 오고 있어요.'},{speaker:'Weather Caster',text:"Yes, it’s raining outside. I tell the weather on the morning news. It’s at seven.",ko:'네, 밖에 비가 오고 있어요. 저는 아침 뉴스에서 날씨를 전해요. 뉴스는 7시에 해요.'},{speaker:'Lena',text:"Seven o’clock? What time do you get up?",ko:'7시요? 몇 시에 일어나세요?'},{speaker:'Weather Caster',text:"I get up at four. I come here at five.",ko:'저는 4시에 일어나요. 5시에 이곳에 와요.'},{speaker:'Diego',text:"Wow, that’s very early.",ko:'와, 정말 이르네요.'},{speaker:'Weather Caster',text:"I check today’s weather and write the news.",ko:'저는 오늘의 날씨를 확인하고 뉴스 원고를 써요.'},{speaker:'Yeji',text:"What time do you have lunch?",ko:'몇 시에 점심을 먹어요?'},{speaker:'Weather Caster',text:"I have lunch at eleven.",ko:'저는 11시에 점심을 먹어요.'},{speaker:'Minh',text:"What do you do after that?",ko:'그다음에는 무엇을 하세요?'},{speaker:'Weather Caster',text:"I check the weather for tomorrow. Then, I go home at two o’clock.",ko:'저는 내일 날씨를 확인해요. 그런 다음 2시에 집에 가요.'},{speaker:'Minh',text:"Look! It’s two o’clock. Can I go home now?",ko:'보세요! 2시예요. 저 이제 집에 가도 돼요?'},{speaker:'Lena',text:"Sorry, you can’t.",ko:'미안하지만, 안 돼요.'}
+];
+let words=[{word:'weather',meaning:'날씨'},{word:'raining',meaning:'비가 오는'},{word:'outside',meaning:'밖에, 바깥에서'},{word:'morning news',meaning:'아침 뉴스'},{word:'get up',meaning:'일어나다'},{word:'early',meaning:'이른, 일찍'},{word:'check',meaning:'확인하다'},{word:'write',meaning:'쓰다'},{word:'lunch',meaning:'점심'},{word:'after that',meaning:'그다음에'},{word:'tomorrow',meaning:'내일'},{word:'go home',meaning:'집에 가다'}];
+let voices=[],mode='story',index=0,playToken=0,isPlayingAll=false,isPlayingWords=false;
+const synth=('speechSynthesis' in window)?window.speechSynthesis:null;
+function browserLabel(){const ua=navigator.userAgent||'';if(/KAKAOTALK/i.test(ua))return '카카오톡 내부 브라우저';if(/CriOS/i.test(ua))return 'iPhone Chrome';if(/Safari/i.test(ua)&&!/Chrome|CriOS|FxiOS/i.test(ua))return 'iPhone Safari';return '브라우저'}
+function loadVoices(){try{voices=synth?synth.getVoices():[];updateVoiceInfo()}catch(e){voices=[];updateVoiceInfo()}}
+if(synth){synth.onvoiceschanged=loadVoices;[0,100,300,700,1500,3000].forEach(ms=>setTimeout(loadVoices,ms))}
+function voiceProfile(){const t=$('voiceType').value;const region=t==='gb'?'GB':t==='au'?'AU':'US';return {lang:'en-'+region,region}}
+function chooseVoice(){const p=voiceProfile();const exact=voices.filter(v=>v.lang===p.lang||v.lang.startsWith(p.lang));const keyMap={GB:['Daniel','Arthur','Serena','Google UK English'],US:['Samantha','Alex','Tom','Google US English'],AU:['Karen','Lee','Gordon','Google Australian English']};for(const k of keyMap[p.region]){const v=exact.find(x=>x.name&&x.name.includes(k));if(v)return v}return exact.find(v=>/Premium|Enhanced|Natural/i.test(v.name||''))||exact.find(v=>v.localService)||exact[0]||voices.find(v=>v.lang&&v.lang.startsWith('en'))||null}
+function updateVoiceInfo(){const v=chooseVoice(),label=browserLabel();$('voiceBadge').textContent=v?v.name:voiceProfile().lang;$('voiceInfo').textContent=(v?'사용 음성: '+v.name:'기기 기본 영어 음성 사용')+' · '+label}
+$('voiceType').addEventListener('change',()=>{stopAll();loadVoices()});$('rate').addEventListener('input',()=>{$('rateText').textContent=Number($('rate').value).toFixed(2)+'×'});
+function currentTotal(){return mode==='words'?words.length:story.length}
+function render(){const item=mode==='words'?words[index]:story[index];$('translation').classList.add('hide');$('wordMeaning').classList.add('hide');if(mode==='words'){$('speaker').textContent='KEY WORD';$('line').textContent=item.word;$('wordMeaning').textContent=item.meaning;$('wordMeaning').classList.remove('hide');$('hint').textContent='뜻은 화면으로만 확인하고, 음성은 영어 단어만 읽습니다.'}else{$('speaker').textContent=item.speaker;$('line').textContent=item.text;if(mode==='translation'){$('translation').textContent=item.ko;$('translation').classList.remove('hide');$('hint').textContent='영어 음성을 들으며 해석을 확인하세요.'}else{$('hint').textContent='한 문장 재생으로 반복해서 듣고, 다음 버튼으로 이동하세요.'}}$('countBadge').textContent=(index+1)+' / '+currentTotal();$('bar').style.width=((index+1)/currentTotal()*100)+'%'}
+function makeUtterance(text,token,onStart,onEnd){const u=new SpeechSynthesisUtterance(text),p=voiceProfile();u.lang=p.lang;u.rate=Number($('rate').value);u.pitch=1;u.volume=1;const v=chooseVoice();if(v)u.voice=v;u.onstart=()=>{if(token!==playToken)return;if(onStart)onStart()};const finish=()=>{if(token!==playToken)return;if(onEnd)onEnd()};u.onend=finish;u.onerror=finish;return u}
+function ensureSpeech(){if(!synth){alert('이 브라우저에서는 음성 읽기를 지원하지 않습니다. Safari 또는 Chrome으로 열어 주세요.');return false}loadVoices();try{synth.cancel();synth.resume()}catch(e){}return true}
+function stopAll(){playToken++;isPlayingAll=false;isPlayingWords=false;if(synth){try{synth.cancel();synth.resume()}catch(e){}}}
+function speakSequence(items,textFn,onItem,onDone){
+  if(!ensureSpeech())return;
+  stopAll();
+  const token=playToken;
+  let i=0;
+  const next=()=>{
+    if(token!==playToken)return;
+    if(i>=items.length){if(onDone)onDone();return;}
+    const current=i++;
+    const u=makeUtterance(textFn(items[current]),token,()=>{if(onItem)onItem(current)},()=>{setTimeout(next,220)});
+    try{synth.speak(u)}catch(e){$('hint').textContent='음성 재생 오류: '+e.message;}
+  };
+  next();
+}
+function playFullStory(){mode='story';index=0;isPlayingAll=true;$('modeBadge').textContent='전체 듣기';speakSequence(story,x=>x.text,i=>{index=i;render();$('hint').textContent='전체 스크립트 재생 중'},()=>{isPlayingAll=false;$('hint').textContent='전체 듣기가 끝났습니다.'})}
+function playAllWords(){mode='words';index=0;isPlayingWords=true;$('modeBadge').textContent='주요 단어';speakSequence(words,x=>x.word,i=>{index=i;render();$('hint').textContent='선택한 영어 음성으로 주요 단어만 재생 중'},()=>{isPlayingWords=false;$('hint').textContent='주요 단어 재생이 끝났습니다.'})}
+function playSentence(){if(!ensureSpeech())return;stopAll();const token=playToken,item=mode==='words'?words[index]:story[index];const text=mode==='words'?item.word:item.text;synth.speak(makeUtterance(text,token,()=>{$('hint').textContent='재생 중'},()=>{$('hint').textContent=mode==='words'?'단어 재생 완료':'한 문장 재생 완료'}))}
+function nextItem(){stopAll();if(index<currentTotal()-1){index++;render()}else{index=0;render();$('hint').textContent='처음으로 돌아왔습니다.'}}
+$('fullListenBtn').addEventListener('click',playFullStory);$('stopBtn').addEventListener('click',()=>{stopAll();$('hint').textContent='정지되었습니다.'});$('translationBtn').addEventListener('click',()=>{stopAll();mode='translation';index=0;$('modeBadge').textContent='해석 보기';render();playSentence()});$('wordsBtn').addEventListener('click',playAllWords);$('sentenceBtn').addEventListener('click',playSentence);$('nextBtn').addEventListener('click',nextItem);
+// iPhone에서는 첫 사용자 터치에서 음성 엔진과 음성 목록을 깨웁니다.
+document.addEventListener('touchstart',()=>{loadVoices();if(synth&&synth.paused)try{synth.resume()}catch(e){}},{once:true,passive:true});
+const cameraInput=$('cameraInput'),libraryInput=$('libraryInput'),previewWrap=$('previewWrap'),previewImg=$('previewImg'),previewName=$('previewName');
+function showUploadedImage(file){if(!file||!file.type.startsWith('image/'))return;const url=URL.createObjectURL(file);if(previewImg.dataset.url)URL.revokeObjectURL(previewImg.dataset.url);previewImg.dataset.url=url;previewImg.src=url;previewName.textContent=file.name||'촬영한 사진';previewWrap.classList.add('show')}
+cameraInput.addEventListener('change',e=>showUploadedImage(e.target.files&&e.target.files[0]));libraryInput.addEventListener('change',e=>showUploadedImage(e.target.files&&e.target.files[0]));$('removeImg').addEventListener('click',()=>{if(previewImg.dataset.url)URL.revokeObjectURL(previewImg.dataset.url);previewImg.removeAttribute('src');previewImg.dataset.url='';cameraInput.value='';libraryInput.value='';previewName.textContent='';previewWrap.classList.remove('show')});
+function applyScriptText(){
+  const raw=$('scriptInput').value.trim();
+  if(!raw){alert('적용할 영어 스크립트를 입력하거나 사진에서 글자를 인식해 주세요.');return;}
+  const lines=raw.split(/\n+/).map(x=>x.trim()).filter(Boolean);
+  const parsed=[];
+  for(const line of lines){
+    const m=line.match(/^([^:]{1,30}):\s*(.+)$/);
+    if(m)parsed.push({speaker:m[1].trim(),text:m[2].trim(),ko:'해석 미입력'});
+    else parsed.push({speaker:'SCRIPT',text:line,ko:'해석 미입력'});
+  }
+  if(!parsed.length){alert('영어 문장을 찾지 못했습니다.');return;}
+  stopAll();story=parsed;mode='story';index=0;render();buildReader();$('modeBadge').textContent='새 스크립트';$('hint').textContent='새 스크립트가 적용되었습니다. 재생 버튼을 눌러 주세요.';
+}
+$('applyScriptBtn').addEventListener('click',applyScriptText);
+async function loadTesseract(){
+  if(window.Tesseract)return true;
+  return new Promise((resolve,reject)=>{const sc=document.createElement('script');sc.src='https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js';sc.onload=()=>resolve(true);sc.onerror=()=>reject(new Error('OCR 모듈을 불러오지 못했습니다. 인터넷 연결을 확인해 주세요.'));document.head.appendChild(sc)});
+}
+$('ocrBtn').addEventListener('click',async()=>{
+  const file=(cameraInput.files&&cameraInput.files[0])||(libraryInput.files&&libraryInput.files[0]);
+  if(!file){alert('먼저 교재 사진을 촬영하거나 선택해 주세요.');return;}
+  const btn=$('ocrBtn'),old=btn.textContent;btn.disabled=true;btn.textContent='글자 인식 중...';$('hint').textContent='사진에서 영어 문장을 읽는 중입니다.';
+  try{await loadTesseract();const result=await Tesseract.recognize(file,'eng',{logger:m=>{if(m.status==='recognizing text')btn.textContent='인식 '+Math.round((m.progress||0)*100)+'%'}});$('scriptInput').value=(result.data.text||'').trim();if(!$('scriptInput').value)throw new Error('사진에서 영어 문장을 찾지 못했습니다.');applyScriptText();}
+  catch(e){alert((e&&e.message)||'사진 글자 인식에 실패했습니다.');$('hint').textContent='사진 인식에 실패했습니다. 텍스트를 직접 붙여 넣어 주세요.';}finally{btn.disabled=false;btn.textContent=old;}
+});
+
+// Recording + IndexedDB playlist
+const DB_NAME='Y1EnglishStoryDB',STORE='recordings';let mediaRecorder=null,mediaStream=null,audioChunks=[],recordStartedAt=0,timerHandle=null,autoScrollHandle=null;
+function openDB(){return new Promise((resolve,reject)=>{const req=indexedDB.open(DB_NAME,1);req.onupgradeneeded=()=>{const db=req.result;if(!db.objectStoreNames.contains(STORE))db.createObjectStore(STORE,{keyPath:'id',autoIncrement:true})};req.onsuccess=()=>resolve(req.result);req.onerror=()=>reject(req.error)})}
+async function saveRecording(blob,mimeType){const db=await openDB();return new Promise((resolve,reject)=>{const tx=db.transaction(STORE,'readwrite');tx.objectStore(STORE).add({createdAt:Date.now(),story:'Mini Story 097',mimeType,blob});tx.oncomplete=()=>{db.close();resolve()};tx.onerror=()=>{db.close();reject(tx.error)}})}
+async function getRecordings(){const db=await openDB();return new Promise((resolve,reject)=>{const req=db.transaction(STORE,'readonly').objectStore(STORE).getAll();req.onsuccess=()=>{db.close();resolve((req.result||[]).sort((a,b)=>b.createdAt-a.createdAt))};req.onerror=()=>{db.close();reject(req.error)}})}
+async function deleteRecording(id){const db=await openDB();return new Promise((resolve,reject)=>{const tx=db.transaction(STORE,'readwrite');tx.objectStore(STORE).delete(id);tx.oncomplete=()=>{db.close();resolve()};tx.onerror=()=>{db.close();reject(tx.error)}})}
+function buildReader(){const reader=$('reader');reader.innerHTML='';story.forEach((s,i)=>{const row=document.createElement('div');row.className='readerline';row.dataset.index=i;row.innerHTML='<div class="rspeaker"></div><div class="rtext"></div>';row.querySelector('.rspeaker').textContent=s.speaker;row.querySelector('.rtext').textContent=s.text;reader.appendChild(row)})}
+function setReaderActive(i){document.querySelectorAll('.readerline').forEach((el,n)=>el.classList.toggle('active',n===i));const el=document.querySelector('.readerline[data-index="'+i+'"]');if(el)el.scrollIntoView({behavior:'smooth',block:'center'})}
+function formatTime(sec){const m=Math.floor(sec/60),s=sec%60;return String(m).padStart(2,'0')+':'+String(s).padStart(2,'0')}
+function startTimer(){clearInterval(timerHandle);timerHandle=setInterval(()=>{$('recordTimer').textContent=formatTime(Math.floor((Date.now()-recordStartedAt)/1000))},250)}
+function startAutoScroll(){clearInterval(autoScrollHandle);let i=0;setReaderActive(0);autoScrollHandle=setInterval(()=>{i=Math.min(i+1,story.length-1);setReaderActive(i);if(i===story.length-1)clearInterval(autoScrollHandle)},6500)}
+function cleanupMedia(){clearInterval(timerHandle);clearInterval(autoScrollHandle);timerHandle=null;autoScrollHandle=null;if(mediaStream){mediaStream.getTracks().forEach(t=>t.stop());mediaStream=null}mediaRecorder=null}
+async function beginRecording(){try{if(!window.isSecureContext)throw new Error('녹음은 HTTPS 주소에서만 사용할 수 있습니다. 카카오톡에서 파일로 직접 연 경우에는 마이크 녹음이 제한됩니다.');if(!window.MediaRecorder)throw new Error('이 브라우저에서는 녹음 형식을 지원하지 않습니다.');if(!navigator.mediaDevices||!navigator.mediaDevices.getUserMedia)throw new Error('이 브라우저에서는 마이크 녹음을 지원하지 않습니다.');mediaStream=await navigator.mediaDevices.getUserMedia({audio:true});audioChunks=[];const preferred=['audio/mp4','audio/webm;codecs=opus','audio/webm'];let mime='';for(const t of preferred){if(window.MediaRecorder&&MediaRecorder.isTypeSupported&&MediaRecorder.isTypeSupported(t)){mime=t;break}}mediaRecorder=mime?new MediaRecorder(mediaStream,{mimeType:mime}):new MediaRecorder(mediaStream);mediaRecorder.ondataavailable=e=>{if(e.data&&e.data.size)audioChunks.push(e.data)};mediaRecorder.onstop=async()=>{const type=mediaRecorder&&mediaRecorder.mimeType?mediaRecorder.mimeType:(audioChunks[0]&&audioChunks[0].type)||'audio/webm';const blob=new Blob(audioChunks,{type});try{await saveRecording(blob,type);$('hint').textContent='녹음이 날짜·시간별로 저장되었습니다.'}catch(e){alert('녹음 저장 중 오류가 발생했습니다.');}cleanupMedia();$('startRecord').disabled=false;$('finishRecord').disabled=true;$('startRecord').textContent='● 녹음 시작'};mediaRecorder.start(500);recordStartedAt=Date.now();$('recordTimer').textContent='00:00';$('startRecord').disabled=true;$('finishRecord').disabled=false;$('startRecord').textContent='녹음 중';startTimer();startAutoScroll()}catch(e){cleanupMedia();alert((e&&e.message)||'마이크 권한을 확인해 주세요. HTTPS 또는 홈 화면에 추가한 페이지에서 더 안정적으로 작동합니다.')}}
+function endRecording(){if(mediaRecorder&&mediaRecorder.state!=='inactive')mediaRecorder.stop()}
+function openRecord(){stopAll();buildReader();$('recordOverlay').classList.remove('hide');$('reader').scrollTop=0;$('recordTimer').textContent='00:00'}
+function closeRecord(){if(mediaRecorder&&mediaRecorder.state!=='inactive'){if(!confirm('녹음 중입니다. 녹음을 종료할까요?'))return;endRecording()}$('recordOverlay').classList.add('hide')}
+async function renderPlaylist(){const body=$('playlistBody');body.innerHTML='<div class="empty">불러오는 중...</div>';try{const rows=await getRecordings();body.innerHTML='';if(!rows.length){body.innerHTML='<div class="empty">저장된 녹음이 없습니다.</div>';return}rows.forEach(r=>{const item=document.createElement('div');item.className='recordItem';const date=new Date(r.createdAt);const url=URL.createObjectURL(r.blob);const ext=(r.mimeType||'').includes('mp4')?'m4a':'webm';item.innerHTML='<div class="recordMeta"><strong></strong><span></span></div><audio controls preload="metadata"></audio><div class="recordActions"><a class="download">파일 저장</a><button class="delete" type="button">삭제</button></div>';item.querySelector('strong').textContent=r.story||'English Story';item.querySelector('.recordMeta span').textContent=date.toLocaleString('ko-KR');item.querySelector('audio').src=url;const a=item.querySelector('.download');a.href=url;a.download='Y1_English_Story_097_'+date.toISOString().replace(/[:.]/g,'-')+'.'+ext;item.querySelector('.delete').addEventListener('click',async()=>{if(confirm('이 녹음을 삭제할까요?')){await deleteRecording(r.id);URL.revokeObjectURL(url);renderPlaylist()}});body.appendChild(item)})}catch(e){body.innerHTML='<div class="empty">재생목록을 불러오지 못했습니다.</div>'}}
+$('recordBtn').addEventListener('click',openRecord);$('startRecord').addEventListener('click',beginRecording);$('finishRecord').addEventListener('click',endRecording);$('closeRecord').addEventListener('click',closeRecord);$('playlistBtn').addEventListener('click',()=>{$('playlistOverlay').classList.remove('hide');renderPlaylist()});$('closePlaylist').addEventListener('click',()=>{$('playlistOverlay').classList.add('hide')});
+$('recordOverlay').addEventListener('click',e=>{if(e.target===$('recordOverlay'))closeRecord()});$('playlistOverlay').addEventListener('click',e=>{if(e.target===$('playlistOverlay'))$('playlistOverlay').classList.add('hide')});
+document.addEventListener('visibilitychange',()=>{if(document.hidden)stopAll()});
+window.addEventListener('pageshow',()=>{loadVoices();render()});
+render();updateVoiceInfo();
+</script>
+</body></html>
