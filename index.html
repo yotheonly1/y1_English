@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
 <meta name="apple-mobile-web-app-capable" content="yes" />
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-<title>Y1 English Story V1.4 Simplified Menu</title>
+<title>Y1 English Story · Kids Space Edition</title>
 <style>
 :root{--bg:#eef7ff;--card:#fff;--ink:#142238;--muted:#718096;--blue:#287bd6;--blue2:#e8f2ff;--yellow:#fff0a6;--green:#2f9e6d;--red:#b64b4b;--purple:#7258d7}
 *{box-sizing:border-box}
@@ -13,187 +13,173 @@ body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Ari
 .wrap{max-width:980px;margin:auto;padding:14px 12px 32px}
 header{text-align:center;padding:8px 0 12px}h1{margin:0;font-size:clamp(26px,6vw,44px)}.sub{color:var(--muted);margin-top:5px}
 .panel{background:rgba(255,255,255,.97);border-radius:25px;box-shadow:0 12px 30px rgba(40,89,130,.14);padding:16px}
-.settings{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:12px}.setting{background:#f3f7fb;border-radius:15px;padding:12px}.setting label{display:block;font-size:14px;color:var(--muted);font-weight:900;margin-bottom:7px}.setting select,.setting input{width:100%;font:inherit}.voiceinfo{font-size:12px;color:var(--muted);margin-top:6px;min-height:18px}
-.topgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:8px 0 12px}.topbtn{border:0;border-radius:18px;padding:18px 10px;font-weight:900;background:#eaf2fb;color:#24517c;cursor:pointer;font-size:18px;min-height:84px}.topbtn.primary{background:var(--blue);color:#fff}.topbtn.stop{background:#ffe8e8;color:#a33}.topbtn .mini{display:block;font-size:12px;font-weight:750;opacity:.82;margin-top:4px}.featuregrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:0 0 12px}.grammarbtn,.morewordsbtn{width:100%;border:0;border-radius:18px;padding:16px 12px;font-weight:900;font-size:18px;cursor:pointer}.grammarbtn{background:#fff3cf;color:#775a12}.morewordsbtn{background:#e8f7ef;color:#24764f}.grammarbtn .mini,.morewordsbtn .mini{display:block;font-size:12px;opacity:.78;margin-top:4px}.grammarbox{margin-top:18px;max-width:840px;text-align:left;background:#fff8dc;border:1px solid #f0d675;border-radius:16px;padding:15px 16px}.grammartitle{font-size:17px;font-weight:950;color:#755812;margin-bottom:8px}.grammarpattern{font-size:clamp(18px,4vw,25px);font-weight:900;color:#35445a;margin-bottom:8px}.grammarexplain{font-size:clamp(15px,3vw,20px);line-height:1.55;color:#526174}.grammarexample{margin-top:9px;font-size:clamp(17px,3.4vw,22px);font-weight:850;color:#24517c}
+.settings{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:18px}.setting{background:#f3f7fb;border-radius:15px;padding:12px}.setting label{display:block;font-size:14px;color:var(--muted);font-weight:900;margin-bottom:7px}.setting select{width:100%;font:inherit}.voiceinfo{font-size:12px;color:var(--muted);margin-top:6px;min-height:18px}
+.topgrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin:8px 0 12px}.topbtn{border:0;border-radius:14px;padding:13px 6px;font-weight:900;background:#eaf2fb;color:#24517c;cursor:pointer;font-size:15px;min-height:62px}.topbtn.primary{background:var(--blue);color:#fff}.topbtn.stop{background:#ffe8e8;color:#a33}.topbtn .mini{display:block;font-size:12px;font-weight:750;opacity:.82;margin-top:4px}
 .status{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-bottom:12px}.badge{padding:7px 11px;border-radius:999px;background:#edf3fa;color:#526174;font-weight:850;font-size:13px}
-.stage{min-height:365px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:24px 16px;border-radius:21px;background:linear-gradient(180deg,#fff,#f8fbff);border:1px solid #dfeaf5}.speaker{font-weight:950;color:var(--blue);font-size:clamp(20px,4vw,30px);margin-bottom:18px}.line{font-weight:900;font-size:clamp(29px,6.5vw,52px);line-height:1.32;max-width:870px;white-space:pre-line}.line.highlight{background:linear-gradient(transparent 62%,var(--yellow) 62%);padding:0 4px}.translation{margin-top:19px;font-size:clamp(18px,4vw,28px);font-weight:780;color:#45556b;max-width:820px;white-space:pre-line}.wordmeaning{margin-top:18px;font-size:clamp(15px,3vw,21px);color:#929cab;opacity:.7}.hint{margin-top:21px;color:var(--muted);font-size:clamp(14px,3vw,19px);font-weight:780;min-height:26px}
+.stage{min-height:430px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:24px 16px;border-radius:21px;background:linear-gradient(180deg,#fff,#f8fbff);border:1px solid #dfeaf5}.speaker{font-weight:950;color:var(--blue);font-size:clamp(20px,4vw,30px);margin-bottom:18px}.line{font-weight:900;font-size:clamp(26px,5.85vw,47px);line-height:1.32;max-width:870px;white-space:pre-line}.line.highlight{background:none;padding:0}.translation{margin-top:19px;font-size:clamp(18px,4vw,28px);font-weight:780;color:#45556b;max-width:820px;white-space:pre-line}.wordmeaning{margin-top:18px;font-size:clamp(15px,3vw,21px);color:#929cab;opacity:.7}.hint{margin-top:21px;color:var(--muted);font-size:clamp(14px,3vw,19px);font-weight:780;min-height:26px}
 .progress{height:9px;background:#e8eef5;border-radius:999px;overflow:hidden;margin:14px 0}.bar{height:100%;width:0;background:linear-gradient(90deg,#3a8ee6,#68c7a2);transition:width .22s}
-.bottomgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.bottomgrid button{border:0;border-radius:18px;padding:18px 10px;font-weight:900;cursor:pointer;font-size:18px;min-height:70px}.sentence{background:var(--blue);color:#fff}.next{background:var(--purple);color:#fff}.record{background:#ffe8e8;color:#a33}.playlist{background:#e9f7ef;color:#24764f}.bottomgrid button:disabled{opacity:.38;cursor:not-allowed}
+.bottomgrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}.bottomgrid button{border:0;border-radius:14px;padding:13px 6px;font-weight:900;cursor:pointer;font-size:15px;min-height:58px}.sentence{background:var(--blue);color:#fff}.next{background:var(--purple);color:#fff}.record{background:#ffe8e8;color:#a33}.playlist{background:#e9f7ef;color:#24764f}.bottomgrid button:disabled{opacity:.38;cursor:not-allowed}
 .small{font-size:12px;color:var(--muted);line-height:1.55;margin-top:12px}.hide{display:none!important}
 .uploadbox{margin-top:18px;background:#f7fbff;border:1px dashed #9fc7ee;border-radius:18px;padding:14px}.uploadtitle{font-weight:900;color:#24517c;margin-bottom:10px;font-size:18px}.uploadactions{display:grid;grid-template-columns:1fr 1fr;gap:9px}.uploadbtn{display:flex;align-items:center;justify-content:center;border:0;border-radius:13px;padding:14px 10px;font-weight:850;cursor:pointer;background:#e8f2ff;color:#205f9d}.uploadbtn.camera{background:var(--blue);color:#fff}.uploadinput{display:none}.previewwrap{display:none;margin-top:12px}.previewwrap.show{display:block}.previewimg{display:block;width:100%;max-height:320px;object-fit:contain;border-radius:14px;background:#eef3f8}.previewmeta{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-top:8px;color:var(--muted);font-size:12px}.removeimg{border:0;border-radius:10px;padding:8px 10px;background:#ffe8e8;color:#a33;font-weight:800}.scriptinput{width:100%;min-height:120px;margin-top:10px;border:1px solid #d9e5f0;border-radius:13px;padding:11px;font:inherit;resize:vertical;background:#fff}.applyrow{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:9px}.applybtn{border:0;border-radius:13px;padding:13px 10px;font-weight:850;background:#234f7d;color:#fff}.ocrbtn{background:#eaf3ff;color:#225f9e}.uploadnote{font-size:12px;color:#64778a;line-height:1.45;margin-top:8px}
 .overlay{position:fixed;inset:0;background:rgba(10,25,45,.72);z-index:999;display:flex;align-items:flex-end;justify-content:center;padding:14px}.sheet{width:min(920px,100%);max-height:92vh;background:#fff;border-radius:24px 24px 14px 14px;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 20px 50px rgba(0,0,0,.25)}.sheethead{padding:16px 18px;border-bottom:1px solid #e8edf3;display:flex;align-items:center;justify-content:space-between;gap:12px}.sheethead h2{font-size:20px;margin:0}.closebtn{border:0;border-radius:11px;background:#edf3fa;padding:9px 12px;font-weight:900;color:#41546a}.reader{overflow:auto;padding:18px;scroll-behavior:smooth}.readerline{padding:16px 14px;margin-bottom:10px;border-radius:14px;background:#f5f8fc;border:1px solid #e2ebf4}.readerline.active{background:#fff5bd;border-color:#efcf55}.readerline .rspeaker{font-weight:900;color:var(--blue);font-size:14px;margin-bottom:6px}.readerline .rtext{font-size:22px;font-weight:800;line-height:1.45}.recordbar{padding:13px 16px;border-top:1px solid #e8edf3;display:grid;grid-template-columns:1fr 1fr;gap:10px}.recordbar button{border:0;border-radius:14px;padding:14px;font-weight:900;font-size:16px}.recording{background:#d93737;color:#fff}.finish{background:#243b58;color:#fff}.timer{font-variant-numeric:tabular-nums;font-weight:900;color:#d93737}
 .playlistBody{overflow:auto;padding:16px}.recordItem{border:1px solid #dfe8f2;background:#f9fbfe;border-radius:15px;padding:12px;margin-bottom:10px}.recordMeta{display:flex;justify-content:space-between;gap:8px;font-size:13px;color:#64748b;margin-bottom:9px}.recordItem audio{width:100%}.recordActions{display:flex;gap:8px;justify-content:flex-end;margin-top:8px}.recordActions button,.recordActions a{border:0;border-radius:10px;padding:8px 10px;font-weight:800;text-decoration:none;font-size:13px}.download{background:#e8f2ff;color:#205f9d}.delete{background:#ffe8e8;color:#a33}.empty{text-align:center;color:var(--muted);padding:28px 10px}
-@media(max-width:680px){.settings{grid-template-columns:1fr}.topgrid,.bottomgrid,.featuregrid{grid-template-columns:1fr 1fr}.stage{min-height:390px}.panel{padding:12px}.uploadactions{grid-template-columns:1fr 1fr}.wrap{padding-top:8px}.topbtn{font-size:17px;min-height:76px}.bottomgrid button{font-size:17px}.readerline .rtext{font-size:19px}}
+@media(max-width:680px){.settings{grid-template-columns:1fr 1fr}.topgrid,.bottomgrid{grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}.stage{min-height:455px}.panel{padding:12px}.uploadactions{grid-template-columns:1fr 1fr}.wrap{padding-top:8px}.topbtn{font-size:13px;min-height:58px;padding:10px 3px}.topbtn .mini{font-size:10px}.bottomgrid button{font-size:12px;min-height:52px;padding:10px 3px}.readerline .rtext{font-size:19px}}
 
-/* V1.3 City Defense Game */
-.gamebtn{grid-column:1/-1;width:100%;border:0;border-radius:18px;padding:17px 12px;font-weight:950;font-size:18px;cursor:pointer;background:linear-gradient(135deg,#6a5ce6,#287bd6);color:#fff;box-shadow:0 8px 18px rgba(40,123,214,.18)}
-.gamebtn .mini{display:block;font-size:12px;opacity:.86;margin-top:4px}
-.gameSheet{width:min(980px,100%);height:min(94vh,900px);background:#f7fbff;border-radius:24px 24px 14px 14px;display:flex;flex-direction:column;overflow:hidden}
-.gameHead{padding:12px 14px;background:#172b4d;color:#fff;display:flex;align-items:center;justify-content:space-between;gap:10px}
-.gameHeadTitle{font-weight:950}.gameHud{display:flex;gap:7px;flex-wrap:wrap;justify-content:flex-end}
-.gameChip{background:rgba(255,255,255,.15);border-radius:999px;padding:6px 10px;font-size:13px;font-weight:850}
-.gameBody{overflow:auto;padding:12px;display:grid;grid-template-columns:minmax(0,1.25fr) minmax(280px,.75fr);gap:12px}
-.battlefield{position:relative;min-height:520px;border-radius:22px;overflow:hidden;background:linear-gradient(#315b9b 0%,#6fb6e9 48%,#cdeeff 72%,#d9e8c4 73%,#a7cf86 100%);border:2px solid #d6e7f4}
-.stars{position:absolute;inset:0 0 45% 0;background-image:radial-gradient(circle at 15% 20%,#fff 0 2px,transparent 3px),radial-gradient(circle at 68% 14%,#fff 0 1.5px,transparent 3px),radial-gradient(circle at 83% 35%,#fff 0 2px,transparent 3px),radial-gradient(circle at 40% 30%,#fff 0 1px,transparent 2px);opacity:.85}
-.ufo{position:absolute;top:24px;left:50%;transform:translateX(-50%);font-size:64px;filter:drop-shadow(0 8px 8px rgba(0,0,0,.25));animation:ufoFloat 2.3s ease-in-out infinite}
-@keyframes ufoFloat{50%{transform:translate(-50%,8px) rotate(2deg)}}
-.attackLane{position:absolute;top:100px;bottom:150px;left:50%;width:120px;transform:translateX(-50%);display:flex;flex-direction:column;justify-content:flex-end;align-items:center;gap:7px}
-.cannonball{width:62px;height:62px;border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle at 32% 28%,#8d95a2,#303846 58%,#151b24);border:3px solid #b9c0ca;color:#fff;font-size:25px;font-weight:950;box-shadow:0 6px 10px rgba(0,0,0,.25);transition:.35s}
-.cannonball.removing{transform:scale(.1) translateY(40px);opacity:0}
-.cityScene{position:absolute;left:0;right:0;bottom:0;height:170px;display:flex;align-items:flex-end;justify-content:center}
-.landmark{font-size:118px;line-height:1;filter:drop-shadow(0 8px 4px rgba(0,0,0,.2));transition:.25s}
-.landmark.hit{animation:cityHit .35s}
-@keyframes cityHit{25%{transform:translateX(-8px) rotate(-3deg)}75%{transform:translateX(8px) rotate(3deg)}}
-.cityLabel{position:absolute;bottom:8px;background:rgba(255,255,255,.9);padding:6px 12px;border-radius:999px;font-weight:950;color:#17304f}
-.gamePanel{display:flex;flex-direction:column;gap:10px}
-.missionCard,.questionCard,.gameResult{background:#fff;border:1px solid #dfeaf4;border-radius:18px;padding:14px}
-.missionTitle{font-size:20px;font-weight:950;color:#17304f}.missionText{margin-top:6px;color:#526174;line-height:1.5}
-.qType{font-size:12px;font-weight:900;color:#287bd6;letter-spacing:.05em}.qText{font-size:clamp(20px,4vw,30px);line-height:1.4;font-weight:950;margin:10px 0;color:#15253d}
-.blankWord{display:inline-block;min-width:82px;border-bottom:4px solid #287bd6;color:#287bd6;text-align:center}
-.answerGrid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.answerBtn{border:2px solid #dbe7f2;background:#f8fbff;color:#243b58;border-radius:14px;padding:13px 8px;font-size:16px;font-weight:900;cursor:pointer;min-height:54px}
-.answerBtn:active{transform:scale(.98)}.answerBtn.correct{background:#dff6e9;border-color:#46b779;color:#17613d}.answerBtn.wrong{background:#ffe6e6;border-color:#df6b6b;color:#912d2d}
-.gameFeedback{min-height:26px;font-weight:900;text-align:center;color:#526174}
-.gameControlRow{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.gameControlRow button{border:0;border-radius:14px;padding:13px;font-weight:900;font-size:15px;cursor:pointer}
-.gameStart{background:#287bd6;color:#fff}.gameExit{background:#eaf1f8;color:#40536a}
-.hpBar{height:12px;border-radius:999px;background:#e8edf3;overflow:hidden}.hpFill{height:100%;background:linear-gradient(90deg,#e34b4b,#ffc857,#45b878);transition:.3s}
-.gameResult{text-align:center}.gameResultIcon{font-size:64px}.gameResultTitle{font-size:24px;font-weight:950;margin:6px}.hideGame{display:none!important}
-@media(max-width:760px){.gameBody{grid-template-columns:1fr}.battlefield{min-height:430px}.attackLane{bottom:125px}.cannonball{width:52px;height:52px}.landmark{font-size:92px}.answerBtn{font-size:15px}.gameSheet{height:96vh}}
+/* FONT C · Clean Playful */
+body{font-family:"Segoe UI","Avenir Next","Apple SD Gothic Neo","Malgun Gothic",sans-serif;background:linear-gradient(180deg,#eaf5ff 0%,#f8fbff 100%)}
+header{padding:11px 0 15px}
+.brand-title{display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;margin:0;width:100%;text-align:center}
+.brand-y1{display:inline-grid;place-items:center;min-width:62px;height:52px;padding:0 12px;border-radius:17px;background:#243b58;color:#fff;font-size:27px;font-weight:900;letter-spacing:-1px;box-shadow:5px 5px 0 #9ed7ff}
+.brand-english,.brand-story{font-size:clamp(28px,5.8vw,46px);font-weight:900;letter-spacing:-1.7px}
+.brand-english{color:#243b58}.brand-story{color:#337fd0}
+.brand-spark{display:inline-grid;place-items:center;width:34px;height:34px;border-radius:50%;background:#fff0a6;font-size:19px;box-shadow:0 4px 10px rgba(198,157,28,.18)}
+.sub{font-size:13px;font-weight:700;letter-spacing:.2px;color:#7c8da1;margin-top:10px}
+.panel{border:1px solid #dce9f4;box-shadow:0 14px 34px rgba(37,75,109,.11)}
+button,.setting select,.scriptinput{font-family:inherit}
+.topbtn,.bottomgrid button,.uploadbtn,.applybtn{font-weight:800}
+.stage{border:1px solid #dce8f3;box-shadow:0 10px 24px rgba(45,83,116,.06)}
+.speaker{letter-spacing:.2px}.line{font-family:"Avenir Next","Segoe UI","Apple SD Gothic Neo","Malgun Gothic",sans-serif;font-weight:800;letter-spacing:-1px}
 
 
-/* V1.4 Simplified Navigation */
-.appShell{display:grid;grid-template-columns:220px minmax(0,1fr);gap:16px}
-.sideMenu{background:#f7fbff;border:1px solid #dce9f5;border-radius:20px;padding:10px;align-self:start;position:sticky;top:10px}
-.menuTitle{padding:10px 12px 12px;font-size:13px;font-weight:950;color:#7a8a9d;letter-spacing:.08em}
-.navBtn{width:100%;border:0;background:transparent;color:#344b66;border-radius:14px;padding:14px 12px;margin:3px 0;text-align:left;font-size:16px;font-weight:900;cursor:pointer;display:flex;align-items:center;gap:10px}
-.navBtn:hover{background:#edf5ff}.navBtn.active{background:#e3f0ff;color:#1469c7;box-shadow:inset 0 0 0 1px #a9cff6}
-.navIcon{font-size:21px;width:26px;text-align:center}.navSub{display:block;font-size:11px;font-weight:750;color:#8a98a8;margin-top:2px}
-.contentArea{min-width:0}.viewPanel{display:none}.viewPanel.active{display:block}
-.viewHeader{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin:2px 0 12px}.viewTitle{font-size:24px;font-weight:950}.viewDesc{font-size:13px;color:var(--muted);margin-top:4px}
-.readingControls{margin-top:12px}.readingControls .topgrid{margin-top:0}.readingControls .bottomgrid{margin-top:10px}
-.vocabActions,.grammarActions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:10px 0 12px}
-.grammarActions{grid-template-columns:1fr}
-.cityInfoGrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
-.infoCard,.travelCard{background:#fff;border:1px solid #dce8f3;border-radius:18px;padding:16px}
-.infoHero{font-size:74px;text-align:center;margin:6px 0 10px}.infoCard h3,.travelCard h3{margin:0 0 8px}.infoList{display:grid;gap:8px;color:#53657a}.infoRow{display:flex;justify-content:space-between;gap:12px;border-bottom:1px solid #edf2f7;padding-bottom:7px}
-.travelRoute{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-weight:900}.travelStop{background:#eef5ff;border-radius:999px;padding:9px 12px}.travelArrow{color:#789}
-.placeholderNote{margin-top:12px;color:#718096;font-size:13px;line-height:1.55}
-@media(max-width:760px){
-  .appShell{grid-template-columns:1fr}
-  .sideMenu{position:static;display:grid;grid-template-columns:repeat(3,1fr);gap:6px;padding:8px}
-  .menuTitle{display:none}.navBtn{padding:11px 6px;margin:0;text-align:center;justify-content:center;flex-direction:column;gap:3px;font-size:12px;min-height:70px}
-  .navIcon{font-size:22px}.navSub{display:none}
-  .cityInfoGrid{grid-template-columns:1fr}
-}
+/* Space title decoration */
+.space-brand{position:relative;display:flex;align-items:center;justify-content:center;min-height:68px;padding:6px 16px 8px;overflow:visible}
+.space-scene{position:absolute;right:12px;top:50%;width:92px;height:62px;transform:translateY(-50%);pointer-events:none}
+.spaceship{position:absolute;left:12px;top:2px;width:72px;height:58px;transform:rotate(8deg);filter:drop-shadow(0 8px 8px rgba(59,102,160,.18));animation:spaceFloat 3.2s ease-in-out infinite}
+.space-star{position:absolute;color:#8fc4f5;opacity:.72;animation:starTwinkle 2.4s ease-in-out infinite}
+.space-star.s1{left:18px;top:13px;font-size:15px}.space-star.s2{right:20px;top:4px;font-size:11px;animation-delay:.7s}.space-star.s3{right:42px;bottom:4px;font-size:14px;animation-delay:1.2s}.space-star.s4{left:46px;bottom:6px;font-size:9px;animation-delay:.35s}
+@keyframes spaceFloat{0%,100%{transform:translateX(-50%) translateY(0) rotate(8deg)}50%{transform:translateX(-50%) translateY(-6px) rotate(5deg)}}
+@keyframes starTwinkle{0%,100%{opacity:.35;transform:scale(.85)}50%{opacity:.9;transform:scale(1.12)}}
+@media (prefers-reduced-motion:reduce){.spaceship,.space-star{animation:none}}
+@media(max-width:680px){.space-brand{min-height:62px;padding:4px 8px 6px}.space-scene{right:2px;width:72px;height:54px}.spaceship{left:7px;width:60px;height:48px}.space-star.s1{left:0}.space-star.s2{right:0}.space-star.s3{right:6px}.space-star.s4{left:2px}.brand-title{font-size:clamp(26px,7.4vw,38px);gap:7px}.brand-y1{min-width:54px;height:46px;font-size:24px}.brand-spark{width:30px;height:30px;font-size:17px}}
+
+
+
+/* Memorization TEST */
+.testStart{text-align:center;padding:28px 14px}.testRocket{font-size:54px;margin-bottom:8px}.testStart h3{margin:0 0 10px;font-size:25px;color:#243b58}.testStart p{margin:0 auto 22px;max-width:560px;color:#64748b;font-size:16px;line-height:1.7}.goBtn,.finishTestBtn,.retryTestBtn{border:0;border-radius:16px;padding:14px 28px;font:inherit;font-weight:950;cursor:pointer}.goBtn{min-width:150px;background:#287bd6;color:#fff;font-size:19px}.testRecording{text-align:center;padding:24px 12px}.recordPulse{width:78px;height:78px;margin:0 auto 14px;border-radius:50%;display:grid;place-items:center;background:#ffe5e5;color:#d73737;font-size:36px;animation:testPulse 1.25s ease-in-out infinite}.recordState{font-size:20px;font-weight:950;color:#243b58}.testStartTime{margin-top:8px;color:#718096;font-size:13px}.testTimer{font-variant-numeric:tabular-nums;font-size:48px;font-weight:950;color:#d73737;margin:14px 0 18px}.finishTestBtn{background:#243b58;color:#fff;min-width:170px}.testScriptHint{margin:18px auto 0;padding:13px 15px;max-width:650px;border-radius:15px;background:#fff8d9;color:#725b16;font-size:13px;line-height:1.55}.testResult{text-align:center;padding:8px 0 4px}.gradeCard{border-radius:22px;padding:21px 16px;background:#eaf4ff;margin-bottom:14px}.gradeLabel{font-size:12px;font-weight:900;color:#60778d}.gradeValue{font-size:62px;line-height:1;font-weight:1000;color:#287bd6;margin:8px 0}.fuelReward{display:inline-flex;align-items:center;gap:7px;border-radius:999px;padding:9px 14px;background:#fff3cc;color:#815d00;font-weight:950}.bonusReward{margin-top:9px;font-size:14px;font-weight:950;color:#7a4fd4}.testResult .metricList{text-align:left}.resultActions{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:14px}.retryTestBtn{background:#287bd6;color:#fff}.backStudyBtn{border:0;border-radius:16px;padding:14px;font:inherit;font-weight:950;background:#edf3fa;color:#41546a;cursor:pointer}.testNotice{margin-top:13px;color:#7c8da1;font-size:12px;line-height:1.5}@keyframes testPulse{0%,100%{transform:scale(.94);opacity:.82}50%{transform:scale(1.05);opacity:1}}
+
+/* Bottom learning navigation + Test */
+.wrap{padding-bottom:106px}
+.learning-nav{position:fixed;left:50%;bottom:0;transform:translateX(-50%);z-index:850;width:min(980px,100%);display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:rgba(248,252,255,.96);border-top:1px solid #d9e7f3;backdrop-filter:blur(14px);box-shadow:0 -8px 24px rgba(37,75,109,.10)}
+.learning-nav button{border:0;border-radius:16px;min-height:58px;padding:8px 4px;font:inherit;font-size:13px;font-weight:900;color:#38536f;background:#edf4fb;cursor:pointer}
+.learning-nav button span{display:block;font-size:20px;line-height:1.05;margin-bottom:4px}.learning-nav button.active{background:#287bd6;color:#fff}.learning-nav button.games{background:#eeeaff;color:#5e4bb7}.learning-nav button.grammar{background:#e9f7ef;color:#24764f}.learning-nav button.quiz{background:#fff4d7;color:#8b6519}
+.statusSheet{max-height:94vh}.statusBody{overflow:auto;padding:18px;background:#f7fbff}.statusIntro{display:flex;align-items:end;justify-content:space-between;gap:10px;margin-bottom:14px}.statusIntro h3{margin:0;font-size:22px;color:#243b58}.statusIntro p{margin:4px 0 0;color:#718096;font-size:13px}.statusRange{font-size:12px;font-weight:900;color:#287bd6;background:#e8f2ff;padding:7px 10px;border-radius:999px}
+.statusList{display:grid;gap:11px}.statusDay{width:100%;border:1px solid #dce8f3;border-radius:17px;background:#fff;padding:14px;text-align:left;cursor:pointer;box-shadow:0 6px 16px rgba(48,83,113,.05)}.statusDayTop{display:flex;justify-content:space-between;align-items:center;gap:10px}.statusDate{font-size:16px;font-weight:900;color:#243b58}.statusOverall{font-size:17px;font-weight:950;color:#287bd6}.scoreTrack{height:12px;margin-top:10px;border-radius:999px;background:#e8eef5;overflow:hidden}.scoreFill{height:100%;border-radius:inherit;background:linear-gradient(90deg,#76b9f2,#55bc8a)}.statusHint{margin-top:7px;font-size:12px;color:#7c8da1}
+.statusBack{border:0;background:#edf3fa;color:#41546a;border-radius:11px;padding:9px 12px;font-weight:900;cursor:pointer}.statusDetailHead{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:14px}.detailDate{font-size:21px;font-weight:950;color:#243b58}.overallCard{border-radius:20px;background:#eaf4ff;padding:18px;margin-bottom:14px;text-align:center}.overallLabel{font-size:13px;font-weight:850;color:#61758b}.overallScore{font-size:46px;line-height:1;font-weight:950;color:#287bd6;margin:8px 0}.overallWord{font-size:15px;font-weight:900;color:#2f9e6d}
+.metricList{display:grid;gap:11px}.metricCard{background:#fff;border:1px solid #dce8f3;border-radius:17px;padding:14px}.metricTop{display:grid;grid-template-columns:1fr auto;align-items:center;gap:10px}.metricName{font-size:16px;font-weight:900;color:#243b58}.metricKo{display:block;margin-top:2px;font-size:12px;color:#7c8da1}.metricScore{font-size:20px;font-weight:950;color:#287bd6}.practiceBtn{margin-top:10px;width:100%;border:0;border-radius:12px;padding:11px;font:inherit;font-weight:900;background:#edf4fb;color:#24517c;cursor:pointer}.practiceBtn.needed{background:#fff0d6;color:#8a6113}.statusNote{margin-top:14px;padding:13px;border-radius:14px;background:#fff;color:#64748b;font-size:13px;line-height:1.55}
+.comingSoon{padding:36px 20px;text-align:center}.comingSoon .icon{font-size:46px}.comingSoon h3{margin:10px 0 5px;font-size:22px}.comingSoon p{margin:0;color:#718096;line-height:1.6}
+@media(max-width:680px){.learning-nav{gap:5px;padding-left:8px;padding-right:8px}.learning-nav button{font-size:11px;min-height:55px}.learning-nav button span{font-size:18px}.statusBody{padding:13px}.statusIntro{align-items:flex-start;flex-direction:column}.overallScore{font-size:40px}}
+
+
+/* Save the Cities playable demo */
+.gameWrap{max-width:900px;margin:0 auto}.gameStart{text-align:center;padding:18px 8px 10px}.gameStart .planet{font-size:52px}.gameStart h3{margin:7px 0 6px;font-size:27px;color:#243b58}.gameStart p{margin:0 auto 18px;max-width:580px;color:#64748b;line-height:1.65}.startGameBtn{border:0;border-radius:16px;background:#7258d7;color:#fff;font:inherit;font-weight:950;font-size:18px;padding:14px 28px;cursor:pointer}.soundNote{margin-top:11px;font-size:12px;color:#7c8da1}.gameHud{display:grid;grid-template-columns:auto auto 1fr auto;gap:8px;align-items:center;margin-bottom:9px}.hudChip{border-radius:999px;background:#edf4fb;padding:8px 11px;font-size:13px;font-weight:900;color:#38536f}.soundToggle{border:0;border-radius:999px;background:#fff4d7;color:#805f19;padding:8px 11px;font:inherit;font-size:12px;font-weight:900;cursor:pointer}.cityArena{position:relative;height:500px;overflow:hidden;border-radius:22px;background:radial-gradient(circle at 50% 0,#284e88 0,#142c54 48%,#0b1831 100%);border:2px solid #9fc7ee;box-shadow:inset 0 0 35px rgba(0,0,0,.28)}.skyDots{position:absolute;inset:0;background-image:radial-gradient(#fff 1px,transparent 1px);background-size:31px 31px;opacity:.35}.cityName{position:absolute;top:12px;left:50%;transform:translateX(-50%);z-index:2;color:#fff;font-size:18px;font-weight:950;letter-spacing:.8px}.bomb{position:absolute;top:-54px;width:52px;height:52px;border-radius:50%;display:grid;place-items:center;background:#202633;border:3px solid #737e92;box-shadow:inset -7px -8px 0 rgba(0,0,0,.22),0 4px 12px rgba(0,0,0,.25);font-size:28px;z-index:4}.bomb:after{content:'';position:absolute;width:15px;height:10px;border:3px solid #ffbe55;border-left:0;border-bottom:0;right:-7px;top:-6px;border-radius:50%}.bomb.pop{animation:bombPop .42s ease-out forwards}.cityScene{position:absolute;left:0;right:0;bottom:0;height:122px;display:flex;align-items:flex-end;justify-content:center;z-index:2}.bridge{position:relative;width:250px;height:92px}.tower{position:absolute;bottom:18px;width:48px;height:70px;background:#cfe7f6;border:4px solid #f4fbff;border-radius:8px 8px 2px 2px}.tower.left{left:38px}.tower.right{right:38px}.tower:before{content:'';position:absolute;left:50%;top:-24px;transform:translateX(-50%);border-left:25px solid transparent;border-right:25px solid transparent;border-bottom:27px solid #8fc4e8}.deck{position:absolute;left:0;right:0;bottom:17px;height:16px;background:#d4e9f7;border:4px solid #fff}.cable{position:absolute;left:59px;right:59px;bottom:51px;height:34px;border-top:4px solid #fff;border-radius:50%}.water{position:absolute;left:0;right:0;bottom:0;height:26px;background:linear-gradient(#317bb5,#163f72)}.cityFlash{animation:cityHit .38s ease-in-out}.laser{position:absolute;height:4px;background:#8ff9ff;box-shadow:0 0 8px #8ff9ff,0 0 15px #fff;transform-origin:left center;z-index:5;animation:laserShot .28s ease-out forwards}.praiseBurst{position:absolute;left:50%;top:38%;transform:translate(-50%,-50%);z-index:8;font-size:34px;font-weight:1000;color:#fff;text-shadow:0 3px 0 #7258d7,0 0 18px #fff;pointer-events:none;animation:praiseBurst .85s ease-out forwards}.particle{position:absolute;width:8px;height:8px;border-radius:50%;background:#fff0a6;z-index:7;animation:particlePop .7s ease-out forwards}.questionCard{margin-top:10px;border-radius:18px;background:#fff;border:1px solid #dce8f3;padding:14px}.questionLabel{font-size:12px;font-weight:900;color:#7258d7}.questionText{font-size:20px;font-weight:950;color:#243b58;margin:5px 0 11px}.answers{display:grid;grid-template-columns:1fr 1fr;gap:8px}.answerBtn{border:0;border-radius:13px;background:#edf4fb;color:#294e72;padding:12px 8px;font:inherit;font-weight:900;cursor:pointer;min-height:48px}.answerBtn:hover{background:#e0edfa}.answerBtn.wrong{background:#ffe9e9;color:#a33;animation:shake .28s}.gameMessage{text-align:center;min-height:25px;margin-top:8px;font-weight:900;color:#52708d}.missionResult{text-align:center;padding:25px 12px}.missionResult .resultIcon{font-size:60px}.missionResult h3{font-size:30px;margin:7px 0;color:#243b58}.missionResult .heroLine{font-size:18px;font-weight:950;color:#7258d7}.rewardBox{display:inline-flex;gap:15px;margin:16px 0;padding:12px 17px;border-radius:16px;background:#fff4d7;color:#7e5c13;font-weight:950}.playAgainGame{display:block;margin:0 auto;border:0;border-radius:15px;background:#287bd6;color:#fff;font:inherit;font-weight:950;padding:13px 23px;cursor:pointer}
+
+.levelChip{background:#eeeaff;color:#5e4bb7}.healthHud{min-width:210px}.healthTop{display:flex;justify-content:space-between;gap:10px;margin-bottom:5px;font-size:12px;font-weight:950;color:#38536f}.healthCells{display:grid;grid-template-columns:repeat(10,1fr);gap:3px}.healthCell{height:13px;border-radius:4px;background:#dfe7ef;border:1px solid #c7d4df}.healthCell.on{background:linear-gradient(180deg,#ff8787,#e75252);border-color:#d74a4a}.fallingItem.repair{background:#e9fff2;border-color:#67c68c;box-shadow:inset -7px -8px 0 rgba(32,139,79,.12),0 0 18px rgba(96,226,145,.32);font-size:29px}.fallingItem.repair:after{display:none}.repairGlow{animation:repairGlow .75s ease-out forwards}.levelBanner{position:absolute;left:50%;top:19%;transform:translate(-50%,-50%);z-index:9;padding:10px 18px;border-radius:999px;background:rgba(114,88,215,.92);color:#fff;font-size:26px;font-weight:1000;box-shadow:0 8px 20px rgba(0,0,0,.2);animation:praiseBurst 1s ease-out forwards}.nextLevelBtn{display:block;margin:12px auto 0;border:0;border-radius:15px;background:#7258d7;color:#fff;font:inherit;font-weight:950;padding:13px 23px;cursor:pointer}@keyframes repairGlow{0%{transform:scale(1);opacity:1}55%{transform:scale(1.5);filter:brightness(1.5)}100%{transform:scale(.2);opacity:0}}
+@keyframes bombPop{0%{transform:scale(1);opacity:1}50%{transform:scale(1.45) rotate(20deg);filter:brightness(2)}100%{transform:scale(.1);opacity:0}}
+@keyframes laserShot{0%{opacity:0;transform:scaleX(.1)}35%{opacity:1;transform:scaleX(1)}100%{opacity:0;transform:scaleX(1)}}
+@keyframes praiseBurst{0%{opacity:0;transform:translate(-50%,-35%) scale(.55)}35%{opacity:1;transform:translate(-50%,-55%) scale(1.15)}100%{opacity:0;transform:translate(-50%,-75%) scale(.95)}}
+@keyframes particlePop{to{transform:translate(var(--x),var(--y)) scale(.1);opacity:0}}
+@keyframes cityHit{0%,100%{filter:none}50%{filter:brightness(2) saturate(.2);transform:translateX(4px)}}
+@keyframes shake{0%,100%{transform:translateX(0)}33%{transform:translateX(-5px)}66%{transform:translateX(5px)}}
+
+.cityLandmark{position:relative;z-index:3;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;min-width:260px;height:118px;padding-bottom:20px}.landmarkIcon{font-size:82px;line-height:1;filter:drop-shadow(0 5px 4px rgba(0,0,0,.28));animation:landmarkGlow 2.4s ease-in-out infinite}.landmarkLabel{margin-top:3px;color:#fff;font-size:12px;font-weight:950;letter-spacing:.7px;text-shadow:0 2px 5px rgba(0,0,0,.75)}.cityFlag{margin-right:6px}.cityArrival{position:absolute;left:50%;top:29%;transform:translate(-50%,-50%);z-index:10;text-align:center;color:#fff;text-shadow:0 3px 8px rgba(0,0,0,.8);pointer-events:none;animation:cityArrival 1.8s ease-out forwards}.cityArrival .arrivalLevel{font-size:18px;font-weight:900;opacity:.9}.cityArrival .arrivalName{font-size:34px;font-weight:1000;margin-top:5px}.cityArrival .arrivalLandmark{font-size:16px;font-weight:900;margin-top:4px}@keyframes landmarkGlow{0%,100%{transform:translateY(0);filter:drop-shadow(0 5px 4px rgba(0,0,0,.28))}50%{transform:translateY(-3px);filter:drop-shadow(0 5px 9px rgba(255,255,255,.45))}}@keyframes cityArrival{0%{opacity:0;transform:translate(-50%,-35%) scale(.7)}22%,70%{opacity:1;transform:translate(-50%,-50%) scale(1)}100%{opacity:0;transform:translate(-50%,-68%) scale(.95)}}
+@media(max-width:680px){.cityArena{height:450px}.landmarkIcon{font-size:68px}.cityArrival .arrivalName{font-size:27px}.answers{grid-template-columns:1fr}.questionText{font-size:18px}.gameHud{grid-template-columns:1fr 1fr}.healthHud{grid-column:1/-1;min-width:0}.soundToggle{grid-column:1/-1}.bridge{transform:scale(.85);transform-origin:center bottom}}
+
+
+/* Grammar, Quiz and mission fuel */
+.fuelWallet{display:inline-flex;align-items:center;gap:6px;border-radius:999px;padding:8px 12px;background:#fff3cc;color:#7a5900;font-size:13px;font-weight:950}
+.studyHead{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:14px}.studyHead h3{margin:0;font-size:24px;color:#243b58}.studySub{margin:4px 0 0;color:#718096;font-size:13px;line-height:1.5}
+.grammarList{display:grid;gap:13px}.grammarCard{border:1px solid #dce8f3;border-radius:18px;background:#fff;padding:16px}.grammarTag{display:inline-block;border-radius:999px;padding:5px 9px;background:#e9f7ef;color:#24764f;font-size:12px;font-weight:950}.grammarCard h4{margin:10px 0 6px;font-size:19px;color:#243b58}.grammarRule{padding:11px 13px;border-radius:13px;background:#f3f7fb;color:#38536f;font-weight:850;line-height:1.55}.sourceExample{margin-top:10px;padding:10px 12px;border-left:4px solid #287bd6;background:#f7fbff;font-weight:850}.moreExamples{margin:10px 0 0;padding-left:20px;color:#53677c;line-height:1.75}.completeStudyBtn{width:100%;margin-top:16px;border:0;border-radius:15px;padding:14px;background:#2f9e6d;color:#fff;font:inherit;font-weight:950;cursor:pointer}.completeStudyBtn:disabled{opacity:.55;cursor:default}.rewardToast{margin-top:12px;border-radius:14px;padding:12px;text-align:center;background:#fff3cc;color:#755400;font-weight:950}.listenRow{display:flex;align-items:center;gap:9px}.listenRow .listenText{flex:1;min-width:0}.grammarListen{flex:0 0 auto;width:38px;height:38px;border:0;border-radius:50%;background:#e8f2ff;color:#205f9d;font-size:18px;cursor:pointer;display:grid;place-items:center}.grammarListen.played{background:#e8f8ef;color:#24764f;box-shadow:inset 0 0 0 2px #79c99e}.grammarListen.playing{animation:pulseListen .7s infinite alternate}.moreExamples{list-style:none;padding-left:0}.moreExamples li{margin:7px 0}.listenProgress{margin-top:12px;padding:10px 12px;border-radius:13px;background:#f3f7fb;color:#53677c;font-size:13px;font-weight:850;text-align:center}@keyframes pulseListen{from{transform:scale(1)}to{transform:scale(1.08)}}
+.quizProgress{height:9px;border-radius:999px;background:#e8eef5;overflow:hidden;margin-bottom:14px}.quizProgressFill{height:100%;background:linear-gradient(90deg,#7258d7,#8fc4f5)}.quizCard{border:1px solid #dce8f3;border-radius:20px;background:#fff;padding:18px}.quizMeta{font-size:12px;font-weight:900;color:#7258d7}.quizQuestion{font-size:22px;font-weight:950;line-height:1.45;color:#243b58;margin:10px 0 15px}.quizOptions{display:grid;gap:9px}.quizOption{border:1px solid #dce8f3;border-radius:14px;padding:13px;background:#f8fbff;text-align:left;font:inherit;font-weight:850;color:#38536f;cursor:pointer}.quizOption.correct{background:#e8f8ef;border-color:#79c99e;color:#20714d}.quizOption.wrong{background:#fff0f0;border-color:#e9a1a1;color:#a33}.quizFeedback{min-height:42px;margin-top:12px;padding:10px 12px;border-radius:12px;background:#f3f7fb;color:#53677c;font-size:13px;line-height:1.5}.quizResult{text-align:center;padding:20px 8px}.quizResultIcon{font-size:55px}.quizResult h3{margin:8px 0}.quizScore{font-size:34px;font-weight:1000;color:#7258d7}.quizRetryNote{margin-top:8px;color:#718096;font-size:13px}.fuelBlocked{padding:28px 15px;text-align:center}.fuelBlocked .icon{font-size:54px}.fuelBlocked h3{margin:8px 0}.fuelBlocked p{color:#64748b;line-height:1.6}.fuelBlockedActions{display:grid;grid-template-columns:1fr 1fr;gap:9px;max-width:460px;margin:16px auto 0}.fuelBlockedActions button{border:0;border-radius:14px;padding:13px;font:inherit;font-weight:950;cursor:pointer}.goGrammar{background:#e9f7ef;color:#24764f}.goQuiz{background:#fff4d7;color:#8b6519}
+@media(max-width:680px){.studyHead{align-items:flex-start;flex-direction:column}.fuelBlockedActions{grid-template-columns:1fr}.quizQuestion{font-size:19px}}
 
 </style>
 </head>
 <body>
 <div class="wrap">
-<header><h1>Y1 English Story</h1><div class="sub">V1.4 · Script reading · Vocabulary · Grammar · City information · Travel map · Games</div></header>
-
-<main class="panel">
-  <div class="appShell">
-    <nav class="sideMenu" aria-label="주요 학습 메뉴">
-      <div class="menuTitle">LEARNING MENU</div>
-      <button type="button" class="navBtn active" data-view="scriptView"><span class="navIcon">📖</span><span>Script reading<span class="navSub">듣기·한 문장 읽기·녹음</span></span></button>
-      <button type="button" class="navBtn" data-view="vocabView"><span class="navIcon">📚</span><span>Vocabulary<span class="navSub">주요 단어·단어 더 배우기</span></span></button>
-      <button type="button" class="navBtn" data-view="grammarView"><span class="navIcon">✏️</span><span>Grammar<span class="navSub">Today's Grammar</span></span></button>
-      <button type="button" class="navBtn" data-view="cityView"><span class="navIcon">🏙️</span><span>City information<span class="navSub">언어·인구·상징물</span></span></button>
-      <button type="button" class="navBtn" data-view="travelView"><span class="navIcon">✈️</span><span>Travel map<span class="navSub">영어권 도시 여행</span></span></button>
-      <button type="button" id="gameBtn" class="navBtn"><span class="navIcon">👾</span><span>Games<span class="navSub">Save the Cities</span></span></button>
-    </nav>
-
-    <div class="contentArea">
-      <section id="scriptView" class="viewPanel active">
-        <div class="viewHeader"><div><div class="viewTitle">Script reading</div><div class="viewDesc">전체 스크립트를 듣고, 한 문장씩 읽고, 직접 녹음합니다.</div></div></div>
-
-        <div class="settings">
-          <div class="setting">
-            <label for="voiceType">음성 선택</label>
-            <select id="voiceType"><option value="us" selected>미국영어</option><option value="gb">영국영어</option><option value="au">호주영어</option></select>
-            <div id="voiceInfo" class="voiceinfo"></div>
-          </div>
-          <div class="setting"><label for="rate">읽기 속도 <span id="rateText">0.78×</span></label><input id="rate" type="range" min="0.65" max="1.00" step="0.01" value="0.78"></div>
-          <div class="setting"><label for="voiceStyle">음성 느낌</label><select id="voiceStyle"><option value="soft" selected>부드러운 음성</option><option value="clear">또렷한 학습 음성</option></select><div class="voiceinfo">속도·높낮이·문장 간격을 자동 조정합니다.</div></div>
-        </div>
-
-        <div id="learningCanvas">
-          <div class="status"><span id="modeBadge" class="badge">전체 듣기</span><span id="countBadge" class="badge">1 / 13</span><span id="voiceBadge" class="badge">Voice</span></div>
-          <section class="stage">
-            <div id="speaker" class="speaker">Weather Caster</div>
-            <div id="line" class="line highlight">Hello, everyone. How’s the weather today?</div>
-            <div id="translation" class="translation hide"></div>
-            <div id="wordMeaning" class="wordmeaning hide"></div>
-            <div id="grammarBox" class="grammarbox hide"><div id="grammarTitle" class="grammartitle"></div><div id="grammarPattern" class="grammarpattern"></div><div id="grammarExplain" class="grammarexplain"></div><div id="grammarExample" class="grammarexample"></div></div>
-            <div id="hint" class="hint">재생을 누르면 전체 스크립트를 처음부터 끝까지 읽습니다.</div>
-          </section>
-          <div class="progress"><div id="bar" class="bar"></div></div>
-        </div>
-
-        <div class="readingControls">
-          <div class="topgrid">
-            <button type="button" id="fullListenBtn" class="topbtn primary">▶ 재생<span class="mini">전체 스크립트</span></button>
-            <button type="button" id="stopBtn" class="topbtn stop">■ 정지<span class="mini">음성 재생 중지</span></button>
-            <button type="button" id="translationBtn" class="topbtn">해석 보기<span class="mini">영어 음성 + 뜻</span></button>
-            <button type="button" id="sentenceBtn" class="topbtn">▶ 한 문장씩 읽기<span class="mini">현재 문장 재생</span></button>
-          </div>
-          <div class="bottomgrid">
-            <button type="button" id="nextBtn" class="next">다음 ▶</button>
-            <button type="button" id="recordBtn" class="record">● 녹음</button>
-            <button type="button" id="playlistBtn" class="playlist">☰ 재생목록</button>
-          </div>
-          <div class="small">녹음은 전체 스크립트를 보며 읽는 방식입니다. 녹음 완료 파일은 이 기기의 브라우저 저장소에 날짜·시간별로 보관됩니다.</div>
-        </div>
-
-        <div class="uploadbox">
-          <div class="uploadtitle">스크립트·교재 사진 업로드</div>
-          <div class="uploadactions"><label class="uploadbtn camera" for="cameraInput">📷 카메라로 촬영</label><label class="uploadbtn" for="libraryInput">🖼 사진 보관함</label></div>
-          <input id="cameraInput" class="uploadinput" type="file" accept="image/*" capture="environment"><input id="libraryInput" class="uploadinput" type="file" accept="image/*">
-          <div id="previewWrap" class="previewwrap"><img id="previewImg" class="previewimg" alt="업로드한 교재 사진 미리보기"><div class="previewmeta"><span id="previewName"></span><button id="removeImg" class="removeimg" type="button">사진 삭제</button></div></div>
-          <div class="uploadnote">사진을 선택한 뒤 ‘사진 글자 인식’을 눌러 새 스크립트로 변환합니다. 인식 결과를 확인한 후 ‘스크립트 적용’을 누르세요.</div>
-          <textarea id="scriptInput" class="scriptinput" placeholder="예: Weather Caster: Hello, everyone.
-화자 표시 없이 영어 문장만 한 줄씩 입력해도 됩니다."></textarea>
-          <div class="applyrow"><button id="ocrBtn" class="applybtn ocrbtn" type="button">사진 글자 인식</button><button id="applyScriptBtn" class="applybtn" type="button">스크립트 적용</button></div>
-        </div>
-      </section>
-
-      <section id="vocabView" class="viewPanel">
-        <div class="viewHeader"><div><div class="viewTitle">Vocabulary</div><div class="viewDesc">학습한 주요 단어와 비슷한 주제·난이도의 단어를 확장합니다.</div></div></div>
-        <div class="vocabActions">
-          <button type="button" id="wordsBtn" class="topbtn">주요 단어<span class="mini">선택 음성으로 단어 발음</span></button>
-          <button type="button" id="moreWordsBtn" class="morewordsbtn">➕ 단어 더 배우기<span class="mini">비슷한 주제·난이도의 어휘 확장</span></button>
-        </div>
-        <div class="infoCard"><h3>사용 방법</h3><div class="placeholderNote">위 버튼을 선택하면 Script reading 화면의 내용 표시창에서 단어를 한 개씩 확인하고 발음을 들을 수 있습니다.</div></div>
-      </section>
-
-      <section id="grammarView" class="viewPanel">
-        <div class="viewHeader"><div><div class="viewTitle">Grammar</div><div class="viewDesc">현재 스크립트에 실제로 사용된 문법을 예문과 함께 배웁니다.</div></div></div>
-        <div class="grammarActions"><button type="button" id="grammarBtn" class="grammarbtn">✏ Today’s Grammar<span class="mini">오늘 스크립트의 핵심 문법 1개씩 배우기</span></button></div>
-        <div class="infoCard"><h3>학습 화면</h3><div class="placeholderNote">문법을 선택하면 Script reading의 내용 표시창으로 이동해 구조·설명·예문을 보여 줍니다.</div></div>
-      </section>
-
-      <section id="cityView" class="viewPanel">
-        <div class="viewHeader"><div><div class="viewTitle">City information</div><div class="viewDesc">현재 여행 도시의 위치, 언어, 인구와 대표 상징물을 알아봅니다.</div></div></div>
-        <div class="cityInfoGrid">
-          <div class="infoCard"><div class="infoHero">🗽</div><h3>New York</h3><div class="infoList"><div class="infoRow"><span>Country</span><strong>United States</strong></div><div class="infoRow"><span>Language</span><strong>English</strong></div><div class="infoRow"><span>Accent</span><strong>American English</strong></div><div class="infoRow"><span>Landmark</span><strong>Statue of Liberty</strong></div></div></div>
-          <div class="infoCard"><h3>도시 정보 확장 예정</h3><div class="placeholderNote">인구, 위치, 다양한 문화적 배경과 대표 건축물을 어린이용 카드 형태로 단계적으로 추가합니다.</div></div>
-        </div>
-      </section>
-
-      <section id="travelView" class="viewPanel">
-        <div class="viewHeader"><div><div class="viewTitle">Travel map</div><div class="viewDesc">영어를 사용하는 도시를 여행하며 각 지역의 악센트를 경험합니다.</div></div></div>
-        <div class="travelCard">
-          <h3>English World Tour</h3>
-          <div class="travelRoute"><span class="travelStop">🗽 New York</span><span class="travelArrow">→</span><span class="travelStop">🌉 London</span><span class="travelArrow">→</span><span class="travelStop">🦁 Singapore</span><span class="travelArrow">→</span><span class="travelStop">🏛️ Sydney</span></div>
-          <div class="placeholderNote">귀여운 도시별 일러스트 지도와 여행 진행률, 여권 도장은 다음 단계에서 적용합니다.</div>
-        </div>
-      </section>
-    </div>
+<header class="space-brand">
+  <div class="space-scene" aria-hidden="true">
+    <span class="space-star s1">✦</span><span class="space-star s2">★</span><span class="space-star s3">✦</span><span class="space-star s4">★</span>
+    <svg class="spaceship" viewBox="0 0 120 96" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="우주선">
+      <defs><linearGradient id="shipBody" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#dbeeff"/></linearGradient><linearGradient id="flame" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#ffd35a"/><stop offset="1" stop-color="#ff8d5a"/></linearGradient></defs>
+      <path d="M23 57C40 33 65 17 95 13c-4 30-20 55-44 72L23 57Z" fill="url(#shipBody)" stroke="#287bd6" stroke-width="4" stroke-linejoin="round"/>
+      <circle cx="72" cy="39" r="12" fill="#7ed7ff" stroke="#287bd6" stroke-width="4"/><circle cx="68" cy="35" r="4" fill="#fff" opacity=".85"/>
+      <path d="M43 66 25 82l4-21 14 5Z" fill="#7258d7" stroke="#5d48bd" stroke-width="3" stroke-linejoin="round"/>
+      <path d="m55 76-4 17-12-13 16-4Z" fill="#7258d7" stroke="#5d48bd" stroke-width="3" stroke-linejoin="round"/>
+      <path d="M29 67C18 70 11 77 7 87c10-4 18-4 27-2l-5-18Z" fill="url(#flame)"/>
+      <circle cx="91" cy="20" r="4" fill="#fff0a6"/>
+    </svg>
   </div>
+  <h1 class="brand-title"><span class="brand-y1">Y1</span><span class="brand-english">English</span><span class="brand-story">Story</span></h1>
+</header>
+<main class="panel">
+<div class="topgrid">
+  <button type="button" id="fullListenBtn" class="topbtn primary">▶ 재생<span class="mini">전체 스크립트</span></button>
+  <button type="button" id="stopBtn" class="topbtn stop">■ 정지<span class="mini">음성 재생 중지</span></button>
+  <button type="button" id="translationBtn" class="topbtn">해석 보기<span class="mini">영어 음성 + 뜻</span></button>
+  <button type="button" id="wordsBtn" class="topbtn">주요 단어<span class="mini">선택 음성으로 단어 발음</span></button>
+</div>
+<div class="status"><span id="modeBadge" class="badge">전체 듣기</span><span id="countBadge" class="badge">1 / 13</span><span id="voiceBadge" class="badge">Voice</span></div>
+<section class="stage">
+  <div id="speaker" class="speaker">Weather Caster</div>
+  <div id="line" class="line highlight">Hello, everyone. How’s the weather today?</div>
+  <div id="translation" class="translation hide"></div>
+  <div id="wordMeaning" class="wordmeaning hide"></div>
+  <div id="hint" class="hint">상단 재생은 전체 스크립트를 처음부터 끝까지 읽습니다.</div>
+</section>
+<div class="progress"><div id="bar" class="bar"></div></div>
+<div class="bottomgrid">
+  <button type="button" id="sentenceBtn" class="sentence">▶ 한 문장 재생</button>
+  <button type="button" id="nextBtn" class="next">다음 ▶</button>
+  <button type="button" id="recordBtn" class="record">● 녹음</button>
+  <button type="button" id="playlistBtn" class="playlist">☰ 재생목록</button>
+</div>
+<div class="small">녹음은 마이크 권한을 허용한 뒤 전체 스크립트를 보며 읽는 방식입니다. 녹음 완료 파일은 이 브라우저의 기기 저장소에 날짜·시간별로 보관됩니다.</div>
+
+<div class="uploadbox">
+  <div class="uploadtitle">스크립트·교재 사진 업로드</div>
+  <div class="uploadactions"><label class="uploadbtn camera" for="cameraInput">📷 카메라로 촬영</label><label class="uploadbtn" for="libraryInput">🖼 사진 보관함</label></div>
+  <input id="cameraInput" class="uploadinput" type="file" accept="image/*" capture="environment"><input id="libraryInput" class="uploadinput" type="file" accept="image/*">
+  <div id="previewWrap" class="previewwrap"><img id="previewImg" class="previewimg" alt="업로드한 교재 사진 미리보기"><div class="previewmeta"><span id="previewName"></span><button id="removeImg" class="removeimg" type="button">사진 삭제</button></div></div>
+  <div class="uploadnote">사진을 선택한 뒤 ‘사진 글자 인식’을 눌러야 새 스크립트로 변환됩니다. 텍스트를 직접 붙여 넣은 경우에는 ‘스크립트 적용’을 누르세요.</div>
+  <textarea id="scriptInput" class="scriptinput" placeholder="예: Weather Caster: Hello, everyone.
+화자 표시 없이 영어 문장만 한 줄씩 입력해도 됩니다."></textarea>
+  <div class="applyrow"><button id="ocrBtn" class="applybtn ocrbtn" type="button">사진 글자 인식</button><button id="applyScriptBtn" class="applybtn" type="button">스크립트 적용</button></div>
+</div>
+<div class="settings">
+  <div class="setting">
+    <label for="voiceType">옵션 선택</label>
+    <select id="voiceType"><option value="us" selected>미국영어</option><option value="gb">영국영어</option><option value="au">호주영어</option></select>
+    <div id="voiceInfo" class="voiceinfo"></div>
+  </div>
+  <div class="setting">
+    <label for="rate">재생 속도</label>
+    <select id="rate">
+      <option value="0.5">0.5배</option>
+      <option value="0.75" selected>0.75배</option>
+      <option value="1">1배</option>
+      <option value="1.5">1.5배</option>
+      <option value="2">2배</option>
+    </select>
+  </div>
+</div>
+
 </main></div>
 
+
+
+<nav class="learning-nav" aria-label="학습 메뉴">
+  <button id="statusMenuBtn" type="button"><span>🎙️</span>TEST</button>
+  <button id="gamesMenuBtn" class="games" type="button"><span>🚀</span>GAMES</button>
+  <button id="grammarMenuBtn" class="grammar" type="button"><span>📖</span>Grammar</button>
+  <button id="quizMenuBtn" class="quiz" type="button"><span>✏️</span>Quiz</button>
+</nav>
+
+<div id="learningOverlay" class="overlay hide" role="dialog" aria-modal="true">
+  <div class="sheet statusSheet">
+    <div class="sheethead"><h2 id="learningTitle">TEST</h2><button id="closeLearning" class="closebtn" type="button">닫기</button></div>
+    <div id="learningBody" class="statusBody"></div>
+  </div>
+</div>
 
 <div id="recordOverlay" class="overlay hide" role="dialog" aria-modal="true">
   <div class="sheet">
@@ -209,76 +195,13 @@ header{text-align:center;padding:8px 0 12px}h1{margin:0;font-size:clamp(26px,6vw
   </div>
 </div>
 
-<div id="gameOverlay" class="overlay hide" role="dialog" aria-modal="true" aria-label="도시 방어 영어 게임">
-  <div class="gameSheet">
-    <div class="gameHead">
-      <div class="gameHeadTitle">👾 English City Defense</div>
-      <div class="gameHud">
-        <span id="gameCityChip" class="gameChip">New York</span>
-        <span id="gameScoreChip" class="gameChip">점수 0</span>
-        <span id="gameRoundChip" class="gameChip">1 / 8</span>
-      </div>
-    </div>
-    <div class="gameBody">
-      <section id="battlefield" class="battlefield" aria-label="외계 공격으로부터 도시를 지키는 게임 화면">
-        <div class="stars"></div>
-        <div class="ufo" aria-hidden="true">🛸</div>
-        <div id="attackLane" class="attackLane"></div>
-        <div class="cityScene">
-          <div id="landmark" class="landmark" aria-hidden="true">🗽</div>
-          <div id="cityLabel" class="cityLabel">New York · Statue of Liberty</div>
-        </div>
-      </section>
-      <aside class="gamePanel">
-        <div class="missionCard">
-          <div class="missionTitle">도시 방어 미션</div>
-          <div id="missionText" class="missionText">정답을 맞히면 가장 아래의 공격탄이 제거됩니다. 모두 제거해 도시를 지켜 주세요!</div>
-          <div style="margin-top:10px;font-size:13px;font-weight:900">도시 방어력</div>
-          <div class="hpBar"><div id="hpFill" class="hpFill" style="width:100%"></div></div>
-        </div>
-        <div id="questionCard" class="questionCard">
-          <div id="qType" class="qType">SENTENCE</div>
-          <div id="qText" class="qText">게임 시작을 눌러 주세요.</div>
-          <div id="answerGrid" class="answerGrid"></div>
-          <div id="gameFeedback" class="gameFeedback" aria-live="polite"></div>
-        </div>
-        <div id="gameResult" class="gameResult hideGame">
-          <div id="gameResultIcon" class="gameResultIcon">🏆</div>
-          <div id="gameResultTitle" class="gameResultTitle">도시를 지켰어요!</div>
-          <div id="gameResultText"></div>
-        </div>
-        <div class="gameControlRow">
-          <button id="gameStartBtn" type="button" class="gameStart">게임 시작</button>
-          <button id="gameExitBtn" type="button" class="gameExit">나가기</button>
-        </div>
-      </aside>
-    </div>
-  </div>
-</div>
-
 <script>
  'use strict';
 const $=id=>document.getElementById(id);
 let story=[
 {speaker:'Weather Caster',text:"Hello, everyone. How’s the weather today?",ko:'안녕하세요, 여러분. 오늘 날씨는 어떤가요?'},{speaker:'Children',text:"It’s raining.",ko:'비가 오고 있어요.'},{speaker:'Weather Caster',text:"Yes, it’s raining outside. I tell the weather on the morning news. It’s at seven.",ko:'네, 밖에 비가 오고 있어요. 저는 아침 뉴스에서 날씨를 전해요. 뉴스는 7시에 해요.'},{speaker:'Lena',text:"Seven o’clock? What time do you get up?",ko:'7시요? 몇 시에 일어나세요?'},{speaker:'Weather Caster',text:"I get up at four. I come here at five.",ko:'저는 4시에 일어나요. 5시에 이곳에 와요.'},{speaker:'Diego',text:"Wow, that’s very early.",ko:'와, 정말 이르네요.'},{speaker:'Weather Caster',text:"I check today’s weather and write the news.",ko:'저는 오늘의 날씨를 확인하고 뉴스 원고를 써요.'},{speaker:'Yeji',text:"What time do you have lunch?",ko:'몇 시에 점심을 먹어요?'},{speaker:'Weather Caster',text:"I have lunch at eleven.",ko:'저는 11시에 점심을 먹어요.'},{speaker:'Minh',text:"What do you do after that?",ko:'그다음에는 무엇을 하세요?'},{speaker:'Weather Caster',text:"I check the weather for tomorrow. Then, I go home at two o’clock.",ko:'저는 내일 날씨를 확인해요. 그런 다음 2시에 집에 가요.'},{speaker:'Minh',text:"Look! It’s two o’clock. Can I go home now?",ko:'보세요! 2시예요. 저 이제 집에 가도 돼요?'},{speaker:'Lena',text:"Sorry, you can’t.",ko:'미안하지만, 안 돼요.'}
 ];
-let grammar=[
-{title:'전치사 at + 시간',pattern:'at + 시간',explain:'at은 정확한 시각 앞에 사용하는 전치사입니다.',example:'It’s at seven.'},
-{title:'의문문 What time ...?',pattern:'What time + do/does + 주어 + 동사?',explain:'시간을 물을 때 사용하는 기본 의문문 구조입니다.',example:'What time do you get up?'},
-{title:'현재시제',pattern:'주어 + 동사 현재형',explain:'반복되는 일과나 평소 하는 일을 말할 때 현재시제를 사용합니다.',example:'I check today’s weather and write the news.'},
-{title:'Can I ...?',pattern:'Can I + 동사원형 ...?',explain:'허락을 정중하게 요청할 때 사용하는 표현입니다.',example:'Can I go home now?'}
-];
 let words=[{word:'weather',meaning:'날씨'},{word:'raining',meaning:'비가 오는'},{word:'outside',meaning:'밖에, 바깥에서'},{word:'morning news',meaning:'아침 뉴스'},{word:'get up',meaning:'일어나다'},{word:'early',meaning:'이른, 일찍'},{word:'check',meaning:'확인하다'},{word:'write',meaning:'쓰다'},{word:'lunch',meaning:'점심'},{word:'after that',meaning:'그다음에'},{word:'tomorrow',meaning:'내일'},{word:'go home',meaning:'집에 가다'}];
-let moreWords=[
-{word:'forecast',meaning:'예보',example:'The weather forecast says it will rain.'},
-{word:'cloudy',meaning:'흐린',example:'It is cloudy this morning.'},
-{word:'drizzle',meaning:'이슬비',example:'A light drizzle is falling outside.'},
-{word:'umbrella',meaning:'우산',example:'Take an umbrella with you.'},
-{word:'temperature',meaning:'기온, 온도',example:'The temperature is low today.'},
-{word:'breeze',meaning:'산들바람',example:'A cool breeze is blowing.'},
-{word:'storm',meaning:'폭풍',example:'A storm may come tonight.'},
-{word:'sunshine',meaning:'햇빛',example:'We enjoyed the warm sunshine.'}
-];
 let voices=[],mode='story',index=0,playToken=0,isPlayingAll=false,isPlayingWords=false;
 const synth=('speechSynthesis' in window)?window.speechSynthesis:null;
 function browserLabel(){const ua=navigator.userAgent||'';if(/KAKAOTALK/i.test(ua))return '카카오톡 내부 브라우저';if(/CriOS/i.test(ua))return 'iPhone Chrome';if(/Safari/i.test(ua)&&!/Chrome|CriOS|FxiOS/i.test(ua))return 'iPhone Safari';return '브라우저'}
@@ -301,17 +224,15 @@ function chooseVoice(){
   }
   return preferred.find(v=>v.localService)||preferred[0]||exact.find(v=>v.localService)||exact[0]||voices.find(v=>v.lang&&v.lang.startsWith('en')&&quality(v))||voices.find(v=>v.lang&&v.lang.startsWith('en'))||null;
 }
-function updateVoiceInfo(){const v=chooseVoice(),label=browserLabel();$('voiceBadge').textContent=v?v.name:voiceProfile().lang;$('voiceInfo').textContent=(v?'사용 음성: '+v.name:'기기 기본 영어 음성 사용')+' · '+label+($('voiceStyle')?' · '+($('voiceStyle').value==='soft'?'부드럽게':'또렷하게'):'');}
-$('voiceType').addEventListener('change',()=>{stopAll();loadVoices()});$('rate').addEventListener('input',()=>{$('rateText').textContent=Number($('rate').value).toFixed(2)+'×'});$('voiceStyle').addEventListener('change',()=>{stopAll();$('hint').textContent=$('voiceStyle').value==='soft'?'부드러운 음성 모드가 적용되었습니다.':'또렷한 학습 음성 모드가 적용되었습니다.';});
-function currentTotal(){return mode==='words'?words.length:mode==='moreWords'?moreWords.length:mode==='grammar'?grammar.length:story.length}
-function render(){const item=mode==='words'?words[index]:mode==='moreWords'?moreWords[index]:mode==='grammar'?grammar[index]:story[index];$('translation').classList.add('hide');$('wordMeaning').classList.add('hide');$('grammarBox').classList.add('hide');if(mode==='words'){$('speaker').textContent='KEY WORD';$('line').textContent=item.word;$('wordMeaning').textContent=item.meaning;$('wordMeaning').classList.remove('hide');$('hint').textContent='뜻은 화면으로만 확인하고, 음성은 영어 단어만 읽습니다.'}else if(mode==='moreWords'){$('speaker').textContent='MORE VOCABULARY';$('line').textContent=item.word;$('translation').textContent=item.example;$('translation').classList.remove('hide');$('wordMeaning').textContent=item.meaning;$('wordMeaning').classList.remove('hide');$('hint').textContent='단어는 크게, 뜻과 예문은 함께 확인합니다. 한 문장씩 읽기 버튼을 누르면 단어와 예문을 들을 수 있습니다.'}else if(mode==='grammar'){$('speaker').textContent='TODAY’S GRAMMAR';$('line').textContent=item.example;$('grammarTitle').textContent=item.title;$('grammarPattern').textContent=item.pattern;$('grammarExplain').textContent=item.explain;$('grammarExample').textContent='Example · '+item.example;$('grammarBox').classList.remove('hide');$('hint').textContent='예문은 한 문장씩 읽기 버튼으로 들을 수 있습니다.'}else{$('speaker').textContent=item.speaker;$('line').textContent=item.text;if(mode==='translation'){$('translation').textContent=item.ko;$('translation').classList.remove('hide');$('hint').textContent='영어 음성을 들으며 해석을 확인하세요.'}else{$('hint').textContent='한 문장씩 듣고 직접 읽은 뒤 다음 버튼으로 이동하세요.'}}$('countBadge').textContent=(index+1)+' / '+currentTotal();$('bar').style.width=((index+1)/currentTotal()*100)+'%'}
+function updateVoiceInfo(){const v=chooseVoice(),label=browserLabel();$('voiceBadge').textContent=v?v.name:voiceProfile().lang;$('voiceInfo').textContent=(v?'사용 음성: '+v.name:'기기 기본 영어 음성 사용')+' · '+label}
+$('voiceType').addEventListener('change',()=>{stopAll();loadVoices()});$('rate').addEventListener('change',()=>{stopAll();$('hint').textContent='재생 속도가 '+$('rate').selectedOptions[0].textContent+'로 변경되었습니다.';});
+function currentTotal(){return mode==='words'?words.length:story.length}
+function render(){const item=mode==='words'?words[index]:story[index];$('translation').classList.add('hide');$('wordMeaning').classList.add('hide');if(mode==='words'){$('speaker').textContent='KEY WORD';$('line').textContent=item.word;$('wordMeaning').textContent=item.meaning;$('wordMeaning').classList.remove('hide');$('hint').textContent='뜻은 화면으로만 확인하고, 음성은 영어 단어만 읽습니다.'}else{$('speaker').textContent=item.speaker;$('line').textContent=item.text;if(mode==='translation'){$('translation').textContent=item.ko;$('translation').classList.remove('hide');$('hint').textContent='영어 음성을 들으며 해석을 확인하세요.'}else{$('hint').textContent='한 문장 재생으로 반복해서 듣고, 다음 버튼으로 이동하세요.'}}$('countBadge').textContent=(index+1)+' / '+currentTotal();$('bar').style.width=((index+1)/currentTotal()*100)+'%'}
 function makeUtterance(text,token,onStart,onEnd){
   const u=new SpeechSynthesisUtterance(text),p=voiceProfile();
-  const style=$('voiceStyle').value;
   u.lang=p.lang;
-  const baseRate=Number($('rate').value);
-  u.rate=style==='soft'?Math.max(0.65,baseRate-0.02):Math.min(1,baseRate+0.03);
-  u.pitch=style==='soft'?0.96:1.01;
+  u.rate=Number($('rate').value);
+  u.pitch=1;
   u.volume=1;
   const v=chooseVoice();if(v)u.voice=v;
   u.onstart=()=>{if(token!==playToken)return;if(onStart)onStart()};
@@ -320,7 +241,7 @@ function makeUtterance(text,token,onStart,onEnd){
 }
 function ensureSpeech(){if(!synth){alert('이 브라우저에서는 음성 읽기를 지원하지 않습니다. Safari 또는 Chrome으로 열어 주세요.');return false}loadVoices();try{synth.cancel();synth.resume()}catch(e){}return true}
 function stopAll(){playToken++;isPlayingAll=false;isPlayingWords=false;if(synth){try{synth.cancel();synth.resume()}catch(e){}}}
-function naturalPause(text){const style=$('voiceStyle').value;const base=style==='soft'?420:260;const extra=/[.!?]$/.test(String(text).trim())?180:0;return base+extra}
+function naturalPause(text){const base=300;const extra=/[.!?]$/.test(String(text).trim())?150:0;return base+extra}
 function speakSequence(items,textFn,onItem,onDone){
   if(!ensureSpeech())return;
   stopAll();
@@ -337,34 +258,14 @@ function speakSequence(items,textFn,onItem,onDone){
 }
 function playFullStory(){mode='story';index=0;isPlayingAll=true;$('modeBadge').textContent='전체 듣기';speakSequence(story,x=>x.text,i=>{index=i;render();$('hint').textContent='전체 스크립트 재생 중'},()=>{isPlayingAll=false;$('hint').textContent='전체 듣기가 끝났습니다.'})}
 function playAllWords(){mode='words';index=0;isPlayingWords=true;$('modeBadge').textContent='주요 단어';speakSequence(words,x=>x.word,i=>{index=i;render();$('hint').textContent='선택한 영어 음성으로 주요 단어만 재생 중'},()=>{isPlayingWords=false;$('hint').textContent='주요 단어 재생이 끝났습니다.'})}
-function openMoreWords(){stopAll();mode='moreWords';index=0;$('modeBadge').textContent='단어 더 배우기';render();}
-function playSentence(){if(!ensureSpeech())return;stopAll();const token=playToken,item=mode==='words'?words[index]:mode==='moreWords'?moreWords[index]:mode==='grammar'?grammar[index]:story[index];const text=mode==='words'?item.word:mode==='moreWords'?(item.word+'. '+item.example):mode==='grammar'?item.example:item.text;synth.speak(makeUtterance(text,token,()=>{$('hint').textContent='재생 중'},()=>{$('hint').textContent=(mode==='words'||mode==='moreWords')?'단어 재생 완료':'한 문장 재생 완료'}))}
+function playSentence(){if(!ensureSpeech())return;stopAll();const token=playToken,item=mode==='words'?words[index]:story[index];const text=mode==='words'?item.word:item.text;synth.speak(makeUtterance(text,token,()=>{$('hint').textContent='재생 중'},()=>{$('hint').textContent=mode==='words'?'단어 재생 완료':'한 문장 재생 완료'}))}
 function nextItem(){stopAll();if(index<currentTotal()-1){index++;render()}else{index=0;render();$('hint').textContent='처음으로 돌아왔습니다.'}}
-$('fullListenBtn').addEventListener('click',playFullStory);$('stopBtn').addEventListener('click',()=>{stopAll();$('hint').textContent='정지되었습니다.'});$('translationBtn').addEventListener('click',()=>{stopAll();mode='translation';index=0;$('modeBadge').textContent='해석 보기';render();playSentence()});$('wordsBtn').addEventListener('click',playAllWords);$('moreWordsBtn').addEventListener('click',openMoreWords);$('grammarBtn').addEventListener('click',()=>{stopAll();mode='grammar';index=0;$('modeBadge').textContent='Today’s Grammar';render();});$('sentenceBtn').addEventListener('click',playSentence);$('nextBtn').addEventListener('click',nextItem);
+$('fullListenBtn').addEventListener('click',playFullStory);$('stopBtn').addEventListener('click',()=>{stopAll();$('hint').textContent='정지되었습니다.'});$('translationBtn').addEventListener('click',()=>{stopAll();if(mode==='words')index=0;mode='translation';$('modeBadge').textContent='해석 보기';render();if(story[index]&&story[index].ko&&story[index].ko!=='해석 미입력')playSentence();else $('hint').textContent='현재 스크립트에는 등록된 해석이 없습니다.';});$('wordsBtn').addEventListener('click',playAllWords);$('sentenceBtn').addEventListener('click',playSentence);$('nextBtn').addEventListener('click',nextItem);
 // iPhone에서는 첫 사용자 터치에서 음성 엔진과 음성 목록을 깨웁니다.
 document.addEventListener('touchstart',()=>{loadVoices();if(synth&&synth.paused)try{synth.resume()}catch(e){}},{once:true,passive:true});
 const cameraInput=$('cameraInput'),libraryInput=$('libraryInput'),previewWrap=$('previewWrap'),previewImg=$('previewImg'),previewName=$('previewName');
 function showUploadedImage(file){if(!file||!file.type.startsWith('image/'))return;const url=URL.createObjectURL(file);if(previewImg.dataset.url)URL.revokeObjectURL(previewImg.dataset.url);previewImg.dataset.url=url;previewImg.src=url;previewName.textContent=file.name||'촬영한 사진';previewWrap.classList.add('show')}
 cameraInput.addEventListener('change',e=>showUploadedImage(e.target.files&&e.target.files[0]));libraryInput.addEventListener('change',e=>showUploadedImage(e.target.files&&e.target.files[0]));$('removeImg').addEventListener('click',()=>{if(previewImg.dataset.url)URL.revokeObjectURL(previewImg.dataset.url);previewImg.removeAttribute('src');previewImg.dataset.url='';cameraInput.value='';libraryInput.value='';previewName.textContent='';previewWrap.classList.remove('show')});
-
-function buildRelatedWords(text){
-  const t=(text||'').toLowerCase();
-  const banks=[
-    {keys:['weather','rain','cloud','sun','wind','storm'],items:[
-      {word:'forecast',meaning:'예보',example:'The forecast says it will rain.'},{word:'drizzle',meaning:'이슬비',example:'A light drizzle is falling.'},{word:'breeze',meaning:'산들바람',example:'A cool breeze is blowing.'},{word:'temperature',meaning:'기온, 온도',example:'The temperature is low today.'},{word:'umbrella',meaning:'우산',example:'Take an umbrella with you.'}]},
-    {keys:['school','class','teacher','student','study','book'],items:[
-      {word:'subject',meaning:'과목',example:'English is my favorite subject.'},{word:'homework',meaning:'숙제',example:'I finished my homework.'},{word:'practice',meaning:'연습하다',example:'We practice English every day.'},{word:'question',meaning:'질문',example:'I have a question.'},{word:'answer',meaning:'대답',example:'Please write your answer.'}]},
-    {keys:['food','lunch','dinner','breakfast','eat','cook'],items:[
-      {word:'delicious',meaning:'맛있는',example:'The soup is delicious.'},{word:'hungry',meaning:'배고픈',example:'I am hungry now.'},{word:'ingredient',meaning:'재료',example:'We need fresh ingredients.'},{word:'meal',meaning:'식사',example:'Lunch is my favorite meal.'},{word:'recipe',meaning:'조리법',example:'This recipe is easy.'}]},
-    {keys:['travel','city','airport','train','bus','trip'],items:[
-      {word:'journey',meaning:'여행, 여정',example:'Our journey begins today.'},{word:'station',meaning:'역',example:'Meet me at the station.'},{word:'ticket',meaning:'표',example:'I bought a train ticket.'},{word:'arrive',meaning:'도착하다',example:'We arrive at noon.'},{word:'explore',meaning:'탐험하다',example:'Let’s explore the city.'}]}
-  ];
-  for(const bank of banks){if(bank.keys.some(k=>t.includes(k)))return bank.items;}
-  return [
-    {word:'begin',meaning:'시작하다',example:'Let’s begin the story.'},{word:'important',meaning:'중요한',example:'This word is important.'},{word:'remember',meaning:'기억하다',example:'Please remember this sentence.'},{word:'describe',meaning:'묘사하다',example:'Can you describe the picture?'},{word:'practice',meaning:'연습하다',example:'Practice the sentence again.'}
-  ];
-}
-
 function applyScriptText(){
   const raw=$('scriptInput').value.trim();
   if(!raw){alert('적용할 영어 스크립트를 입력하거나 사진에서 글자를 인식해 주세요.');return;}
@@ -376,371 +277,30 @@ function applyScriptText(){
     else parsed.push({speaker:'SCRIPT',text:line,ko:'해석 미입력'});
   }
   if(!parsed.length){alert('영어 문장을 찾지 못했습니다.');return;}
-  stopAll();story=parsed;grammar=[{title:'새 스크립트 문법',pattern:'AI 문법 분석 준비 단계',explain:'현재 버전에서는 새 스크립트 문법을 자동 분석하지 않고 첫 문장을 예문으로 표시합니다.',example:parsed[0].text}];moreWords=buildRelatedWords(parsed.map(x=>x.text).join(' '));mode='story';index=0;render();buildReader();$('modeBadge').textContent='새 스크립트';$('hint').textContent='새 스크립트가 적용되었습니다. 단어 더 배우기는 본문 키워드에 따라 추천됩니다.';
+  stopAll();story=parsed;mode='story';index=0;render();buildReader();$('modeBadge').textContent='새 스크립트';$('hint').textContent='새 스크립트가 적용되었습니다. 재생 버튼을 눌러 주세요.';
 }
 $('applyScriptBtn').addEventListener('click',applyScriptText);
 async function loadTesseract(){
   if(window.Tesseract)return true;
-  return new Promise((resolve,reject)=>{
-    const sc=document.createElement('script');
-    sc.src='https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js';
-    sc.onload=()=>resolve(true);
-    sc.onerror=()=>reject(new Error('OCR 모듈을 불러오지 못했습니다. 인터넷 연결을 확인해 주세요.'));
-    document.head.appendChild(sc);
-  });
+  return new Promise((resolve,reject)=>{const sc=document.createElement('script');sc.src='https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js';sc.onload=()=>resolve(true);sc.onerror=()=>reject(new Error('OCR 모듈을 불러오지 못했습니다. 인터넷 연결을 확인해 주세요.'));document.head.appendChild(sc)});
 }
-function loadImageFromFile(file){
-  return new Promise((resolve,reject)=>{
-    const img=new Image();
-    const url=URL.createObjectURL(file);
-    img.onload=()=>{URL.revokeObjectURL(url);resolve(img)};
-    img.onerror=()=>{URL.revokeObjectURL(url);reject(new Error('사진을 불러오지 못했습니다. JPG 또는 PNG 사진으로 다시 시도해 주세요.'))};
-    img.src=url;
-  });
-}
-async function createOCRCanvases(file){
-  const img=await loadImageFromFile(file);
-  const maxSide=2400;
-  const scale=Math.max(1,Math.min(2.4,maxSide/Math.max(img.naturalWidth,img.naturalHeight)));
-  const w=Math.max(1,Math.round(img.naturalWidth*scale));
-  const h=Math.max(1,Math.round(img.naturalHeight*scale));
-
-  const base=document.createElement('canvas');
-  base.width=w;base.height=h;
-  const bctx=base.getContext('2d',{willReadFrequently:true});
-  bctx.fillStyle='#fff';bctx.fillRect(0,0,w,h);bctx.drawImage(img,0,0,w,h);
-
-  const gray=document.createElement('canvas');
-  gray.width=w;gray.height=h;
-  const gctx=gray.getContext('2d',{willReadFrequently:true});
-  gctx.drawImage(base,0,0);
-  const gid=gctx.getImageData(0,0,w,h),gd=gid.data;
-  for(let i=0;i<gd.length;i+=4){
-    const y=0.299*gd[i]+0.587*gd[i+1]+0.114*gd[i+2];
-    const v=y<175?Math.max(0,(y-35)*0.9):Math.min(255,y*1.16+10);
-    gd[i]=gd[i+1]=gd[i+2]=v;gd[i+3]=255;
-  }
-  gctx.putImageData(gid,0,0);
-
-  const binary=document.createElement('canvas');
-  binary.width=w;binary.height=h;
-  const xctx=binary.getContext('2d',{willReadFrequently:true});
-  const bid=gctx.getImageData(0,0,w,h),bd=bid.data;
-  for(let i=0;i<bd.length;i+=4){
-    const v=bd[i]<182?0:255;
-    bd[i]=bd[i+1]=bd[i+2]=v;bd[i+3]=255;
-  }
-  xctx.putImageData(bid,0,0);
-
-  // 어린이책의 큰 그림·색상 영역을 줄이기 위해 글자처럼 보이는 가로 띠만 새 캔버스에 모읍니다.
-  const src=xctx.getImageData(0,0,w,h).data;
-  const rowDensity=new Float32Array(h);
-  for(let y=0;y<h;y++){
-    let dark=0;
-    const off=y*w*4;
-    for(let x=0;x<w;x+=2){if(src[off+x*4]<80)dark++;}
-    rowDensity[y]=dark/(w/2);
-  }
-  const active=new Uint8Array(h);
-  for(let y=0;y<h;y++){
-    let sum=0,count=0;
-    for(let k=Math.max(0,y-3);k<=Math.min(h-1,y+3);k++){sum+=rowDensity[k];count++;}
-    const d=sum/count;
-    active[y]=(d>0.0025&&d<0.26)?1:0;
-  }
-  const bands=[];
-  let st=-1;
-  for(let y=0;y<=h;y++){
-    const on=y<h&&active[y];
-    if(on&&st<0)st=y;
-    if((!on||y===h)&&st>=0){
-      let en=y-1;
-      if(en-st>=5){bands.push([Math.max(0,st-8),Math.min(h-1,en+8)]);}
-      st=-1;
-    }
-  }
-  const merged=[];
-  for(const b of bands){
-    if(!merged.length||b[0]-merged[merged.length-1][1]>16)merged.push(b.slice());
-    else merged[merged.length-1][1]=Math.max(merged[merged.length-1][1],b[1]);
-  }
-  const useful=merged.filter(([a,b])=>{
-    const bh=b-a+1;
-    if(bh>h*0.28)return false;
-    let avg=0;for(let y=a;y<=b;y++)avg+=rowDensity[y];avg/=bh;
-    return avg>0.003&&avg<0.22;
-  });
-  const totalH=Math.max(120,useful.reduce((n,[a,b])=>n+(b-a+1)+14,20));
-  const textOnly=document.createElement('canvas');
-  textOnly.width=w;textOnly.height=totalH;
-  const tctx=textOnly.getContext('2d');
-  tctx.fillStyle='#fff';tctx.fillRect(0,0,w,totalH);
-  let dy=10;
-  for(const [a,b] of useful){
-    const bh=b-a+1;
-    tctx.drawImage(binary,0,a,w,bh,0,dy,w,bh);
-    dy+=bh+14;
-  }
-  return [
-    {name:'텍스트 영역',canvas:textOnly,psm:'6'},
-    {name:'고대비 흑백',canvas:binary,psm:'11'},
-    {name:'그레이 보정',canvas:gray,psm:'11'}
-  ];
-}
-function cleanOCRText(raw){
-  return String(raw||'')
-    .replace(/[|¦]/g,'I')
-    .replace(/[“”]/g,'"')
-    .replace(/[‘’]/g,"'")
-    .replace(/[^\x09\x0A\x0D\x20-\x7E]/g,' ')
-    .replace(/[ \t]+/g,' ')
+function filterEnglishOCR(text){
+  return String(text||'')
+    .replace(/[^A-Za-z0-9\s.,'"!?%&+\-]/g,' ')
+    .replace(/[\t ]+/g,' ')
+    .replace(/ *\n */g,'\n')
     .replace(/\n{3,}/g,'\n\n')
-    .split('\n')
-    .map(line=>line.trim())
-    .filter(line=>line && /[A-Za-z]/.test(line))
-    .filter(line=>{
-      const letters=(line.match(/[A-Za-z]/g)||[]).length;
-      const junk=(line.match(/[^A-Za-z0-9 .,?!'":;()\-]/g)||[]).length;
-      return letters>=2 && junk<=Math.max(2,letters*0.2);
-    })
-    .join('\n')
     .trim();
-}
-function scoreOCRResult(text,confidence){
-  if(!text)return -9999;
-  const letters=(text.match(/[A-Za-z]/g)||[]).length;
-  const words=(text.match(/\b[A-Za-z]{2,}\b/g)||[]).length;
-  const sentences=(text.match(/[.!?]/g)||[]).length;
-  const suspicious=(text.match(/\b[A-Za-z]*[0-9][A-Za-z]*\b/g)||[]).length;
-  const veryLong=(text.split(/\n/).filter(x=>x.length>160)).length;
-  return Number(confidence||0)*0.7+words*1.8+sentences*2+letters*0.02-suspicious*5-veryLong*8;
-}
-async function recognizeCandidate(candidate,progressBase,progressSpan,btn){
-  const result=await Tesseract.recognize(candidate.canvas,'eng',{
-    logger:m=>{
-      if(m.status==='recognizing text'){
-        const pct=Math.round(progressBase+(m.progress||0)*progressSpan);
-        btn.textContent='인식 '+Math.min(99,pct)+'%';
-      }
-    },
-    tessedit_pageseg_mode:candidate.psm,
-    preserve_interword_spaces:'1',
-    tessedit_char_whitelist:"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789.,?!'\"-:;() "
-  });
-  const text=cleanOCRText(result.data.text);
-  return {name:candidate.name,text,confidence:result.data.confidence||0,score:scoreOCRResult(text,result.data.confidence)};
 }
 $('ocrBtn').addEventListener('click',async()=>{
   const file=(cameraInput.files&&cameraInput.files[0])||(libraryInput.files&&libraryInput.files[0]);
   if(!file){alert('먼저 교재 사진을 촬영하거나 선택해 주세요.');return;}
-  const btn=$('ocrBtn'),old=btn.textContent;
-  btn.disabled=true;btn.textContent='그림·색상 분리 중...';
-  $('hint').textContent='어린이책의 그림과 색상 영역을 줄이고 영어 글자 영역을 찾는 중입니다.';
-  try{
-    await loadTesseract();
-    const candidates=await createOCRCanvases(file);
-    const results=[];
-    for(let i=0;i<candidates.length;i++){
-      results.push(await recognizeCandidate(candidates[i],Math.round(i*32),30,btn));
-    }
-    results.sort((a,b)=>b.score-a.score);
-    const best=results[0];
-    if(!best||!best.text)throw new Error('사진에서 영어 문장을 찾지 못했습니다. 글자가 있는 부분을 더 크게 촬영해 주세요.');
-    $('scriptInput').value=best.text;
-    $('hint').textContent='어린이책 OCR 완료 · '+best.name+' 방식 선택. 텍스트를 확인·수정한 뒤 “스크립트 적용”을 눌러 주세요.';
-    $('scriptInput').scrollIntoView({behavior:'smooth',block:'center'});
-  }catch(e){
-    alert((e&&e.message)||'사진 글자 인식에 실패했습니다.');
-    $('hint').textContent='사진 인식에 실패했습니다. 페이지를 정면에서 촬영하고 글자 부분이 화면을 크게 차지하도록 해 주세요.';
-  }finally{btn.disabled=false;btn.textContent=old;}
+  const btn=$('ocrBtn'),old=btn.textContent;btn.disabled=true;btn.textContent='글자 인식 중...';$('hint').textContent='사진에서 영어 문장을 읽는 중입니다.';
+  try{await loadTesseract();const result=await Tesseract.recognize(file,'eng',{logger:m=>{if(m.status==='recognizing text')btn.textContent='인식 '+Math.round((m.progress||0)*100)+'%'}});$('scriptInput').value=filterEnglishOCR(result.data.text||'');if(!$('scriptInput').value)throw new Error('허용된 영문 텍스트를 찾지 못했습니다.');applyScriptText();}
+  catch(e){alert((e&&e.message)||'사진 글자 인식에 실패했습니다.');$('hint').textContent='사진 인식에 실패했습니다. 텍스트를 직접 붙여 넣어 주세요.';}finally{btn.disabled=false;btn.textContent=old;}
 });
 
 // Recording + IndexedDB playlist
-
-
-/* ===== V1.4 SIMPLIFIED MENU ===== */
-const navButtons=[...document.querySelectorAll('.navBtn[data-view]')];
-const viewPanels=[...document.querySelectorAll('.viewPanel')];
-function showView(viewId){
-  viewPanels.forEach(v=>v.classList.toggle('active',v.id===viewId));
-  navButtons.forEach(b=>b.classList.toggle('active',b.dataset.view===viewId));
-  window.scrollTo({top:0,behavior:'smooth'});
-}
-navButtons.forEach(btn=>btn.addEventListener('click',()=>showView(btn.dataset.view)));
-function returnToReading(){
-  showView('scriptView');
-  setTimeout(()=>document.querySelector('.stage')?.scrollIntoView({behavior:'smooth',block:'center'}),80);
-}
-$('wordsBtn').addEventListener('click',()=>setTimeout(returnToReading,20));
-$('moreWordsBtn').addEventListener('click',()=>setTimeout(returnToReading,20));
-$('grammarBtn').addEventListener('click',()=>setTimeout(returnToReading,20));
-/* ===== END SIMPLIFIED MENU ===== */
-
-/* ===== V1.3 CITY DEFENSE GAME ===== */
-const cityStages=[
-  {city:'New York',landmark:'🗽',label:'Statue of Liberty',accent:'us'},
-  {city:'London',landmark:'🌉',label:'Tower Bridge',accent:'gb'},
-  {city:'Singapore',landmark:'🦁',label:'Merlion',accent:'gb'},
-  {city:'Sydney',landmark:'🏛️',label:'Sydney Opera House',accent:'au'}
-];
-let gameState={questions:[],round:0,score:0,hp:3,balls:6,locked:false,cityIndex:0};
-
-function shuffleGame(arr){
-  const a=[...arr];
-  for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}
-  return a;
-}
-function cleanTokenGame(s){return String(s||'').replace(/^[^A-Za-z']+|[^A-Za-z']+$/g,'')}
-function wordPoolGame(){
-  return [...new Set([
-    ...words.map(x=>x.word),
-    ...moreWords.map(x=>x.word),
-    ...story.flatMap(x=>x.text.split(/\s+/).map(cleanTokenGame))
-  ].filter(x=>x&&x.length>1))];
-}
-function makeOptionsGame(answer,pool){
-  const lower=answer.toLowerCase();
-  const distract=shuffleGame(pool.filter(x=>x.toLowerCase()!==lower && Math.abs(x.length-answer.length)<7)).slice(0,3);
-  while(distract.length<3){
-    const fallback=['weather','morning','outside','tomorrow','umbrella','cloudy','lunch','early'];
-    const x=fallback.find(v=>v.toLowerCase()!==lower&&!distract.includes(v));
-    if(!x)break;distract.push(x);
-  }
-  return shuffleGame([answer,...distract.slice(0,3)]);
-}
-function sentenceQuestionsGame(pool){
-  const stop=new Set(['the','a','an','i','you','he','she','it','we','they','is','am','are','was','were','do','does','did','to','of','and','or','but','in','on']);
-  return story.map(item=>{
-    const tokens=item.text.split(/\s+/);
-    const candidates=tokens.map((t,i)=>({raw:t,word:cleanTokenGame(t),i})).filter(x=>x.word.length>2&&!stop.has(x.word.toLowerCase()));
-    if(!candidates.length)return null;
-    const pick=candidates[Math.floor(Math.random()*candidates.length)];
-    const blank=tokens.map((t,i)=>i===pick.i?'_____':t).join(' ');
-    return {type:'학습 문장 빈칸',prompt:blank,answer:pick.word,options:makeOptionsGame(pick.word,pool)};
-  }).filter(Boolean);
-}
-function vocabQuestionsGame(pool){
-  return [...words,...moreWords].map(v=>({
-    type:'단어 뜻 맞히기',
-    prompt:'“'+v.meaning+'”에 알맞은 영어 단어는?',
-    answer:v.word,
-    options:makeOptionsGame(v.word,pool)
-  }));
-}
-function grammarQuestionsGame(pool){
-  const qs=[];
-  grammar.forEach(g=>{
-    let ans='';
-    if(/at \+|전치사 at/i.test(g.title+' '+g.pattern))ans='at';
-    else if(/What time/i.test(g.pattern+' '+g.example))ans='What time';
-    else if(/Can I/i.test(g.pattern+' '+g.example))ans='Can I';
-    else if(/with \+/i.test(g.pattern+' '+g.example))ans='with';
-    if(ans){
-      const escaped=ans.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
-      const prompt=g.example.replace(new RegExp(escaped,'i'),'_____');
-      qs.push({type:'Today’s Grammar',prompt,answer:ans,options:makeOptionsGame(ans,[...pool,'at','in','on','with','What time','How many','Can I','Do I'])});
-    }
-  });
-  return qs;
-}
-function buildGameQuestions(){
-  const pool=wordPoolGame();
-  const all=[...sentenceQuestionsGame(pool),...vocabQuestionsGame(pool),...grammarQuestionsGame(pool)];
-  return shuffleGame(all).slice(0,8);
-}
-function renderBallsGame(){
-  const lane=$('attackLane');lane.innerHTML='';
-  for(let i=0;i<gameState.balls;i++){
-    const b=document.createElement('div');b.className='cannonball';b.textContent='✦';b.setAttribute('aria-label','외계 공격탄');lane.appendChild(b);
-  }
-}
-function setCityGame(){
-  const c=cityStages[gameState.cityIndex%cityStages.length];
-  $('gameCityChip').textContent=c.city;
-  $('landmark').textContent=c.landmark;
-  $('cityLabel').textContent=c.city+' · '+c.label;
-  $('voiceType').value=c.accent;
-  loadVoices();
-}
-function updateHudGame(){
-  $('gameScoreChip').textContent='점수 '+gameState.score;
-  $('gameRoundChip').textContent=Math.min(gameState.round+1,gameState.questions.length)+' / '+gameState.questions.length;
-  $('hpFill').style.width=(gameState.hp/3*100)+'%';
-}
-function renderQuestionGame(){
-  if(gameState.balls<=0){finishGame(true);return}
-  if(gameState.hp<=0){finishGame(false);return}
-  if(gameState.round>=gameState.questions.length){finishGame(gameState.balls<=2);return}
-  const q=gameState.questions[gameState.round];
-  $('qType').textContent=q.type.toUpperCase();
-  $('qText').innerHTML=q.prompt.replace('_____','<span class="blankWord">?</span>');
-  $('answerGrid').innerHTML='';
-  $('gameFeedback').textContent='';
-  q.options.forEach(opt=>{
-    const btn=document.createElement('button');btn.type='button';btn.className='answerBtn';btn.textContent=opt;
-    btn.addEventListener('click',()=>answerGame(btn,opt,q.answer));
-    $('answerGrid').appendChild(btn);
-  });
-  updateHudGame();
-}
-function answerGame(btn,choice,answer){
-  if(gameState.locked)return;gameState.locked=true;
-  [...$('answerGrid').children].forEach(b=>b.disabled=true);
-  const ok=choice.toLowerCase()===answer.toLowerCase();
-  if(ok){
-    btn.classList.add('correct');gameState.score+=100;
-    $('gameFeedback').textContent='정답! 가장 아래 공격탄을 제거했어요.';
-    const balls=$('attackLane').children;
-    const bottom=balls[balls.length-1];
-    if(bottom){bottom.classList.add('removing');setTimeout(()=>{gameState.balls=Math.max(0,gameState.balls-1);renderBallsGame()},320)}
-  }else{
-    btn.classList.add('wrong');
-    [...$('answerGrid').children].forEach(b=>{if(b.textContent.toLowerCase()===answer.toLowerCase())b.classList.add('correct')});
-    gameState.hp=Math.max(0,gameState.hp-1);
-    $('landmark').classList.add('hit');setTimeout(()=>$('landmark').classList.remove('hit'),400);
-    $('gameFeedback').textContent='아쉬워요. 정답은 “'+answer+'”예요. 도시 방어력이 줄었습니다.';
-  }
-  setTimeout(()=>{gameState.round++;gameState.locked=false;renderQuestionGame()},1050);
-}
-function finishGame(win){
-  $('questionCard').classList.add('hideGame');$('gameResult').classList.remove('hideGame');
-  if(win){
-    $('gameResultIcon').textContent='🏆';
-    $('gameResultTitle').textContent='도시를 지켰어요!';
-    $('gameResultText').textContent=cityStages[gameState.cityIndex].city+' 방어 성공 · '+gameState.score+'점';
-    $('gameStartBtn').textContent='다음 도시';
-    gameState.cityIndex=(gameState.cityIndex+1)%cityStages.length;
-  }else{
-    $('gameResultIcon').textContent='🛠️';
-    $('gameResultTitle').textContent='도시를 다시 수리해요';
-    $('gameResultText').textContent='틀린 문제를 다시 확인하고 한 번 더 도전해 보세요.';
-    $('gameStartBtn').textContent='다시 도전';
-  }
-}
-function startGame(){
-  stopAll();
-  gameState.questions=buildGameQuestions();
-  gameState.round=0;gameState.score=0;gameState.hp=3;gameState.balls=6;gameState.locked=false;
-  setCityGame();renderBallsGame();updateHudGame();
-  $('questionCard').classList.remove('hideGame');$('gameResult').classList.add('hideGame');
-  $('gameStartBtn').textContent='처음부터';
-  if(!gameState.questions.length){
-    $('qText').textContent='학습 자료가 부족합니다. 먼저 스크립트를 적용해 주세요.';
-    return;
-  }
-  renderQuestionGame();
-}
-function openGame(){
-  $('gameOverlay').classList.remove('hide');
-  setCityGame();renderBallsGame();updateHudGame();
-}
-function closeGame(){ $('gameOverlay').classList.add('hide') }
-$('gameBtn').addEventListener('click',openGame);
-$('gameStartBtn').addEventListener('click',startGame);
-$('gameExitBtn').addEventListener('click',closeGame);
-$('gameOverlay').addEventListener('click',e=>{if(e.target===$('gameOverlay'))closeGame()});
-/* ===== END CITY DEFENSE GAME ===== */
-
 const DB_NAME='Y1EnglishStoryDB',STORE='recordings';let mediaRecorder=null,mediaStream=null,audioChunks=[],recordStartedAt=0,timerHandle=null,autoScrollHandle=null;
 function openDB(){return new Promise((resolve,reject)=>{const req=indexedDB.open(DB_NAME,1);req.onupgradeneeded=()=>{const db=req.result;if(!db.objectStoreNames.contains(STORE))db.createObjectStore(STORE,{keyPath:'id',autoIncrement:true})};req.onsuccess=()=>resolve(req.result);req.onerror=()=>reject(req.error)})}
 async function saveRecording(blob,mimeType){const db=await openDB();return new Promise((resolve,reject)=>{const tx=db.transaction(STORE,'readwrite');tx.objectStore(STORE).add({createdAt:Date.now(),story:'Mini Story 097',mimeType,blob});tx.oncomplete=()=>{db.close();resolve()};tx.onerror=()=>{db.close();reject(tx.error)}})}
@@ -761,6 +321,209 @@ $('recordBtn').addEventListener('click',openRecord);$('startRecord').addEventLis
 $('recordOverlay').addEventListener('click',e=>{if(e.target===$('recordOverlay'))closeRecord()});$('playlistOverlay').addEventListener('click',e=>{if(e.target===$('playlistOverlay'))$('playlistOverlay').classList.add('hide')});
 document.addEventListener('visibilitychange',()=>{if(document.hidden)stopAll()});
 window.addEventListener('pageshow',()=>{loadVoices();render()});
-$('rateText').textContent=Number($('rate').value).toFixed(2)+'×';render();updateVoiceInfo();
+
+// Bottom learning navigation + memorization TEST prototype
+const metricMeta={pronunciation:{name:'Pronunciation',ko:'발음 정확성'},fluency:{name:'Fluency',ko:'읽기 흐름과 유창성'},intonation:{name:'Intonation',ko:'억양과 문장 리듬'},completeness:{name:'Completeness',ko:'암기한 문장의 완성도'}};
+let testRecorder=null,testStream=null,testChunks=[],testStartedAt=0,testTimerHandle=null,testDemoMode=false;
+function openLearning(title){$('learningTitle').textContent=title;$('learningOverlay').classList.remove('hide')}
+function formatClock(sec){const m=Math.floor(sec/60),s=sec%60;return String(m).padStart(2,'0')+':'+String(s).padStart(2,'0')}
+function renderTestStart(){openLearning('TEST');$('learningBody').innerHTML='<div class="testStart"><div class="testRocket">🚀</div><h3>암기 테스트</h3><p>테스트를 시작해볼까요?<br>외운 내용을 잘 기억해서 시작해봐요.</p><button id="goTestBtn" class="goBtn" type="button">Go</button><div class="testNotice">Go를 누르면 마이크 녹음이 시작됩니다. 스크립트를 보지 않고 외운 내용을 말해 보세요.</div></div>';$('goTestBtn').addEventListener('click',beginMemoryTest)}
+async function beginMemoryTest(){
+  try{
+    testDemoMode=!window.isSecureContext;
+    if(!testDemoMode&&(!window.MediaRecorder||!navigator.mediaDevices||!navigator.mediaDevices.getUserMedia))throw new Error('이 브라우저에서는 마이크 녹음을 지원하지 않습니다.');
+    if(!testDemoMode){
+      testStream=await navigator.mediaDevices.getUserMedia({audio:true});
+      testChunks=[];let mime='';for(const t of ['audio/mp4','audio/webm;codecs=opus','audio/webm']){if(MediaRecorder.isTypeSupported&&MediaRecorder.isTypeSupported(t)){mime=t;break}}
+      testRecorder=mime?new MediaRecorder(testStream,{mimeType:mime}):new MediaRecorder(testStream);
+      testRecorder.ondataavailable=e=>{if(e.data&&e.data.size)testChunks.push(e.data)};
+      testRecorder.onstop=finishMemoryTest;
+      testRecorder.start(500);
+    }
+    testStartedAt=Date.now();
+    const started=new Date(testStartedAt).toLocaleTimeString('ko-KR',{hour:'2-digit',minute:'2-digit',second:'2-digit'});
+    const stateText=testDemoMode?'PC Preview Mode':'Recording...';
+    const hint=testDemoMode?'로컬 HTML 미리보기에서는 마이크가 녹음되지 않습니다. 타이머와 결과 화면만 테스트합니다. 실제 녹음은 GitHub Pages 또는 HTTPS 주소에서 실행해 주세요.':'외운 스크립트를 처음부터 끝까지 말한 뒤 Finish를 눌러 주세요.';
+    $('learningBody').innerHTML='<div class="testRecording"><div class="recordPulse">●</div><div class="recordState">'+stateText+'</div><div class="testStartTime">시작 시간 <strong>'+started+'</strong></div><div id="testTimer" class="testTimer">00:00</div><button id="finishTestBtn" class="finishTestBtn" type="button">Finish</button><div class="testScriptHint">'+hint+'</div></div>';
+    testTimerHandle=setInterval(()=>{const el=$('testTimer');if(el)el.textContent=formatClock(Math.floor((Date.now()-testStartedAt)/1000))},250);
+    $('finishTestBtn').addEventListener('click',()=>{
+      if(testDemoMode){finishMemoryTest();return;}
+      if(testRecorder&&testRecorder.state!=='inactive')testRecorder.stop();
+    });
+  }catch(e){if(testStream)testStream.getTracks().forEach(t=>t.stop());testStream=null;testDemoMode=false;alert((e&&e.message)||'마이크 권한을 확인해 주세요.');renderTestStart()}
+}
+function buildEncouragingResult(duration){
+  // 실제 STT 평가 엔진 연결 전 화면 확인용 점수. 녹음 길이에 따라 70~100 범위에서 후하게 산정합니다.
+  const base=Math.max(70,Math.min(96,78+Math.round(Math.min(duration,90)/9)));
+  const completeness=Math.max(70,Math.min(100,base+4));
+  const pronunciation=Math.max(70,Math.min(100,base-1));
+  const fluency=Math.max(70,Math.min(100,base+2));
+  const intonation=Math.max(70,Math.min(100,base-3));
+  const avg=Math.round((completeness+pronunciation+fluency+intonation)/4);
+  const grade=avg>=95?'A+':avg>=90?'A':avg>=82?'B':'C';
+  const fuel=grade==='A+'?50:grade==='A'?35:grade==='B'?25:15;
+  return {avg,grade,fuel,bonus:grade==='A+',metrics:{pronunciation,fluency,intonation,completeness}};
+}
+function finishMemoryTest(){
+  clearInterval(testTimerHandle);testTimerHandle=null;
+  const duration=Math.max(1,Math.floor((Date.now()-testStartedAt)/1000));
+  if(testStream)testStream.getTracks().forEach(t=>t.stop());testStream=null;testRecorder=null;testDemoMode=false;
+  renderTestResult(buildEncouragingResult(duration),duration);
+}
+function renderTestResult(result,duration){
+  const body=$('learningBody');
+  body.innerHTML='<div class="testResult"><div class="gradeCard"><div class="gradeLabel">OVERALL GRADE</div><div class="gradeValue"></div><div class="fuelReward">⛽ Rocket Fuel <strong></strong></div><div class="bonusReward hide">🌟 A+ 추가 보상 · Hero Medal +1</div><div class="testNotice">녹음 시간 <span id="resultDuration"></span></div></div><div id="testMetricList" class="metricList"></div><div class="resultActions"><button id="retryTestBtn" class="retryTestBtn" type="button">다시 테스트</button><button id="backStudyBtn" class="backStudyBtn" type="button">학습으로 돌아가기</button></div><div class="testNotice">현재 등급과 세부 점수는 기능 흐름 확인용입니다. 실제 스크립트 비교 평가는 음성인식 평가 엔진 연결 후 적용됩니다.</div></div>';
+  body.querySelector('.gradeValue').textContent=result.grade;body.querySelector('.fuelReward strong').textContent='+'+result.fuel; $('resultDuration').textContent=formatClock(duration);if(result.bonus)body.querySelector('.bonusReward').classList.remove('hide');
+  const list=$('testMetricList');Object.entries(result.metrics).forEach(([key,score])=>{const meta=metricMeta[key],card=document.createElement('div');card.className='metricCard';card.innerHTML='<div class="metricTop"><div><div class="metricName"></div><span class="metricKo"></span></div><div class="metricScore"></div></div><div class="scoreTrack"><div class="scoreFill"></div></div>';card.querySelector('.metricName').textContent=meta.name;card.querySelector('.metricKo').textContent=meta.ko;card.querySelector('.metricScore').textContent=score;card.querySelector('.scoreFill').style.width=score+'%';list.appendChild(card)});
+  $('retryTestBtn').addEventListener('click',renderTestStart);$('backStudyBtn').addEventListener('click',()=>{$('learningOverlay').classList.add('hide');document.querySelector('.stage').scrollIntoView({behavior:'smooth',block:'center'})});
+}
+function renderComingSoon(title,icon,text){openLearning(title);$('learningBody').innerHTML='<div class="comingSoon"><div class="icon">'+icon+'</div><h3>'+title+'</h3><p>'+text+'</p></div>'}
+
+// Save the Cities V0.2 · levels, 10-point health and repair missions
+
+const FUEL_KEY='Y1EnglishMissionFuelV1';
+function getMissionFuel(){const n=Number(localStorage.getItem(FUEL_KEY));return Number.isFinite(n)&&n>=0?Math.floor(n):1}
+function setMissionFuel(n){const v=Math.max(0,Math.floor(Number(n)||0));localStorage.setItem(FUEL_KEY,String(v));updateFuelBadges();return v}
+function addMissionFuel(n=1){return setMissionFuel(getMissionFuel()+n)}
+function updateFuelBadges(){document.querySelectorAll('[data-mission-fuel]').forEach(el=>el.textContent=getMissionFuel())}
+function fuelBadge(){return '<div class="fuelWallet">⛽ Mission Fuel <strong data-mission-fuel>'+getMissionFuel()+'</strong></div>'}
+
+const grammarLessons=[
+ {tag:'Time',title:'at + 시간',rule:'정확한 시각 앞에는 전치사 at을 사용해 “~시에”라고 말합니다.',source:'I get up at four. / I come here at five.',examples:['School starts at eight.','We eat lunch at twelve.','The movie begins at seven.']},
+ {tag:'Question',title:'What time do + 주어 + 동사?',rule:'상대방이 어떤 행동을 하는 시각을 물을 때 사용하는 의문문입니다.',source:'What time do you get up?',examples:['What time do you go to school?','What time do you eat dinner?','What time do they come home?']},
+ {tag:'Routine',title:'현재시제로 일과 말하기',rule:'반복되는 일상이나 평소 하는 일은 동사의 현재형으로 표현합니다.',source:'I check today’s weather and write the news.',examples:['I study English after dinner.','She reads a book every night.','We play soccer on Saturdays.']},
+ {tag:'Sequence',title:'after that / then',rule:'행동의 순서를 이어 말할 때 after that이나 then을 사용합니다.',source:'What do you do after that? / Then, I go home at two o’clock.',examples:['I wash my face. Then, I eat breakfast.','We finish class and go home after that.','First, check the weather. Then, write the news.']},
+ {tag:'Permission',title:'Can I + 동사?',rule:'허락을 구할 때 Can I 다음에 동사원형을 사용합니다.',source:'Can I go home now?',examples:['Can I open the window?','Can I use your pencil?','Can I play outside now?']}
+];
+function speakGrammarExample(text,button,key,playedSet,total){
+ if(!ensureSpeech())return;
+ stopAll();
+ const token=playToken;
+ button.classList.add('playing');
+ const u=makeUtterance(text,token,()=>{},()=>{
+   button.classList.remove('playing');
+   button.classList.add('played');
+   button.textContent='✓';
+   playedSet.add(key);
+   const count=playedSet.size;
+   const progress=$('grammarListenProgress');
+   if(progress)progress.textContent='듣기 완료 '+count+' / '+total;
+   const done=$('completeGrammar');
+   if(done&&count>=total){done.disabled=false;done.textContent='Grammar 학습 완료 · Fuel +1'}
+ });
+ try{synth.speak(u)}catch(e){button.classList.remove('playing');alert('음성 재생 중 오류가 발생했습니다.')}
+}
+function renderGrammar(){
+ stopGameLoop();stopGameMusic();openLearning('Grammar');
+ const body=$('learningBody');
+ const total=grammarLessons.reduce((n,g)=>n+1+g.examples.length,0);
+ const playedSet=new Set();
+ body.innerHTML='<div class="studyHead"><div><h3>📖 Grammar</h3><p class="studySub">현재 스크립트에 나온 문법을 다른 예문과 함께 배워봐요. 모든 예문을 들어야 연료를 받을 수 있어요.</p></div>'+fuelBadge()+'</div><div class="grammarList"></div><div id="grammarListenProgress" class="listenProgress">듣기 완료 0 / '+total+'</div><button id="completeGrammar" class="completeStudyBtn" type="button" disabled>모든 듣기 버튼을 눌러주세요</button><div id="grammarReward"></div>';
+ const list=body.querySelector('.grammarList');
+ let listenIndex=0;
+ grammarLessons.forEach(g=>{
+   const card=document.createElement('section');card.className='grammarCard';
+   const sourceKey='listen-'+(listenIndex++);
+   card.innerHTML='<span class="grammarTag">'+g.tag+'</span><h4>'+g.title+'</h4><div class="grammarRule">'+g.rule+'</div><div class="sourceExample listenRow"><span class="listenText">본문 예문 · '+g.source+'</span><button class="grammarListen" type="button" data-key="'+sourceKey+'" aria-label="본문 예문 듣기">🔊</button></div><ul class="moreExamples">'+g.examples.map(x=>{const key='listen-'+(listenIndex++);return '<li class="listenRow"><span class="listenText">• '+x+'</span><button class="grammarListen" type="button" data-key="'+key+'" aria-label="예문 듣기">🔊</button></li>'}).join('')+'</ul>';
+   list.appendChild(card)
+ });
+ body.querySelectorAll('.grammarListen').forEach(btn=>{
+   btn.addEventListener('click',()=>{
+     const text=btn.closest('.listenRow').querySelector('.listenText').textContent.replace(/^본문 예문 ·\s*/,'').replace(/^•\s*/, '').trim();
+     speakGrammarExample(text,btn,btn.dataset.key,playedSet,total)
+   })
+ });
+ $('completeGrammar').addEventListener('click',()=>{
+   if(playedSet.size<total)return;
+   addMissionFuel(1);$('completeGrammar').disabled=true;$('completeGrammar').textContent='완료했어요!';$('grammarReward').innerHTML='<div class="rewardToast">⛽ Mission Fuel +1 · 모든 예문 듣기를 완료했어요!</div>';soundReward()
+ });
+ updateFuelBadges()
+}
+
+const baseQuizQuestions=[
+ {q:'What time does the weather news begin?',opts:['At seven.','At four.','At eleven.','At two.'],a:'At seven.',ex:'본문에서 아침 뉴스는 7시에 시작합니다.'},
+ {q:'Choose the correct sentence.',opts:['I get up at four.','I get up in four.','I get up on four.','I get up four at.'],a:'I get up at four.',ex:'정확한 시각 앞에는 at을 사용합니다.'},
+ {q:'What does “get up” mean?',opts:['일어나다','집에 가다','점심을 먹다','날씨를 확인하다'],a:'일어나다',ex:'get up은 “일어나다”라는 뜻입니다.'},
+ {q:'Complete: What time ___ you have lunch?',opts:['do','does','are','is'],a:'do',ex:'주어가 you일 때 What time do you ...?를 사용합니다.'},
+ {q:'What does the weather caster do before writing the news?',opts:['Checks today’s weather.','Goes home.','Has dinner.','Plays outside.'],a:'Checks today’s weather.',ex:'오늘의 날씨를 확인한 뒤 뉴스 원고를 씁니다.'},
+ {q:'Choose a sentence about a daily routine.',opts:['I go to school at eight.','Look at that cloud!','Can you see the rain?','What a nice day!'],a:'I go to school at eight.',ex:'정해진 일과는 현재시제로 표현합니다.'},
+ {q:'Which word means “내일”?',opts:['tomorrow','outside','early','lunch'],a:'tomorrow',ex:'tomorrow는 “내일”입니다.'},
+ {q:'Complete: I finish my homework. ___, I play a game.',opts:['Then','But','Because','Or'],a:'Then',ex:'Then은 다음 행동을 이어 말할 때 사용합니다.'}
+];
+let quizSession=null;
+function renderQuiz(){stopGameLoop();stopGameMusic();openLearning('Quiz');quizSession={queue:baseQuizQuestions.map((q,i)=>({...q,id:i,retry:false})),index:0,correct:0,initialCount:baseQuizQuestions.length,wrongIds:new Set(),answered:false};renderQuizQuestion()}
+function renderQuizQuestion(){const qs=quizSession;if(!qs)return;if(qs.index>=qs.queue.length){finishQuiz();return}const q=qs.queue[qs.index];const pct=Math.round((qs.index/Math.max(1,qs.queue.length))*100);$('learningBody').innerHTML='<div class="studyHead"><div><h3>✏️ Quiz</h3><p class="studySub">본문과 같은 난이도의 문제예요. 틀린 문제는 마지막에 다시 나옵니다.</p></div>'+fuelBadge()+'</div><div class="quizProgress"><div class="quizProgressFill" style="width:'+pct+'%"></div></div><div class="quizCard"><div class="quizMeta">'+(q.retry?'RETRY · ':'')+'QUESTION '+(qs.index+1)+' / '+qs.queue.length+'</div><div class="quizQuestion">'+q.q+'</div><div id="quizOptions" class="quizOptions"></div><div id="quizFeedback" class="quizFeedback">정답을 선택해 주세요.</div></div>';const opts=$('quizOptions');[...q.opts].sort(()=>Math.random()-.5).forEach(opt=>{const b=document.createElement('button');b.type='button';b.className='quizOption';b.textContent=opt;b.addEventListener('click',()=>answerQuiz(opt,b));opts.appendChild(b)});updateFuelBadges()}
+function answerQuiz(value,btn){const qs=quizSession;if(!qs||qs.answered)return;qs.answered=true;const q=qs.queue[qs.index];const buttons=[...document.querySelectorAll('.quizOption')];buttons.forEach(b=>b.disabled=true);if(value===q.a){btn.classList.add('correct');if(!q.retry)qs.correct++;$('quizFeedback').textContent='🌟 Great! '+q.ex;soundCorrect()}else{btn.classList.add('wrong');buttons.find(b=>b.textContent===q.a)?.classList.add('correct');$('quizFeedback').textContent='괜찮아요! '+q.ex+' 마지막에 다시 풀어봐요.';soundWrong();if(!q.retry&&!qs.wrongIds.has(q.id)){qs.wrongIds.add(q.id);qs.queue.push({...baseQuizQuestions[q.id],id:q.id,retry:true})}}setTimeout(()=>{qs.index++;qs.answered=false;renderQuizQuestion()},1200)}
+function finishQuiz(){const qs=quizSession;addMissionFuel(1);const pct=Math.round(qs.correct/qs.initialCount*100);$('learningBody').innerHTML='<div class="quizResult"><div class="quizResultIcon">🎉⛽</div><h3>Quiz Complete!</h3><div class="quizScore">'+qs.correct+' / '+qs.initialCount+'</div><p>틀린 문제까지 다시 풀었어요. 학습 연료 1개를 지급합니다.</p><div class="rewardToast">Mission Fuel +1 · 보유 연료 <strong data-mission-fuel>'+getMissionFuel()+'</strong></div><button id="quizAgain" class="completeStudyBtn" type="button">Quiz 다시 풀기</button></div>';$('quizAgain').addEventListener('click',renderQuiz);soundReward();updateFuelBadges()}
+
+const gameQuestions=[
+ {q:'What time do you get up?',a:'At seven.',opts:['At seven.','Apple.','Blue.','Yesterday.']},
+ {q:'What does “weather” mean?',a:'날씨',opts:['학교','날씨','자동차','점심']},
+ {q:'Choose the correct sentence.',a:'It is raining.',opts:['It raining is.','It is raining.','Raining it.','Is rain it.']},
+ {q:'What comes after “I get up ___ four”?',a:'at',opts:['in','on','at','to']},
+ {q:'What does “go home” mean?',a:'집에 가다',opts:['학교에 가다','잠을 자다','집에 가다','점심을 먹다']},
+ {q:'Choose the correct question.',a:'What time do you have lunch?',opts:['What lunch you time?','Do lunch what time?','What time do you have lunch?','Time lunch have?']},
+ {q:'What is the opposite of “early”?',a:'late',opts:['fast','late','small','cold']},
+ {q:'Complete: I check the weather for ___.',a:'tomorrow',opts:['yesterday','tomorrow','yellow','outside']}
+];
+const repairQuestions=[
+ {q:'REPAIR! Choose the correct word: “고치다”',a:'repair',opts:['repair','rain','read','return']},
+ {q:'REPAIR! Complete: The mechanic ___ the machine.',a:'fixes',opts:['fixes','flies','falls','finds']},
+ {q:'REPAIR! What does “wrench” mean?',a:'스패너',opts:['스패너','창문','날씨','연필']}
+];
+const praiseWords=['Great!','Excellent!','Awesome!','Fantastic!','Well Done!','Amazing!','Brilliant!','Super!'];
+const worldCities=[
+ {city:'LONDON',country:'United Kingdom',flag:'🇬🇧',landmark:'TOWER BRIDGE',icon:'🌉'},
+ {city:'NEW YORK',country:'United States',flag:'🇺🇸',landmark:'STATUE OF LIBERTY',icon:'🗽'},
+ {city:'SYDNEY',country:'Australia',flag:'🇦🇺',landmark:'SYDNEY OPERA HOUSE',icon:'🎭'},
+ {city:'SINGAPORE',country:'Singapore',flag:'🇸🇬',landmark:'MERLION',icon:'🦁'},
+ {city:'TORONTO',country:'Canada',flag:'🇨🇦',landmark:'CN TOWER',icon:'🗼'},
+ {city:'AUCKLAND',country:'New Zealand',flag:'🇳🇿',landmark:'SKY TOWER',icon:'🏙️'},
+ {city:'CAPE TOWN',country:'South Africa',flag:'🇿🇦',landmark:'TABLE MOUNTAIN',icon:'⛰️'},
+ {city:'PARIS',country:'France',flag:'🇫🇷',landmark:'EIFFEL TOWER',icon:'🗼'},
+ {city:'TOKYO',country:'Japan',flag:'🇯🇵',landmark:'TOKYO TOWER',icon:'🗼'},
+ {city:'SEOUL',country:'Korea',flag:'🇰🇷',landmark:'N SEOUL TOWER',icon:'🌃'}
+];
+function cityForLevel(level){return worldCities[(Math.max(1,level)-1)%worldCities.length]}
+let gameState=null,gameFrame=null,gameAudio=null,gameMusicTimer=null,gameSoundOn=true;
+function audioCtx(){if(!gameAudio)gameAudio=new (window.AudioContext||window.webkitAudioContext)();if(gameAudio.state==='suspended')gameAudio.resume();return gameAudio}
+function gameTone(freq,dur,type='sine',gain=.08,delay=0){if(!gameSoundOn)return;const c=audioCtx(),o=c.createOscillator(),g=c.createGain();o.type=type;o.frequency.setValueAtTime(freq,c.currentTime+delay);g.gain.setValueAtTime(.0001,c.currentTime+delay);g.gain.exponentialRampToValueAtTime(gain,c.currentTime+delay+.015);g.gain.exponentialRampToValueAtTime(.0001,c.currentTime+delay+dur);o.connect(g).connect(c.destination);o.start(c.currentTime+delay);o.stop(c.currentTime+delay+dur+.03)}
+function soundCorrect(){gameTone(660,.12,'sine',.09);gameTone(880,.17,'sine',.08,.08)}
+function soundRemove(){gameTone(820,.08,'square',.045);gameTone(440,.20,'sine',.08,.06);gameTone(1100,.12,'triangle',.05,.14)}
+function soundWrong(){gameTone(180,.14,'triangle',.055);gameTone(145,.18,'triangle',.045,.1)}
+function soundReward(){[523,659,784,1046].forEach((f,i)=>gameTone(f,.19,'sine',.07,i*.09))}
+function soundRepair(){[440,660,880,1174].forEach((f,i)=>gameTone(f,.15,'triangle',.065,i*.07))}
+function startGameMusic(){stopGameMusic();if(!gameSoundOn)return;let i=0;const notes=[220,277,330,277,247,294,370,294];gameMusicTimer=setInterval(()=>{gameTone(notes[i++%notes.length],.42,'sine',.018)},480)}
+function stopGameMusic(){if(gameMusicTimer){clearInterval(gameMusicTimer);gameMusicTimer=null}}
+function renderGameStart(){stopGameLoop();stopGameMusic();openLearning('GAMES');const fuel=getMissionFuel();$('learningBody').innerHTML='<div class="gameWrap"><div class="gameStart"><div class="planet">🌍🚀</div><h3>Save the Cities</h3><div style="margin:8px 0 14px">'+fuelBadge()+'</div><p>게임 1회 참여에는 Mission Fuel 1개가 필요합니다.<br>Grammar 또는 Quiz를 완료하면 연료를 1개씩 얻을 수 있어요.</p><button id="startCityGame" class="startGameBtn" type="button">LEVEL 1 START · Fuel -1</button><div class="soundNote">체력 10칸 · 레벨 상승 · 🔧 REPAIR 체력 회복</div></div></div>';$('startCityGame').addEventListener('click',()=>attemptStartGame(1,10));updateFuelBadges()}
+function attemptStartGame(level=1,health=10){if(getMissionFuel()<1){showFuelBlocked();return}setMissionFuel(getMissionFuel()-1);startCityGame(level,health)}
+function showFuelBlocked(){$('learningBody').innerHTML='<div class="fuelBlocked"><div class="icon">⛽🚀</div><h3>Mission Fuel이 필요해요!</h3><p>Grammar나 Quiz를 완료하면 연료를 1개 받을 수 있습니다.<br>연료 1개로 게임에 한 번 참여할 수 있어요.</p><div class="fuelBlockedActions"><button id="fuelGrammar" class="goGrammar" type="button">📖 Grammar 학습</button><button id="fuelQuiz" class="goQuiz" type="button">✏️ Quiz 풀기</button></div></div>';$('fuelGrammar').addEventListener('click',renderGrammar);$('fuelQuiz').addEventListener('click',renderQuiz)}
+function startCityGame(level=1,health=10){
+ const city=cityForLevel(level);
+ gameState={level,city,health:Math.max(1,Math.min(10,health)),combo:0,score:0,index:0,itemY:-58,itemX:18+Math.random()*64,last:performance.now(),running:true,answered:false,removed:0,itemType:'bomb',targetPerLevel:8};
+ $('learningBody').innerHTML='<div class="gameWrap"><div class="gameHud"><div id="levelChip" class="hudChip levelChip">LEVEL '+level+'</div><div id="fuelChip" class="hudChip">⛽ Mission Fuel '+getMissionFuel()+'</div><div class="hudChip healthHud"><div class="healthTop"><span>❤️ '+city.city+' HEALTH</span><span id="healthText">'+gameState.health+' / 10</span></div><div id="healthCells" class="healthCells"></div></div><button id="gameSoundBtn" class="soundToggle" type="button">'+(gameSoundOn?'🔊 Sound ON':'🔇 Sound OFF')+'</button></div><div id="cityArena" class="cityArena"><div class="skyDots"></div><div class="cityName"><span class="cityFlag">'+city.flag+'</span>'+city.city+' · '+city.landmark+'</div><div id="bomb" class="bomb fallingItem">💣</div><div id="cityScene" class="cityScene"><div class="cityLandmark"><div class="landmarkIcon">'+city.icon+'</div><div class="landmarkLabel">'+city.landmark+'</div></div><div class="water"></div></div></div><div class="questionCard"><div id="questionLabel" class="questionLabel">DEFENSE QUESTION</div><div id="gameQuestion" class="questionText"></div><div id="gameAnswers" class="answers"></div></div><div id="gameMessage" class="gameMessage">LEVEL '+level+' · Save '+city.city+'! 🚀</div></div>';
+ $('gameSoundBtn').addEventListener('click',()=>{gameSoundOn=!gameSoundOn;$('gameSoundBtn').textContent=gameSoundOn?'🔊 Sound ON':'🔇 Sound OFF';if(gameSoundOn)startGameMusic();else stopGameMusic()});
+ updateHealthGauge();showLevelBanner();startGameMusic();prepareNextItem(true);gameFrame=requestAnimationFrame(gameLoop);
+}
+function showLevelBanner(){const arena=$('cityArena');if(!arena)return;const c=gameState.city||cityForLevel(gameState.level);const el=document.createElement('div');el.className='cityArrival';el.innerHTML='<div class="arrivalLevel">LEVEL '+gameState.level+'</div><div class="arrivalName">'+c.flag+' '+c.city+'</div><div class="arrivalLandmark">Defend '+c.landmark+'!</div>';arena.appendChild(el);setTimeout(()=>el.remove(),1850)}
+function updateHealthGauge(){if(!gameState)return;const cells=$('healthCells');if(cells){cells.innerHTML='';for(let i=0;i<10;i++){const c=document.createElement('i');c.className='healthCell'+(i<gameState.health?' on':'');cells.appendChild(c)}}if($('healthText'))$('healthText').textContent=gameState.health+' / 10'}
+function chooseItemType(){if(gameState.health<10 && gameState.removed>0 && (gameState.removed%4===0 || Math.random()<.16))return 'repair';return 'bomb'}
+function prepareNextItem(first=false){if(!gameState||!gameState.running)return;gameState.answered=false;gameState.itemType=first?'bomb':chooseItemType();gameState.itemY=-58;gameState.itemX=10+Math.random()*78;const item=$('bomb');if(item){item.className='bomb fallingItem'+(gameState.itemType==='repair'?' repair':'');item.textContent=gameState.itemType==='repair'?'🔧':'💣';item.style.left=gameState.itemX+'%';item.style.top=gameState.itemY+'px'}loadGameQuestion()}
+function loadGameQuestion(){if(!gameState||!gameState.running)return;const pool=gameState.itemType==='repair'?repairQuestions:gameQuestions;const q=pool[gameState.index%pool.length];$('questionLabel').textContent=gameState.itemType==='repair'?'REPAIR QUESTION · HEALTH +1':'DEFENSE QUESTION';$('gameQuestion').textContent=q.q;const area=$('gameAnswers');area.innerHTML='';[...q.opts].sort(()=>Math.random()-.5).forEach(opt=>{const b=document.createElement('button');b.className='answerBtn';b.type='button';b.textContent=opt;b.addEventListener('click',()=>answerGame(opt,q.a,b));area.appendChild(b)})}
+function answerGame(value,answer,btn){if(!gameState||!gameState.running||gameState.answered)return;if(value!==answer){btn.classList.add('wrong');btn.disabled=true;gameState.health=Math.max(0,gameState.health-1);gameState.combo=0;updateHealthGauge();soundWrong();$('gameMessage').textContent='괜찮아요! 오답으로 체력 1칸 감소 · 다시 생각해봐요 💪';setTimeout(()=>btn.classList.remove('wrong'),350);if(gameState.health<=0){gameState.answered=true;setTimeout(()=>finishCityMission(false),450)}return}gameState.answered=true;if(gameState.itemType==='repair'){gameState.health=Math.min(10,gameState.health+1);updateHealthGauge();$('gameMessage').textContent=gameState.health===10?'🔧 Perfect Repair! 체력이 가득 찼어요!':'🔧 Great Repair! 체력 +1';soundRepair();collectRepair();return}gameState.combo++;gameState.score+=100;const praise=gameState.combo>=10?'🚀 SUPER STAR!':gameState.combo>=7?'🏆 FANTASTIC!':gameState.combo>=5?'🌟 AMAZING!':gameState.combo>=3?'🔥 GREAT STREAK!':praiseWords[Math.floor(Math.random()*praiseWords.length)];$('gameMessage').textContent=praise+'  Combo x'+gameState.combo;soundCorrect();shootLaserAndRemove(praise)}
+function collectRepair(){const item=$('bomb');if(!item)return;item.classList.add('repairGlow');showPraise('HEALTH +1');setTimeout(()=>nextGameItem(false),600)}
+function shootLaserAndRemove(praise){const arena=$('cityArena'),bomb=$('bomb');if(!arena||!bomb)return;const a=arena.getBoundingClientRect(),b=bomb.getBoundingClientRect();const sx=a.width/2,sy=a.height-86,ex=b.left-a.left+b.width/2,ey=b.top-a.top+b.height/2;const dx=ex-sx,dy=ey-sy,len=Math.hypot(dx,dy),angle=Math.atan2(dy,dx)*180/Math.PI;const laser=document.createElement('div');laser.className='laser';laser.style.left=sx+'px';laser.style.top=sy+'px';laser.style.width=len+'px';laser.style.transform='rotate('+angle+'deg)';arena.appendChild(laser);setTimeout(()=>{bomb.classList.add('pop');soundRemove();createParticles(ex,ey);showPraise(praise);setTimeout(()=>{laser.remove();nextGameItem(true)},430)},150)}
+function createParticles(x,y){const arena=$('cityArena');for(let i=0;i<14;i++){const p=document.createElement('i');p.className='particle';p.style.left=x+'px';p.style.top=y+'px';const ang=Math.random()*Math.PI*2,dist=28+Math.random()*55;p.style.setProperty('--x',Math.cos(ang)*dist+'px');p.style.setProperty('--y',Math.sin(ang)*dist+'px');arena.appendChild(p);setTimeout(()=>p.remove(),750)}}
+function showPraise(text){const arena=$('cityArena'),el=document.createElement('div');el.className='praiseBurst';el.textContent=text;arena.appendChild(el);setTimeout(()=>el.remove(),900)}
+function nextGameItem(countBomb){if(!gameState)return;if(countBomb)gameState.removed++;gameState.index++;if(gameState.removed>=gameState.targetPerLevel){finishCityMission(true);return}prepareNextItem(false)}
+function currentFallSpeed(){return 25+(gameState.level-1)*4+gameState.removed*.7}
+function gameLoop(now){if(!gameState||!gameState.running)return;const dt=Math.min(.05,(now-gameState.last)/1000);gameState.last=now;if(!gameState.answered){gameState.itemY+=dt*currentFallSpeed();const item=$('bomb');if(item){item.style.left=gameState.itemX+'%';item.style.top=gameState.itemY+'px'}const arena=$('cityArena');if(arena&&gameState.itemY>arena.clientHeight-105){itemReachedCity()}}gameFrame=requestAnimationFrame(gameLoop)}
+function itemReachedCity(){if(gameState.itemType==='repair'){gameState.index++;$('gameMessage').textContent='Repair missed! 다음 기회를 노려봐요 🔧';prepareNextItem(false);return}gameState.health--;gameState.combo=0;updateHealthGauge();const city=$('cityScene');city.classList.add('cityFlash');soundWrong();$('gameMessage').textContent='괜찮아요! 체력 1칸 감소 · 다시 막아봐요 🌟';setTimeout(()=>city.classList.remove('cityFlash'),420);if(gameState.health<=0){finishCityMission(false);return}gameState.index++;prepareNextItem(false)}
+function finishCityMission(saved){if(!gameState)return;gameState.running=false;stopGameLoop();stopGameMusic();const grade=saved&&gameState.health>=9?'A+':saved&&gameState.health>=7?'A':saved?'B':'C';const bonus=grade==='A+'?'Hero Medal':'Praise Badge';soundReward();const city=gameState.city||cityForLevel(gameState.level),nextLevel=gameState.level+1,nextCity=cityForLevel(nextLevel);$('learningBody').innerHTML='<div class="gameWrap"><div class="missionResult"><div class="resultIcon">'+(saved?city.flag+' '+city.icon:'🌟🚀')+'</div><h3>'+(saved?city.city+' SAVED!':'GREAT TRY!')+'</h3><div class="heroLine">'+(saved?city.landmark+' is safe because of YOU!<br>Next mission: '+nextCity.flag+' '+nextCity.city+' · '+nextCity.landmark:'You removed '+gameState.removed+' bombs. 다시 도전하면 더 잘할 수 있어요!')+'</div><div class="rewardBox"><span>Grade '+grade+'</span><span>❤️ '+gameState.health+'/10</span><span>🎁 '+bonus+'</span>'+(grade==='A+'?'<span>🏅 Hero Medal</span>':'')+'</div>'+(saved?'<button id="nextLevelGame" class="nextLevelBtn" type="button">LEVEL '+nextLevel+' · '+nextCity.city+' START · Fuel -1</button>':'')+'<button id="playAgainGame" class="playAgainGame" type="button">'+(saved?'DEFEND '+city.city+' AGAIN · Fuel -1':'TRY AGAIN · Fuel -1')+'</button></div></div>';if(saved)$('nextLevelGame').addEventListener('click',()=>attemptStartGame(nextLevel,gameState.health));$('playAgainGame').addEventListener('click',()=>attemptStartGame(gameState.level,10))}
+function stopGameLoop(){if(gameFrame){cancelAnimationFrame(gameFrame);gameFrame=null}if(gameState)gameState.running=false}
+
+$('statusMenuBtn').addEventListener('click',renderTestStart);$('gamesMenuBtn').addEventListener('click',renderGameStart);$('grammarMenuBtn').addEventListener('click',renderGrammar);$('quizMenuBtn').addEventListener('click',renderQuiz);$('closeLearning').addEventListener('click',()=>{stopGameLoop();stopGameMusic();if(testRecorder&&testRecorder.state!=='inactive'){if(!confirm('테스트 녹음 중입니다. 종료할까요?'))return;testRecorder.stop()}$('learningOverlay').classList.add('hide')});$('learningOverlay').addEventListener('click',e=>{if(e.target===$('learningOverlay')&&!(testRecorder&&testRecorder.state!=='inactive'))$('learningOverlay').classList.add('hide')});
+
+render();updateVoiceInfo();
 </script>
 </body></html>
