@@ -528,6 +528,68 @@ button,.setting select,.scriptinput{font-family:inherit}
 .referenceArena .autoAim{bottom:145px!important;z-index:20!important}.referenceArena .lockHint{bottom:116px!important;z-index:82!important}.referenceArena .referenceToast{bottom:45px!important;z-index:90!important}
 .referenceArena .actionBomb{z-index:40!important}
 @media(max-width:680px){.referenceArena{height:72dvh!important;min-height:610px!important}.referenceArena>#playerShip.referenceShip{width:108px!important;height:76px!important;bottom:68px!important}.referenceArena>.cityPhotoLayer{inset:-9% -15%!important;width:130%!important;height:118%!important;object-position:center 70%!important}.referenceArena .unifiedVitals{grid-template-columns:minmax(0,1fr) auto auto!important}.referenceArena .refShield{display:none!important}}
+
+/* V3.5 Save the Cities mission-quiz overlay */
+.referenceArena .missionQuizOverlay{
+  position:absolute!important;inset:0!important;z-index:160!important;
+  display:none;align-items:center;justify-content:center;padding:18px;
+  background:rgba(1,8,24,.62);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);
+  opacity:0;pointer-events:none;
+}
+.referenceArena .missionQuizOverlay.show{
+  display:flex!important;opacity:1;pointer-events:auto;
+  animation:missionOverlayIn .22s ease-out both;
+}
+.referenceArena .missionQuizOverlay.closing{
+  display:flex!important;pointer-events:none;
+  animation:missionOverlayOut .34s ease-in both;
+}
+.referenceArena .missionQuizOverlay .actionQuestion{
+  display:block!important;width:min(620px,92%);margin:0!important;padding:16px 16px 15px!important;
+  border:1px solid rgba(82,220,255,.72)!important;border-radius:22px!important;
+  background:linear-gradient(180deg,rgba(5,27,61,.98),rgba(2,14,37,.98))!important;
+  box-shadow:0 18px 55px rgba(0,0,0,.48),inset 0 0 28px rgba(50,176,255,.10)!important;
+  transform-origin:center center;
+  animation:missionCardIn .34s cubic-bezier(.2,.9,.25,1.18) both;
+}
+.referenceArena .missionQuizOverlay.closing .actionQuestion{animation:missionCardOut .32s ease-in both}
+.referenceArena .missionQuizOverlay .questionLabel{font-size:12px!important;color:#67e8ff!important;letter-spacing:.5px}
+.referenceArena .missionQuizOverlay .questionText{font-size:22px!important;line-height:1.28!important;color:#fff!important;margin:7px 0 14px!important}
+.referenceArena .missionQuizOverlay .answers{display:grid!important;grid-template-columns:1fr 1fr!important;gap:9px!important}
+.referenceArena .missionQuizOverlay .answerBtn{
+  min-height:48px!important;border-radius:14px!important;border:1px solid rgba(86,188,244,.42)!important;
+  background:linear-gradient(180deg,#123b68,#09274b)!important;color:#f2fbff!important;
+  font-size:14px!important;font-weight:900!important;
+}
+.referenceArena .missionQuizOverlay .answerBtn.correct{
+  background:linear-gradient(180deg,#1d7553,#12523c)!important;border-color:#62dda4!important;
+}
+.referenceArena .missionQuizOverlay .answerBtn.wrong{
+  background:linear-gradient(180deg,#702d39,#4c1d28)!important;border-color:#ff7e8d!important;
+}
+.missionPauseBadge{
+  display:inline-flex;align-items:center;gap:6px;margin-bottom:4px;padding:5px 9px;border-radius:999px;
+  background:rgba(103,232,255,.12);color:#8ef0ff;font-size:10px;font-weight:950;letter-spacing:.4px
+}
+.actionBomb.yellow .specialBadge{min-width:52px;text-align:center}
+.actionBomb.yellow.missionHit{animation:missionBalloonHit .18s ease-out}
+@keyframes missionBalloonHit{50%{filter:brightness(2.1) drop-shadow(0 0 12px #ffe36b);transform:scale(1.12)}}
+@keyframes missionOverlayIn{from{opacity:0}to{opacity:1}}
+@keyframes missionOverlayOut{from{opacity:1}to{opacity:0}}
+@keyframes missionCardIn{from{opacity:0;transform:translateY(22px) scale(.82)}to{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes missionCardOut{from{opacity:1;transform:translateY(0) scale(1)}to{opacity:0;transform:translateY(-18px) scale(.94)}}
+@media(max-width:680px){
+ .referenceArena .missionQuizOverlay{padding:12px!important}
+ .referenceArena .missionQuizOverlay .actionQuestion{width:94%!important;padding:13px 12px!important}
+ .referenceArena .missionQuizOverlay .questionText{font-size:18px!important;margin:5px 0 10px!important}
+ .referenceArena .missionQuizOverlay .answers{grid-template-columns:1fr 1fr!important;gap:7px!important}
+ .referenceArena .missionQuizOverlay .answerBtn{min-height:42px!important;font-size:13px!important;padding:7px 6px!important}
+}
+@media(max-width:390px){
+ .referenceArena .missionQuizOverlay .questionText{font-size:17px!important}
+ .referenceArena .missionQuizOverlay .answerBtn{font-size:12px!important;min-height:40px!important}
+}
+
 </style>
 </head>
 <body>
@@ -705,6 +767,10 @@ function splitIntoCompleteSentences(text){
   if(!clean)return [];
   const matches=clean.match(/[^.!?]+(?:[.!?]+["']?|$)/g)||[clean];
   return matches.map(x=>x.trim()).filter(Boolean);
+}
+// Learning-content sync uses the same sentence segmentation engine.
+function splitIntoSentences(text){
+  return splitIntoCompleteSentences(text);
 }
 function speakChunks(chunks,token,onFirstStart,onDone){
   let part=0,started=false;
@@ -1267,9 +1333,9 @@ function normalTargetsNear(primary,count,maxDx=110){if(!gameState||!primary)retu
 let actionBombSeq=0;
 function renderGameStart(){stopGameLoop();stopGameMusic();openLearning('GAMES');const fuel=getMissionFuel(),w=weaponInfo();$('learningBody').innerHTML='<div class="gameWrap"><div class="gameStart"><div class="planet">🌍🛡️</div><h3>Save the Cities · Target Lock Defense</h3><div style="display:flex;gap:7px;justify-content:center;flex-wrap:wrap;margin:8px 0 14px">'+fuelBadge()+'<span class="fuelWallet">🪙 '+getGold().toLocaleString()+' Gold</span><span class="fuelWallet">🏆 BEST '+getHighScore().toLocaleString()+'</span></div><p>레이저 캐논을 외계인 우주선 아래에 약 0.2초 정확히 맞추면 자동 발사됩니다.<br>보너스 영어 미션은 게임 화면 <b>상단</b>에 표시됩니다.<br>콤보 미션 출현 빈도를 높여 영어 문제를 더 자주 만나도록 조정했습니다.</p><div style="margin:9px auto;padding:10px;border-radius:13px;background:#eef6ff;max-width:430px;font-weight:900;color:#36597a">현재 무기 · Lv.'+w.lv+' '+w.name+'</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;max-width:430px;margin:14px auto 0"><button id="startCityGame" class="startGameBtn" type="button">LEVEL 1 START · Fuel -1</button><button id="openLabFromGame" class="startGameBtn" type="button" style="background:#e9a62d">🛠️ WEAPON LAB</button></div><div class="soundNote">테스트 기본 연료 100개 · 체력 10 · UFO 1기 = 10점 = 10 Gold</div></div></div>';$('startCityGame').addEventListener('click',()=>attemptStartGame(1,10));$('openLabFromGame').addEventListener('click',()=>renderWeaponLab());updateFuelBadges()}
 function startCityGame(level=1,health=10){stopGameLoop();const city=cityForLevel(level),w=weaponInfo();gameState={level,city,health:Math.max(1,Math.min(10,health)),combo:0,score:0,runGold:0,rewardsBanked:false,index:0,last:performance.now(),running:true,removed:0,targetPerLevel:Math.min(36,24+(level-1)*2),shipX:50,targetShipX:50,bombs:[],spawnClock:0,invincibleUntil:0,lastTap:0,lastAutoShot:0,lastMoveAt:0,lockTargetId:null,lockStartedAt:0,lockDuration:weaponLockMs(w.lv),specialBomb:null,specialQuestionOpen:false,weaponLevel:w.lv,shieldActive:getShieldOwned()};
- $('learningBody').innerHTML='<div class="gameWrap v2Game exampleGameUI referenceGameUI"><div id="missionTop" class="gameTopMission"><div id="missionIdle" class="missionIdle"></div><div id="specialQuestionCard" class="questionCard actionQuestion" style="display:none"><div id="questionLabel" class="questionLabel">SPECIAL BONUS</div><div id="gameQuestion" class="questionText"></div><div id="gameAnswers" class="answers"></div></div></div><div id="cityArena" class="cityArena actionArena referenceArena"><div class="arenaVignette"></div><div class="referenceInfoPanel unifiedGameHud"><div class="referenceCityTitle"><span class="cityFlag">'+city.flag+'</span><strong>'+city.city+'</strong><span>· '+city.landmark+'</span></div><div class="referenceScoreHud"><div class="refStat"><span>SCORE</span><b id="scoreValue">0</b></div><div class="refStat gold"><span>GOLD</span><b id="runGoldValue">0</b></div><div class="refStat best"><span>BEST</span><b id="bestValue">'+getHighScore().toLocaleString()+'</b></div><div class="refStat weapon"><span>WEAPON</span><b id="weaponValue">Lv.'+w.lv+' '+w.name+'</b></div></div><div class="unifiedVitals"><div class="refHealth"><span>❤️</span><div id="healthCells" class="healthCells"></div><b id="healthText">'+gameState.health+'/10</b></div><div class="refFuel">⛽ <b id="fuelValue">'+getMissionFuel()+'</b></div>'+(getShieldOwned()?'<div id="shieldHud" class="refShield">🛡️1</div>':'')+'<div class="refLevel">LV '+level+' · <span id="refProgress" class="refProgress">'+gameState.removed+'/'+gameState.targetPerLevel+'</span></div><button id="gameSoundBtn" class="refSound" type="button">'+(gameSoundOn?'🔊':'🔇')+'</button></div></div><div id="autoAim" class="autoAim"></div><div id="lockHint" class="lockHint">LOCK</div><div id="playerShip" class="playerShip weapon'+w.lv+' referenceShip '+(gameState.shieldActive?'shieldOn':'')+'" aria-label="미래형 3D 방어 함선">'+playerShipSvg(w.lv)+'<span class="playerShield"></span></div><div id="gameMessage" class="referenceToast">도시를 지켜주세요!</div></div></div>';
+ $('learningBody').innerHTML='<div class="gameWrap v2Game exampleGameUI referenceGameUI"><div id="missionTop" class="gameTopMission"><div id="missionIdle" class="missionIdle"></div></div><div id="cityArena" class="cityArena actionArena referenceArena"><div class="arenaVignette"></div><div id="specialQuestionOverlay" class="missionQuizOverlay" aria-hidden="true"><div id="specialQuestionCard" class="questionCard actionQuestion"><div class="missionPauseBadge">⏸ GAME PAUSED · ENGLISH MISSION</div><div id="questionLabel" class="questionLabel">SPECIAL BONUS</div><div id="gameQuestion" class="questionText"></div><div id="gameAnswers" class="answers"></div></div></div><div class="referenceInfoPanel unifiedGameHud"><div class="referenceCityTitle"><span class="cityFlag">'+city.flag+'</span><strong>'+city.city+'</strong><span>· '+city.landmark+'</span></div><div class="referenceScoreHud"><div class="refStat"><span>SCORE</span><b id="scoreValue">0</b></div><div class="refStat gold"><span>GOLD</span><b id="runGoldValue">0</b></div><div class="refStat best"><span>BEST</span><b id="bestValue">'+getHighScore().toLocaleString()+'</b></div><div class="refStat weapon"><span>WEAPON</span><b id="weaponValue">Lv.'+w.lv+' '+w.name+'</b></div></div><div class="unifiedVitals"><div class="refHealth"><span>❤️</span><div id="healthCells" class="healthCells"></div><b id="healthText">'+gameState.health+'/10</b></div><div class="refFuel">⛽ <b id="fuelValue">'+getMissionFuel()+'</b></div>'+(getShieldOwned()?'<div id="shieldHud" class="refShield">🛡️1</div>':'')+'<div class="refLevel">LV '+level+' · <span id="refProgress" class="refProgress">'+gameState.removed+'/'+gameState.targetPerLevel+'</span></div><button id="gameSoundBtn" class="refSound" type="button">'+(gameSoundOn?'🔊':'🔇')+'</button></div></div><div id="autoAim" class="autoAim"></div><div id="lockHint" class="lockHint">LOCK</div><div id="playerShip" class="playerShip weapon'+w.lv+' referenceShip '+(gameState.shieldActive?'shieldOn':'')+'" aria-label="미래형 3D 방어 함선">'+playerShipSvg(w.lv)+'<span class="playerShield"></span></div><div id="gameMessage" class="referenceToast">도시를 지켜주세요!</div></div></div>';
  const arena=$('cityArena'),ship=$('playerShip');let draggingShip=false;if(arena&&ship){arena.querySelectorAll('.playerShip').forEach(el=>{if(el!==ship)el.remove()});ship.style.left=gameState.shipX+'%';}
- const moveShipToClientX=(clientX)=>{if(!gameState||!gameState.running||!arena||!ship)return;const r=arena.getBoundingClientRect();if(!r.width)return;const nx=Math.max(8,Math.min(92,(clientX-r.left)/r.width*100));gameState.shipX=nx;gameState.targetShipX=nx;gameState.lastMoveAt=performance.now();ship.style.left=nx+'%';const aim=$('autoAim');if(aim)aim.style.left=nx+'%';resetTargetLock()};
+ const moveShipToClientX=(clientX)=>{if(!gameState||!gameState.running||gameState.specialQuestionOpen||!arena||!ship)return;const r=arena.getBoundingClientRect();if(!r.width)return;const nx=Math.max(8,Math.min(92,(clientX-r.left)/r.width*100));gameState.shipX=nx;gameState.targetShipX=nx;gameState.lastMoveAt=performance.now();ship.style.left=nx+'%';const aim=$('autoAim');if(aim)aim.style.left=nx+'%';resetTargetLock()};
  if(window.PointerEvent){
   arena.addEventListener('pointerdown',e=>{if(e.pointerType==='mouse'&&e.button!==0)return;draggingShip=true;moveShipToClientX(e.clientX);e.preventDefault()},{passive:false});
   arena.addEventListener('pointermove',e=>{if(!draggingShip)return;moveShipToClientX(e.clientX);e.preventDefault()},{passive:false});
@@ -1281,13 +1347,76 @@ function startCityGame(level=1,health=10){stopGameLoop();const city=cityForLevel
   arena.addEventListener('touchend',()=>{draggingShip=false},{passive:true});
   arena.addEventListener('mousedown',e=>{if(e.button!==0)return;draggingShip=true;moveShipToClientX(e.clientX)});window.addEventListener('mouseup',()=>{draggingShip=false},{once:true});
  }$('gameSoundBtn').addEventListener('click',()=>{gameSoundOn=!gameSoundOn;$('gameSoundBtn').textContent=gameSoundOn?'🔊':'🔇';if(gameSoundOn)startGameMusic();else stopGameMusic()});applyCityBackground($('cityArena'),city);updateHealthGauge();showLevelBanner();startGameMusic();spawnActionBomb();gameFrame=requestAnimationFrame(actionGameLoop)}
-function openSpecialQuestion(bomb){if(!gameState||!gameState.running||gameState.specialQuestionOpen)return false;const q=nextGameQuestion(),card=$('specialQuestionCard');if(!q)return false;gameState.specialQuestionOpen=true;gameState.specialBomb=bomb;bomb.paused=true;bomb.el.classList.add('targeted');const idle=$('missionIdle');if(idle)idle.style.display='none';card.style.display='block';$('questionLabel').textContent=bomb.type==='yellow'?'🟡 COMBO BONUS · 2~3개 제거':bomb.type==='blue'?'🔵 REPAIR BONUS · 체력 +1':'⭐ STAR BONUS · 체력 100% 회복';$('gameQuestion').textContent=q.q;const area=$('gameAnswers');area.innerHTML='';[...q.opts].sort(()=>Math.random()-.5).forEach(opt=>{const btn=document.createElement('button');btn.className='answerBtn';btn.type='button';btn.textContent=opt;btn.addEventListener('click',()=>answerSpecialQuestion(opt,q.a,btn,bomb));area.appendChild(btn)});$('gameMessage').textContent='보너스 미션! 일반 UFO 방어는 계속됩니다.';return true}
-function answerSpecialQuestion(v,a,btn,bomb){if(!gameState||!gameState.running||!gameState.specialQuestionOpen)return;if(v!==a){btn.classList.add('wrong');btn.disabled=true;damagePlayer('오답! 체력 -1 · 다시 골라봐요');return}gameState.index++;gameState.combo++;soundCorrect();if(bomb.type==='yellow'){const normals=gameState.bombs.filter(x=>x!==bomb&&x.type==='normal').sort((a,b)=>b.y-a.y).slice(0,1+Math.floor(Math.random()*2));const targets=[bomb,...normals];targets.forEach((x,i)=>setTimeout(()=>destroyActionBomb(x),i*90));const comboBonus=Math.max(20,(targets.length-1)*20);addRunScore(comboBonus,'💥 COMBO '+targets.length);showActionPraise('COMBO BONUS +'+comboBonus)}else if(bomb.type==='blue'){gameState.health=Math.min(10,gameState.health+1);updateHealthGauge();soundRepair();destroyActionBomb(bomb);showActionPraise('🔧 HEALTH +1')}else{gameState.health=10;updateHealthGauge();soundReward();destroyActionBomb(bomb);showActionPraise('⭐ FULL HEALTH!')}closeSpecialQuestion()}
-function closeSpecialQuestion(){if(!gameState)return;const old=gameState.specialBomb;if(old&&old.el)old.el.classList.remove('targeted');gameState.specialQuestionOpen=false;gameState.specialBomb=null;const c=$('specialQuestionCard');if(c)c.style.display='none';const idle=$('missionIdle');if(idle)idle.style.display='none'}
+function openSpecialQuestion(bomb){
+ if(!gameState||!gameState.running||gameState.specialQuestionOpen)return false;
+ const q=nextGameQuestion(),overlay=$('specialQuestionOverlay'),card=$('specialQuestionCard');
+ if(!q||!overlay||!card)return false;
+ gameState.specialQuestionOpen=true;gameState.specialBomb=bomb;gameState.last=performance.now();
+ bomb.paused=true;bomb.el.classList.add('targeted');
+ const idle=$('missionIdle');if(idle)idle.style.display='none';
+ overlay.classList.remove('closing');overlay.classList.add('show');overlay.setAttribute('aria-hidden','false');
+ $('questionLabel').textContent=bomb.type==='yellow'?'🎈 MISSION BALLOON · 3 HIT CLEAR':bomb.type==='blue'?'🔵 REPAIR BONUS · 체력 +1':'⭐ STAR BONUS · 체력 100% 회복';
+ $('gameQuestion').textContent=q.q;
+ const area=$('gameAnswers');area.innerHTML='';
+ [...q.opts].sort(()=>Math.random()-.5).forEach(opt=>{
+   const btn=document.createElement('button');btn.className='answerBtn';btn.type='button';btn.textContent=opt;
+   btn.addEventListener('click',()=>answerSpecialQuestion(opt,q.a,btn,bomb));area.appendChild(btn)
+ });
+ $('gameMessage').textContent='⏸ ENGLISH MISSION · 게임 일시정지';
+ return true
+}
+function answerSpecialQuestion(v,a,btn,bomb){
+ if(!gameState||!gameState.running||!gameState.specialQuestionOpen)return;
+ if(v!==a){
+   btn.classList.add('wrong');btn.disabled=true;damagePlayer('오답! 체력 -1 · 다시 골라봐요');
+   return
+ }
+ document.querySelectorAll('#gameAnswers .answerBtn').forEach(x=>x.disabled=true);
+ btn.classList.add('correct');gameState.index++;gameState.combo++;soundCorrect();
+ if(bomb.type==='yellow'){
+   const normals=gameState.bombs.filter(x=>x!==bomb&&x.type==='normal').sort((a,b)=>b.y-a.y).slice(0,1+Math.floor(Math.random()*2));
+   const targets=[bomb,...normals];
+   targets.forEach((x,i)=>setTimeout(()=>destroyActionBomb(x),i*90));
+   const comboBonus=Math.max(20,(targets.length-1)*20);addRunScore(comboBonus,'💥 COMBO '+targets.length);showActionPraise('COMBO BONUS +'+comboBonus)
+ }else if(bomb.type==='blue'){
+   gameState.health=Math.min(10,gameState.health+1);updateHealthGauge();soundRepair();destroyActionBomb(bomb);showActionPraise('🔧 HEALTH +1')
+ }else{
+   gameState.health=10;updateHealthGauge();soundReward();destroyActionBomb(bomb);showActionPraise('⭐ FULL HEALTH!')
+ }
+ setTimeout(()=>closeSpecialQuestion(true),650)
+}
+function closeSpecialQuestion(animated=false){
+ if(!gameState)return;
+ const old=gameState.specialBomb,overlay=$('specialQuestionOverlay');
+ if(old&&old.el){old.el.classList.remove('targeted');old.paused=false}
+ const finishClose=()=>{
+   if(!gameState)return;
+   gameState.specialQuestionOpen=false;gameState.specialBomb=null;gameState.last=performance.now();
+   if(overlay){overlay.classList.remove('show','closing');overlay.style.display='';overlay.setAttribute('aria-hidden','true')}
+   const idle=$('missionIdle');if(idle)idle.style.display='none';
+   const msg=$('gameMessage');if(msg&&gameState.running)msg.textContent='MISSION CLEAR · 방어 재개!'
+ };
+ if(animated&&overlay){
+   overlay.classList.remove('show');overlay.classList.add('closing');setTimeout(finishClose,340)
+ }else finishClose()
+}
 function enemyCraftMarkup(variant=0,hp=1){const src=hp>=2?'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMzAgNzIiPjxkZWZzPjxsaW5lYXJHcmFkaWVudCBpZD0iYSIgeDE9IjAiIHkxPSIwIiB4Mj0iMCIgeTI9IjEiPjxzdG9wIHN0b3AtY29sb3I9IiNjN2E4ZmYiLz48c3RvcCBvZmZzZXQ9Ii40NSIgc3RvcC1jb2xvcj0iIzUxNDA2ZCIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iIzE3MTMyMiIvPjwvbGluZWFyR3JhZGllbnQ+PHJhZGlhbEdyYWRpZW50IGlkPSJyIj48c3RvcCBzdG9wLWNvbG9yPSIjZmZmIi8+PHN0b3Agb2Zmc2V0PSIuMiIgc3RvcC1jb2xvcj0iI2YyYzBmZiIvPjxzdG9wIG9mZnNldD0iLjU1IiBzdG9wLWNvbG9yPSIjYmQ0Y2ZmIi8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjM2MwYTY3Ii8+PC9yYWRpYWxHcmFkaWVudD48ZmlsdGVyIGlkPSJnIj48ZmVHYXVzc2lhbkJsdXIgc3RkRGV2aWF0aW9uPSIzIiByZXN1bHQ9ImIiLz48ZmVNZXJnZT48ZmVNZXJnZU5vZGUgaW49ImIiLz48ZmVNZXJnZU5vZGUgaW49IlNvdXJjZUdyYXBoaWMiLz48L2ZlTWVyZ2U+PC9maWx0ZXI+PC9kZWZzPjxlbGxpcHNlIGN4PSI2NSIgY3k9IjQ3IiByeD0iNTYiIHJ5PSIxOSIgZmlsbD0idXJsKCNhKSIgc3Ryb2tlPSIjYzBhM2YzIiBzdHJva2Utd2lkdGg9IjIiLz48cGF0aCBkPSJNMzQgNDNRNDQgNyA2NSA3UTg2IDcgOTYgNDNaIiBmaWxsPSIjM2EyOTUyIiBzdHJva2U9IiNkNWMxZmYiIHN0cm9rZS13aWR0aD0iMiIvPjxlbGxpcHNlIGN4PSI2NSIgY3k9IjQ1IiByeD0iMjUiIHJ5PSIxMCIgZmlsbD0iIzE1MTAyMCIvPjxjaXJjbGUgY3g9IjY1IiBjeT0iNDUiIHI9IjkiIGZpbGw9InVybCgjcikiIGZpbHRlcj0idXJsKCNnKSIvPjxnIGZpbGw9IiNkYzhjZmYiPjxjaXJjbGUgY3g9IjI4IiBjeT0iNDkiIHI9IjMuMiIvPjxjaXJjbGUgY3g9IjEwMiIgY3k9IjQ5IiByPSIzLjIiLz48Y2lyY2xlIGN4PSI0NCIgY3k9IjU3IiByPSIyLjciLz48Y2lyY2xlIGN4PSI4NiIgY3k9IjU3IiByPSIyLjciLz48L2c+PC9zdmc+':'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMzAgNzIiPjxkZWZzPjxsaW5lYXJHcmFkaWVudCBpZD0iYSIgeDE9IjAiIHkxPSIwIiB4Mj0iMCIgeTI9IjEiPjxzdG9wIHN0b3AtY29sb3I9IiNhOWJmZDAiLz48c3RvcCBvZmZzZXQ9Ii40NSIgc3RvcC1jb2xvcj0iIzM1NDg1YyIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iIzExMTgyNCIvPjwvbGluZWFyR3JhZGllbnQ+PHJhZGlhbEdyYWRpZW50IGlkPSJyIj48c3RvcCBzdG9wLWNvbG9yPSIjZmZmIi8+PHN0b3Agb2Zmc2V0PSIuMiIgc3RvcC1jb2xvcj0iI2ZmNzk2YSIvPjxzdG9wIG9mZnNldD0iLjU1IiBzdG9wLWNvbG9yPSIjZmYxZjEwIi8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjNmIwMDAwIi8+PC9yYWRpYWxHcmFkaWVudD48ZmlsdGVyIGlkPSJnIj48ZmVHYXVzc2lhbkJsdXIgc3RkRGV2aWF0aW9uPSIzIiByZXN1bHQ9ImIiLz48ZmVNZXJnZT48ZmVNZXJnZU5vZGUgaW49ImIiLz48ZmVNZXJnZU5vZGUgaW49IlNvdXJjZUdyYXBoaWMiLz48L2ZlTWVyZ2U+PC9maWx0ZXI+PC9kZWZzPjxlbGxpcHNlIGN4PSI2NSIgY3k9IjQ3IiByeD0iNTQiIHJ5PSIxOCIgZmlsbD0idXJsKCNhKSIgc3Ryb2tlPSIjOGJhYWMyIiBzdHJva2Utd2lkdGg9IjIiLz48cGF0aCBkPSJNMzcgNDNRNDQgMTAgNjUgOVE4NiAxMCA5MyA0M1oiIGZpbGw9IiMyNjNhNTAiIHN0cm9rZT0iIzlmYjljYiIgc3Ryb2tlLXdpZHRoPSIyIi8+PGVsbGlwc2UgY3g9IjY1IiBjeT0iNDUiIHJ4PSIyMiIgcnk9IjkiIGZpbGw9IiMxMDE4MjAiLz48Y2lyY2xlIGN4PSI2NSIgY3k9IjQ1IiByPSI4IiBmaWxsPSJ1cmwoI3IpIiBmaWx0ZXI9InVybCgjZykiLz48ZyBmaWxsPSIjZmY2ZDU1Ij48Y2lyY2xlIGN4PSIzMCIgY3k9IjQ5IiByPSIzIi8+PGNpcmNsZSBjeD0iMTAwIiBjeT0iNDkiIHI9IjMiLz48Y2lyY2xlIGN4PSI0NSIgY3k9IjU2IiByPSIyLjUiLz48Y2lyY2xlIGN4PSI4NSIgY3k9IjU2IiByPSIyLjUiLz48L2c+PC9zdmc+';return '<img class="standaloneUfoImg" src="'+src+'" alt="" draggable="false"><span class="enemyHpBadge">'+hp+'</span>';}
 function refreshEnemyDurability(b){if(!b||!b.el)return;const p=b.el.querySelector('.enemyDurability');if(!p)return;const cells=[...p.querySelectorAll('i')];cells.forEach((c,i)=>c.classList.toggle('on',i<b.hp))}
-function hitEnemy(b,damage=1){if(!b||!gameState||b.type!=='normal')return;damage=Math.max(.1,Number(damage)||1);if((gameState.weaponLevel||getEquippedWeapon())===6)damage=999;b.hp=Math.max(0,b.hp-damage);b.el.classList.remove('enemyHit');void b.el.offsetWidth;b.el.classList.add('enemyHit');setTimeout(()=>b.el&&b.el.classList.remove('enemyHit'),160);refreshEnemyDurability(b);if(b.hp<=.001){destroyActionBomb(b)}else{gameTone(b.hp>1?310:390,.065,'triangle',.025);showScorePopup('HIT '+Math.ceil(b.hp)+'/'+b.maxHp,b.x,b.y)}}
-function spawnActionBomb(){if(!gameState||!gameState.running)return;const arena=$('cityArena');if(!arena)return;const r=Math.random();let type='normal';const repairChance=gameState.health<=4?.05:gameState.health<=7?.03:.012;const starChance=gameState.health<=3?.012:.006;const comboChance=.16;if(r<comboChance)type='yellow';else if(r<comboChance+repairChance)type='blue';else if(r<comboChance+repairChance+starChance)type='star';const el=document.createElement('div');el.className='actionBomb '+(type==='normal'?'normalEnemy':type);let enemyHp=1;if(type==='normal'){const roll=Math.random();enemyHp=roll<.34?2:1;const enemyVariant=Math.floor(Math.random()*3);el.classList.add('enemyHp'+enemyHp);el.innerHTML=enemyCraftMarkup(enemyVariant,enemyHp);el.dataset.variant=String(enemyVariant);el.dataset.hp=String(enemyHp)}else{el.textContent=type==='yellow'?'🎈':type==='blue'?'🔧':'⭐';const badge=document.createElement('span');badge.className='specialBadge';badge.textContent=type==='yellow'?'COMBO':type==='blue'?'REPAIR':'FULL';el.appendChild(badge)}el.dataset.id=String(++actionBombSeq);arena.appendChild(el);const x=6+Math.random()*88;const speed=(type==='normal'?48:38)+(gameState.level-1)*7+Math.random()*18;const bomb={id:actionBombSeq,el,x,y:132,speed,type,paused:false,asked:false,hp:enemyHp,maxHp:enemyHp};el.style.left=x+'%';el.style.top=bomb.y+'px';gameState.bombs.push(bomb)}
+function hitEnemy(b,damage=1){
+ if(!b||!gameState)return;
+ if(b.type==='yellow'){
+   if(gameState.specialQuestionOpen||b.asked)return;
+   b.missionHits=Math.min(3,(b.missionHits||0)+1);
+   const badge=b.el&&b.el.querySelector('.specialBadge');if(badge)badge.textContent='MISSION '+b.missionHits+'/3';
+   if(b.el){b.el.classList.remove('missionHit');void b.el.offsetWidth;b.el.classList.add('missionHit');setTimeout(()=>b.el&&b.el.classList.remove('missionHit'),190)}
+   gameTone(520+b.missionHits*130,.07,'triangle',.028);
+   showScorePopup('HIT '+b.missionHits+'/3',b.x,b.y);
+   if(b.missionHits>=3){b.asked=true;openSpecialQuestion(b)}
+   return
+ }
+ if(b.type!=='normal')return;
+ damage=Math.max(.1,Number(damage)||1);if((gameState.weaponLevel||getEquippedWeapon())===6)damage=999;b.hp=Math.max(0,b.hp-damage);b.el.classList.remove('enemyHit');void b.el.offsetWidth;b.el.classList.add('enemyHit');setTimeout(()=>b.el&&b.el.classList.remove('enemyHit'),160);refreshEnemyDurability(b);if(b.hp<=.001){destroyActionBomb(b)}else{gameTone(b.hp>1?310:390,.065,'triangle',.025);showScorePopup('HIT '+Math.ceil(b.hp)+'/'+b.maxHp,b.x,b.y)}}
+function spawnActionBomb(){if(!gameState||!gameState.running)return;const arena=$('cityArena');if(!arena)return;const r=Math.random();let type='normal';const repairChance=gameState.health<=4?.05:gameState.health<=7?.03:.012;const starChance=gameState.health<=3?.012:.006;const comboChance=.16;if(r<comboChance)type='yellow';else if(r<comboChance+repairChance)type='blue';else if(r<comboChance+repairChance+starChance)type='star';const el=document.createElement('div');el.className='actionBomb '+(type==='normal'?'normalEnemy':type);let enemyHp=1;if(type==='normal'){const roll=Math.random();enemyHp=roll<.34?2:1;const enemyVariant=Math.floor(Math.random()*3);el.classList.add('enemyHp'+enemyHp);el.innerHTML=enemyCraftMarkup(enemyVariant,enemyHp);el.dataset.variant=String(enemyVariant);el.dataset.hp=String(enemyHp)}else{el.textContent=type==='yellow'?'🎈':type==='blue'?'🔧':'⭐';const badge=document.createElement('span');badge.className='specialBadge';badge.textContent=type==='yellow'?'MISSION 0/3':type==='blue'?'REPAIR':'FULL';el.appendChild(badge)}el.dataset.id=String(++actionBombSeq);arena.appendChild(el);const x=6+Math.random()*88;const speed=(type==='normal'?48:38)+(gameState.level-1)*7+Math.random()*18;const bomb={id:actionBombSeq,el,x,y:132,speed,type,paused:false,asked:false,hp:enemyHp,maxHp:enemyHp,missionHits:0};el.style.left=x+'%';el.style.top=bomb.y+'px';gameState.bombs.push(bomb)}
 function resetTargetLock(){if(!gameState)return;if(gameState.lockTargetId!=null){const old=gameState.bombs.find(b=>b.id===gameState.lockTargetId);if(old&&old.el){old.el.classList.remove('locking','locked');old.el.style.removeProperty('--lock')}}gameState.lockTargetId=null;gameState.lockStartedAt=0;const ship=$('playerShip');if(ship)ship.classList.remove('lockReady');const hint=$('lockHint');if(hint)hint.textContent='LOCK'}
 function updateTargetLock(target,now,moving){if(!gameState)return false;if(!target||moving){resetTargetLock();return false}if(gameState.lockTargetId!==target.id){resetTargetLock();gameState.lockTargetId=target.id;gameState.lockStartedAt=now;target.el.classList.add('locking')}const elapsed=Math.max(0,now-gameState.lockStartedAt),pct=Math.min(1,elapsed/gameState.lockDuration);target.el.style.setProperty('--lock',(pct*360)+'deg');const hint=$('lockHint');if(hint)hint.textContent=pct>=1?'LOCKED':'LOCK '+Math.round(pct*100)+'%';if(pct>=1){target.el.classList.add('locked');const ship=$('playerShip');if(ship)ship.classList.add('lockReady');return true}return false}
 function weaponRollDamage(lv){
@@ -1342,10 +1471,10 @@ function fireLaser(target){
  if(lv===6)gameTone(430,.15,'sine',.025,.035);
  [...new Set(targets)].forEach((b,i)=>setTimeout(()=>hitEnemy(b,damage),lv===6?55+i*30:80+i*45));
 }
-function destroyActionBomb(b){if(!b||!gameState)return;const i=gameState.bombs.indexOf(b);if(i<0)return;b.el.classList.add('pop');soundRemove();gameState.bombs.splice(i,1);gameState.removed++;if(b.type==='normal'){addRunScore(10);showScorePopup('+10',b.x,b.y)}const lvChip=document.querySelector('.actionHud .hudChip');if(lvChip)lvChip.textContent='LV '+gameState.level+' · '+gameState.removed+'/'+gameState.targetPerLevel;const refProgress=document.querySelector('.refProgress');if(refProgress)refProgress.textContent=gameState.removed+'/'+gameState.targetPerLevel;if(gameState.specialBomb===b)closeSpecialQuestion();if(b.type==='normal'&&Math.random()<.22)showActionPraise(['Great!','Awesome!','Excellent!','Nice Shot!'][Math.floor(Math.random()*4)]);setTimeout(()=>b.el.remove(),350);if(gameState.removed>=gameState.targetPerLevel)finishCityMission(true)}
+function destroyActionBomb(b){if(!b||!gameState)return;const i=gameState.bombs.indexOf(b);if(i<0)return;b.el.classList.add('pop');soundRemove();gameState.bombs.splice(i,1);gameState.removed++;if(b.type==='normal'){addRunScore(10);showScorePopup('+10',b.x,b.y)}const lvChip=document.querySelector('.actionHud .hudChip');if(lvChip)lvChip.textContent='LV '+gameState.level+' · '+gameState.removed+'/'+gameState.targetPerLevel;const refProgress=document.querySelector('.refProgress');if(refProgress)refProgress.textContent=gameState.removed+'/'+gameState.targetPerLevel;if(b.type==='normal'&&Math.random()<.22)showActionPraise(['Great!','Awesome!','Excellent!','Nice Shot!'][Math.floor(Math.random()*4)]);setTimeout(()=>b.el.remove(),350);if(gameState.removed>=gameState.targetPerLevel)finishCityMission(true)}
 function dashShip(){if(!gameState||!gameState.running)return;const now=Date.now();if(gameState.dashReady&&now<gameState.dashReady){$('gameMessage').textContent='DASH 충전 중!';return}gameState.dashReady=now+3000;gameState.invincibleUntil=now+700;const ship=$('playerShip');ship.classList.add('invincible');const next=gameState.shipX<50?Math.min(92,gameState.shipX+28):Math.max(8,gameState.shipX-28);gameState.shipX=next;gameState.targetShipX=next;gameState.lastMoveAt=performance.now();ship.style.left=next+'%';const aim=$('autoAim');if(aim)aim.style.left=next+'%';resetTargetLock();gameTone(1200,.16,'sawtooth',.035);$('gameMessage').textContent='⚡ DASH!';setTimeout(()=>ship.classList.remove('invincible'),700)}
 function damagePlayer(msg){if(!gameState||Date.now()<gameState.invincibleUntil)return;const ship=$('playerShip');if(gameState.shieldActive){gameState.shieldActive=false;if(ship){ship.classList.remove('shieldOn');ship.classList.add('shieldSpent')}const sh=$('shieldHud');if(sh)sh.textContent='🛡️0';gameTone(1180,.12,'sine',.04);gameTone(520,.18,'triangle',.035,.05);$('gameMessage').textContent='🛡️ SHIELD BLOCK! 첫 피격을 막았습니다.';return}gameState.health=Math.max(0,gameState.health-1);gameState.combo=0;updateHealthGauge();soundWrong();$('gameMessage').textContent=msg;if(ship){ship.classList.add('collisionFlash');setTimeout(()=>ship.classList.remove('collisionFlash'),350)}if(gameState.health<=0)setTimeout(()=>finishCityMission(false),300)}
-function actionGameLoop(now){if(!gameState||!gameState.running)return;const dt=Math.min(.045,(now-gameState.last)/1000);gameState.last=now;gameState.spawnClock+=dt;const spawnEvery=Math.max(.58,1.45-(gameState.level-1)*.08);if(gameState.spawnClock>=spawnEvery&&gameState.bombs.length<6){gameState.spawnClock=0;spawnActionBomb()}const arena=$('cityArena'),ship=$('playerShip');if(!arena||!ship){stopGameLoop();return;}ship.style.left=gameState.shipX+'%';const aim=$('autoAim');if(aim)aim.style.left=gameState.shipX+'%';const shipX=gameState.shipX/100*arena.clientWidth,shipY=arena.clientHeight-110;const moving=(now-gameState.lastMoveAt)<90;let autoTarget=null;for(const b of [...gameState.bombs]){if(!b.paused)b.y+=b.speed*dt;b.el.style.left=b.x+'%';b.el.style.top=b.y+'px';const bx=b.x/100*arena.clientWidth+21,by=b.y+21;if(b.type!=='normal'&&!b.asked&&b.y>145&&!gameState.specialQuestionOpen){if(openSpecialQuestion(b))b.asked=true}if(b.type==='normal'&&Math.abs(bx-shipX)<weaponTargetPx(gameState.weaponLevel||getEquippedWeapon())&&b.y<shipY-22&&b.y>30){if(!autoTarget||b.y>autoTarget.y)autoTarget=b}if(Math.hypot(bx-shipX,by-shipY)<34){gameState.bombs.splice(gameState.bombs.indexOf(b),1);b.el.remove();if(gameState.specialBomb===b)closeSpecialQuestion();if(gameState.lockTargetId===b.id)resetTargetLock();damagePlayer('충돌! 체력 -1 · 캐논을 옆으로 이동하세요');continue}if(b.y>arena.clientHeight-70){gameState.bombs.splice(gameState.bombs.indexOf(b),1);b.el.remove();if(gameState.specialBomb===b)closeSpecialQuestion();if(gameState.lockTargetId===b.id)resetTargetLock();if(b.type==='normal')damagePlayer('도시 피격! 체력 -1 · 다시 막아봐요')}}const locked=updateTargetLock(autoTarget,now,moving);if(locked&&autoTarget&&now-gameState.lastAutoShot>weaponCooldownMs(gameState.weaponLevel||getEquippedWeapon())){gameState.lastAutoShot=now;fireLaser(autoTarget)}gameFrame=requestAnimationFrame(actionGameLoop)}
+function actionGameLoop(now){if(!gameState||!gameState.running)return;if(gameState.specialQuestionOpen){gameState.last=now;gameFrame=requestAnimationFrame(actionGameLoop);return}const dt=Math.min(.045,(now-gameState.last)/1000);gameState.last=now;gameState.spawnClock+=dt;const spawnEvery=Math.max(.58,1.45-(gameState.level-1)*.08);if(gameState.spawnClock>=spawnEvery&&gameState.bombs.length<6){gameState.spawnClock=0;spawnActionBomb()}const arena=$('cityArena'),ship=$('playerShip');if(!arena||!ship){stopGameLoop();return;}ship.style.left=gameState.shipX+'%';const aim=$('autoAim');if(aim)aim.style.left=gameState.shipX+'%';const shipX=gameState.shipX/100*arena.clientWidth,shipY=arena.clientHeight-110;const moving=(now-gameState.lastMoveAt)<90;let autoTarget=null;for(const b of [...gameState.bombs]){if(!b.paused)b.y+=b.speed*dt;b.el.style.left=b.x+'%';b.el.style.top=b.y+'px';const bx=b.x/100*arena.clientWidth+21,by=b.y+21;if((b.type==='blue'||b.type==='star')&&!b.asked&&b.y>145&&!gameState.specialQuestionOpen){if(openSpecialQuestion(b))b.asked=true}if((b.type==='normal'||b.type==='yellow')&&Math.abs(bx-shipX)<weaponTargetPx(gameState.weaponLevel||getEquippedWeapon())&&b.y<shipY-22&&b.y>30){if(!autoTarget||b.y>autoTarget.y)autoTarget=b}if(Math.hypot(bx-shipX,by-shipY)<34){gameState.bombs.splice(gameState.bombs.indexOf(b),1);b.el.remove();if(gameState.specialBomb===b)closeSpecialQuestion();if(gameState.lockTargetId===b.id)resetTargetLock();damagePlayer('충돌! 체력 -1 · 캐논을 옆으로 이동하세요');continue}if(b.y>arena.clientHeight-70){gameState.bombs.splice(gameState.bombs.indexOf(b),1);b.el.remove();if(gameState.specialBomb===b)closeSpecialQuestion();if(gameState.lockTargetId===b.id)resetTargetLock();if(b.type==='normal')damagePlayer('도시 피격! 체력 -1 · 다시 막아봐요')}}const locked=updateTargetLock(autoTarget,now,moving);if(locked&&autoTarget&&now-gameState.lastAutoShot>weaponCooldownMs(gameState.weaponLevel||getEquippedWeapon())){gameState.lastAutoShot=now;fireLaser(autoTarget)}gameFrame=requestAnimationFrame(actionGameLoop)}
 function showScorePopup(text,xPct,yPx){const a=$('cityArena');if(!a)return;const e=document.createElement('div');e.className='scorePop';e.textContent=text;e.style.left=Math.max(6,Math.min(94,Number(xPct)||50))+'%';e.style.top=Math.max(45,Number(yPx)||120)+'px';a.appendChild(e);setTimeout(()=>e.remove(),700)}
 function showActionPraise(text){const a=$('cityArena');if(!a)return;a.querySelectorAll('.actionPraise').forEach(x=>x.remove());const e=document.createElement('div');e.className='actionPraise';e.textContent=text;a.appendChild(e);setTimeout(()=>e.remove(),760)}
 function stopGameLoop(){if(gameFrame){cancelAnimationFrame(gameFrame);gameFrame=null}if(gameState){gameState.running=false;(gameState.bombs||[]).forEach(b=>b.el&&b.el.remove());gameState.bombs=[]}}
