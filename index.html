@@ -590,6 +590,23 @@ button,.setting select,.scriptinput{font-family:inherit}
  .referenceArena .missionQuizOverlay .answerBtn{font-size:12px!important;min-height:40px!important}
 }
 
+
+/* V3.7 COMBO BALLOON: 2-hit burst + in-arena modal quiz, zero layout shift */
+.referenceGameUI>.gameTopMission{display:none!important}
+.referenceArena>.missionQuizOverlay{
+ position:absolute!important;inset:0!important;width:100%!important;height:100%!important;
+ margin:0!important;padding:14px!important;z-index:220!important;box-sizing:border-box!important;
+ align-items:center!important;justify-content:center!important;overflow:hidden!important;
+}
+.referenceArena>.missionQuizOverlay .actionQuestion{position:relative!important;max-height:82%!important;overflow:auto!important;-webkit-overflow-scrolling:touch}
+.referenceArena.quizPaused>.actionBomb:not(.pop),
+.referenceArena.quizPaused>#playerShip,
+.referenceArena.quizPaused>.playerLaser,
+.referenceArena.quizPaused>.weaponProjectile,
+.referenceArena.quizPaused>.muzzleFlash,
+.referenceArena.quizPaused>.autoAim,
+.referenceArena.quizPaused>.lockHint{animation-play-state:paused!important}
+@media(max-width:680px){.referenceArena>.missionQuizOverlay{padding:10px!important}.referenceArena>.missionQuizOverlay .actionQuestion{width:min(94%,560px)!important;max-height:78%!important}}
 </style>
 </head>
 <body>
@@ -772,6 +789,7 @@ function splitIntoCompleteSentences(text){
 function splitIntoSentences(text){
   return splitIntoCompleteSentences(text);
 }
+try{window.splitIntoSentences=splitIntoSentences;}catch(e){}
 function speakChunks(chunks,token,onFirstStart,onDone){
   let part=0,started=false;
   const speakNext=()=>{
@@ -829,7 +847,7 @@ const TOPIC_BANK={
  space:{keys:['space','planet','rocket','star','moon','astronaut'],words:[['spaceship','우주선'],['galaxy','은하'],['mission','임무'],['orbit','궤도'],['launch','발사하다']]}
 };
 function cleanLearningText(text){return String(text||'').replace(/[<>`{}\[\]\\]/g,' ').replace(/\s+/g,' ').trim()}
-function sentencePoolFromStory(){return story.flatMap(x=>splitIntoSentences(cleanLearningText(x.text))).filter(x=>x.length>3)}
+function sentencePoolFromStory(){return story.flatMap(x=>splitIntoCompleteSentences(cleanLearningText(x.text))).filter(x=>x.length>3)}
 function detectTopic(text){const low=text.toLowerCase();let best='daily',score=-1;Object.entries(TOPIC_BANK).forEach(([name,v])=>{const n=v.keys.reduce((sum,k)=>sum+(low.includes(k)?1:0),0);if(n>score){score=n;best=name}});return best}
 function extractScriptWords(text){
  const counts=new Map();
@@ -1333,7 +1351,7 @@ function normalTargetsNear(primary,count,maxDx=110){if(!gameState||!primary)retu
 let actionBombSeq=0;
 function renderGameStart(){stopGameLoop();stopGameMusic();openLearning('GAMES');const fuel=getMissionFuel(),w=weaponInfo();$('learningBody').innerHTML='<div class="gameWrap"><div class="gameStart"><div class="planet">🌍🛡️</div><h3>Save the Cities · Target Lock Defense</h3><div style="display:flex;gap:7px;justify-content:center;flex-wrap:wrap;margin:8px 0 14px">'+fuelBadge()+'<span class="fuelWallet">🪙 '+getGold().toLocaleString()+' Gold</span><span class="fuelWallet">🏆 BEST '+getHighScore().toLocaleString()+'</span></div><p>레이저 캐논을 외계인 우주선 아래에 약 0.2초 정확히 맞추면 자동 발사됩니다.<br>보너스 영어 미션은 게임 화면 <b>상단</b>에 표시됩니다.<br>콤보 미션 출현 빈도를 높여 영어 문제를 더 자주 만나도록 조정했습니다.</p><div style="margin:9px auto;padding:10px;border-radius:13px;background:#eef6ff;max-width:430px;font-weight:900;color:#36597a">현재 무기 · Lv.'+w.lv+' '+w.name+'</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;max-width:430px;margin:14px auto 0"><button id="startCityGame" class="startGameBtn" type="button">LEVEL 1 START · Fuel -1</button><button id="openLabFromGame" class="startGameBtn" type="button" style="background:#e9a62d">🛠️ WEAPON LAB</button></div><div class="soundNote">테스트 기본 연료 100개 · 체력 10 · UFO 1기 = 10점 = 10 Gold</div></div></div>';$('startCityGame').addEventListener('click',()=>attemptStartGame(1,10));$('openLabFromGame').addEventListener('click',()=>renderWeaponLab());updateFuelBadges()}
 function startCityGame(level=1,health=10){stopGameLoop();const city=cityForLevel(level),w=weaponInfo();gameState={level,city,health:Math.max(1,Math.min(10,health)),combo:0,score:0,runGold:0,rewardsBanked:false,index:0,last:performance.now(),running:true,removed:0,targetPerLevel:Math.min(36,24+(level-1)*2),shipX:50,targetShipX:50,bombs:[],spawnClock:0,invincibleUntil:0,lastTap:0,lastAutoShot:0,lastMoveAt:0,lockTargetId:null,lockStartedAt:0,lockDuration:weaponLockMs(w.lv),specialBomb:null,specialQuestionOpen:false,weaponLevel:w.lv,shieldActive:getShieldOwned()};
- $('learningBody').innerHTML='<div class="gameWrap v2Game exampleGameUI referenceGameUI"><div id="missionTop" class="gameTopMission"><div id="missionIdle" class="missionIdle"></div></div><div id="cityArena" class="cityArena actionArena referenceArena"><div class="arenaVignette"></div><div id="specialQuestionOverlay" class="missionQuizOverlay" aria-hidden="true"><div id="specialQuestionCard" class="questionCard actionQuestion"><div class="missionPauseBadge">⏸ GAME PAUSED · ENGLISH MISSION</div><div id="questionLabel" class="questionLabel">SPECIAL BONUS</div><div id="gameQuestion" class="questionText"></div><div id="gameAnswers" class="answers"></div></div></div><div class="referenceInfoPanel unifiedGameHud"><div class="referenceCityTitle"><span class="cityFlag">'+city.flag+'</span><strong>'+city.city+'</strong><span>· '+city.landmark+'</span></div><div class="referenceScoreHud"><div class="refStat"><span>SCORE</span><b id="scoreValue">0</b></div><div class="refStat gold"><span>GOLD</span><b id="runGoldValue">0</b></div><div class="refStat best"><span>BEST</span><b id="bestValue">'+getHighScore().toLocaleString()+'</b></div><div class="refStat weapon"><span>WEAPON</span><b id="weaponValue">Lv.'+w.lv+' '+w.name+'</b></div></div><div class="unifiedVitals"><div class="refHealth"><span>❤️</span><div id="healthCells" class="healthCells"></div><b id="healthText">'+gameState.health+'/10</b></div><div class="refFuel">⛽ <b id="fuelValue">'+getMissionFuel()+'</b></div>'+(getShieldOwned()?'<div id="shieldHud" class="refShield">🛡️1</div>':'')+'<div class="refLevel">LV '+level+' · <span id="refProgress" class="refProgress">'+gameState.removed+'/'+gameState.targetPerLevel+'</span></div><button id="gameSoundBtn" class="refSound" type="button">'+(gameSoundOn?'🔊':'🔇')+'</button></div></div><div id="autoAim" class="autoAim"></div><div id="lockHint" class="lockHint">LOCK</div><div id="playerShip" class="playerShip weapon'+w.lv+' referenceShip '+(gameState.shieldActive?'shieldOn':'')+'" aria-label="미래형 3D 방어 함선">'+playerShipSvg(w.lv)+'<span class="playerShield"></span></div><div id="gameMessage" class="referenceToast">도시를 지켜주세요!</div></div></div>';
+ $('learningBody').innerHTML='<div class="gameWrap v2Game exampleGameUI referenceGameUI"><div id="cityArena" class="cityArena actionArena referenceArena"><div class="arenaVignette"></div><div id="specialQuestionOverlay" class="missionQuizOverlay" aria-hidden="true"><div id="specialQuestionCard" class="questionCard actionQuestion"><div class="missionPauseBadge">⏸ GAME PAUSED · ENGLISH MISSION</div><div id="questionLabel" class="questionLabel">SPECIAL BONUS</div><div id="gameQuestion" class="questionText"></div><div id="gameAnswers" class="answers"></div></div></div><div class="referenceInfoPanel unifiedGameHud"><div class="referenceCityTitle"><span class="cityFlag">'+city.flag+'</span><strong>'+city.city+'</strong><span>· '+city.landmark+'</span></div><div class="referenceScoreHud"><div class="refStat"><span>SCORE</span><b id="scoreValue">0</b></div><div class="refStat gold"><span>GOLD</span><b id="runGoldValue">0</b></div><div class="refStat best"><span>BEST</span><b id="bestValue">'+getHighScore().toLocaleString()+'</b></div><div class="refStat weapon"><span>WEAPON</span><b id="weaponValue">Lv.'+w.lv+' '+w.name+'</b></div></div><div class="unifiedVitals"><div class="refHealth"><span>❤️</span><div id="healthCells" class="healthCells"></div><b id="healthText">'+gameState.health+'/10</b></div><div class="refFuel">⛽ <b id="fuelValue">'+getMissionFuel()+'</b></div>'+(getShieldOwned()?'<div id="shieldHud" class="refShield">🛡️1</div>':'')+'<div class="refLevel">LV '+level+' · <span id="refProgress" class="refProgress">'+gameState.removed+'/'+gameState.targetPerLevel+'</span></div><button id="gameSoundBtn" class="refSound" type="button">'+(gameSoundOn?'🔊':'🔇')+'</button></div></div><div id="autoAim" class="autoAim"></div><div id="lockHint" class="lockHint">LOCK</div><div id="playerShip" class="playerShip weapon'+w.lv+' referenceShip '+(gameState.shieldActive?'shieldOn':'')+'" aria-label="미래형 3D 방어 함선">'+playerShipSvg(w.lv)+'<span class="playerShield"></span></div><div id="gameMessage" class="referenceToast">도시를 지켜주세요!</div></div></div>';
  const arena=$('cityArena'),ship=$('playerShip');let draggingShip=false;if(arena&&ship){arena.querySelectorAll('.playerShip').forEach(el=>{if(el!==ship)el.remove()});ship.style.left=gameState.shipX+'%';}
  const moveShipToClientX=(clientX)=>{if(!gameState||!gameState.running||gameState.specialQuestionOpen||!arena||!ship)return;const r=arena.getBoundingClientRect();if(!r.width)return;const nx=Math.max(8,Math.min(92,(clientX-r.left)/r.width*100));gameState.shipX=nx;gameState.targetShipX=nx;gameState.lastMoveAt=performance.now();ship.style.left=nx+'%';const aim=$('autoAim');if(aim)aim.style.left=nx+'%';resetTargetLock()};
  if(window.PointerEvent){
@@ -1347,15 +1365,15 @@ function startCityGame(level=1,health=10){stopGameLoop();const city=cityForLevel
   arena.addEventListener('touchend',()=>{draggingShip=false},{passive:true});
   arena.addEventListener('mousedown',e=>{if(e.button!==0)return;draggingShip=true;moveShipToClientX(e.clientX)});window.addEventListener('mouseup',()=>{draggingShip=false},{once:true});
  }$('gameSoundBtn').addEventListener('click',()=>{gameSoundOn=!gameSoundOn;$('gameSoundBtn').textContent=gameSoundOn?'🔊':'🔇';if(gameSoundOn)startGameMusic();else stopGameMusic()});applyCityBackground($('cityArena'),city);updateHealthGauge();showLevelBanner();startGameMusic();spawnActionBomb();gameFrame=requestAnimationFrame(actionGameLoop)}
-function openSpecialQuestion(bomb){
+function openSpecialQuestion(bomb,revealDelay=0){
  if(!gameState||!gameState.running||gameState.specialQuestionOpen)return false;
  const q=nextGameQuestion(),overlay=$('specialQuestionOverlay'),card=$('specialQuestionCard');
  if(!q||!overlay||!card)return false;
- gameState.specialQuestionOpen=true;gameState.specialBomb=bomb;gameState.last=performance.now();
+ gameState.specialQuestionOpen=true;gameState.specialBomb=bomb;gameState.last=performance.now();const arena=$('cityArena');if(arena)arena.classList.add('quizPaused');
  bomb.paused=true;bomb.el.classList.add('targeted');
- const idle=$('missionIdle');if(idle)idle.style.display='none';
- overlay.classList.remove('closing');overlay.classList.add('show');overlay.setAttribute('aria-hidden','false');
- $('questionLabel').textContent=bomb.type==='yellow'?'🎈 MISSION BALLOON · 3 HIT CLEAR':bomb.type==='blue'?'🔵 REPAIR BONUS · 체력 +1':'⭐ STAR BONUS · 체력 100% 회복';
+ const revealQuiz=()=>{if(!gameState||!gameState.specialQuestionOpen||gameState.specialBomb!==bomb)return;overlay.classList.remove('closing');overlay.classList.add('show');overlay.setAttribute('aria-hidden','false')};
+ if(revealDelay>0)setTimeout(revealQuiz,revealDelay);else revealQuiz();
+ $('questionLabel').textContent=bomb.type==='yellow'?'🎈 COMBO BALLOON · 2 HIT CLEAR':bomb.type==='blue'?'🔵 REPAIR BONUS · 체력 +1':'⭐ STAR BONUS · 체력 100% 회복';
  $('gameQuestion').textContent=q.q;
  const area=$('gameAnswers');area.innerHTML='';
  [...q.opts].sort(()=>Math.random()-.5).forEach(opt=>{
@@ -1391,9 +1409,8 @@ function closeSpecialQuestion(animated=false){
  if(old&&old.el){old.el.classList.remove('targeted');old.paused=false}
  const finishClose=()=>{
    if(!gameState)return;
-   gameState.specialQuestionOpen=false;gameState.specialBomb=null;gameState.last=performance.now();
+   gameState.specialQuestionOpen=false;gameState.specialBomb=null;gameState.last=performance.now();const arena=$('cityArena');if(arena)arena.classList.remove('quizPaused');
    if(overlay){overlay.classList.remove('show','closing');overlay.style.display='';overlay.setAttribute('aria-hidden','true')}
-   const idle=$('missionIdle');if(idle)idle.style.display='none';
    const msg=$('gameMessage');if(msg&&gameState.running)msg.textContent='MISSION CLEAR · 방어 재개!'
  };
  if(animated&&overlay){
@@ -1406,17 +1423,17 @@ function hitEnemy(b,damage=1){
  if(!b||!gameState)return;
  if(b.type==='yellow'){
    if(gameState.specialQuestionOpen||b.asked)return;
-   b.missionHits=Math.min(3,(b.missionHits||0)+1);
-   const badge=b.el&&b.el.querySelector('.specialBadge');if(badge)badge.textContent='MISSION '+b.missionHits+'/3';
+   b.missionHits=Math.min(2,(b.missionHits||0)+1);
+   const badge=b.el&&b.el.querySelector('.specialBadge');if(badge)badge.textContent='COMBO '+b.missionHits+'/2';
    if(b.el){b.el.classList.remove('missionHit');void b.el.offsetWidth;b.el.classList.add('missionHit');setTimeout(()=>b.el&&b.el.classList.remove('missionHit'),190)}
    gameTone(520+b.missionHits*130,.07,'triangle',.028);
-   showScorePopup('HIT '+b.missionHits+'/3',b.x,b.y);
-   if(b.missionHits>=3){b.asked=true;openSpecialQuestion(b)}
+   showScorePopup('HIT '+b.missionHits+'/2',b.x,b.y);
+   if(b.missionHits>=2){b.asked=true;if(b.el){b.el.classList.add('pop')}openSpecialQuestion(b,220)}
    return
  }
  if(b.type!=='normal')return;
  damage=Math.max(.1,Number(damage)||1);if((gameState.weaponLevel||getEquippedWeapon())===6)damage=999;b.hp=Math.max(0,b.hp-damage);b.el.classList.remove('enemyHit');void b.el.offsetWidth;b.el.classList.add('enemyHit');setTimeout(()=>b.el&&b.el.classList.remove('enemyHit'),160);refreshEnemyDurability(b);if(b.hp<=.001){destroyActionBomb(b)}else{gameTone(b.hp>1?310:390,.065,'triangle',.025);showScorePopup('HIT '+Math.ceil(b.hp)+'/'+b.maxHp,b.x,b.y)}}
-function spawnActionBomb(){if(!gameState||!gameState.running)return;const arena=$('cityArena');if(!arena)return;const r=Math.random();let type='normal';const repairChance=gameState.health<=4?.05:gameState.health<=7?.03:.012;const starChance=gameState.health<=3?.012:.006;const comboChance=.16;if(r<comboChance)type='yellow';else if(r<comboChance+repairChance)type='blue';else if(r<comboChance+repairChance+starChance)type='star';const el=document.createElement('div');el.className='actionBomb '+(type==='normal'?'normalEnemy':type);let enemyHp=1;if(type==='normal'){const roll=Math.random();enemyHp=roll<.34?2:1;const enemyVariant=Math.floor(Math.random()*3);el.classList.add('enemyHp'+enemyHp);el.innerHTML=enemyCraftMarkup(enemyVariant,enemyHp);el.dataset.variant=String(enemyVariant);el.dataset.hp=String(enemyHp)}else{el.textContent=type==='yellow'?'🎈':type==='blue'?'🔧':'⭐';const badge=document.createElement('span');badge.className='specialBadge';badge.textContent=type==='yellow'?'MISSION 0/3':type==='blue'?'REPAIR':'FULL';el.appendChild(badge)}el.dataset.id=String(++actionBombSeq);arena.appendChild(el);const x=6+Math.random()*88;const speed=(type==='normal'?48:38)+(gameState.level-1)*7+Math.random()*18;const bomb={id:actionBombSeq,el,x,y:132,speed,type,paused:false,asked:false,hp:enemyHp,maxHp:enemyHp,missionHits:0};el.style.left=x+'%';el.style.top=bomb.y+'px';gameState.bombs.push(bomb)}
+function spawnActionBomb(){if(!gameState||!gameState.running)return;const arena=$('cityArena');if(!arena)return;const r=Math.random();let type='normal';const repairChance=gameState.health<=4?.05:gameState.health<=7?.03:.012;const starChance=gameState.health<=3?.012:.006;const comboChance=.16;if(r<comboChance)type='yellow';else if(r<comboChance+repairChance)type='blue';else if(r<comboChance+repairChance+starChance)type='star';const el=document.createElement('div');el.className='actionBomb '+(type==='normal'?'normalEnemy':type);let enemyHp=1;if(type==='normal'){const roll=Math.random();enemyHp=roll<.34?2:1;const enemyVariant=Math.floor(Math.random()*3);el.classList.add('enemyHp'+enemyHp);el.innerHTML=enemyCraftMarkup(enemyVariant,enemyHp);el.dataset.variant=String(enemyVariant);el.dataset.hp=String(enemyHp)}else{el.textContent=type==='yellow'?'🎈':type==='blue'?'🔧':'⭐';const badge=document.createElement('span');badge.className='specialBadge';badge.textContent=type==='yellow'?'COMBO 0/2':type==='blue'?'REPAIR':'FULL';el.appendChild(badge)}el.dataset.id=String(++actionBombSeq);arena.appendChild(el);const x=6+Math.random()*88;const speed=(type==='normal'?48:38)+(gameState.level-1)*7+Math.random()*18;const bomb={id:actionBombSeq,el,x,y:132,speed,type,paused:false,asked:false,hp:enemyHp,maxHp:enemyHp,missionHits:0};el.style.left=x+'%';el.style.top=bomb.y+'px';gameState.bombs.push(bomb)}
 function resetTargetLock(){if(!gameState)return;if(gameState.lockTargetId!=null){const old=gameState.bombs.find(b=>b.id===gameState.lockTargetId);if(old&&old.el){old.el.classList.remove('locking','locked');old.el.style.removeProperty('--lock')}}gameState.lockTargetId=null;gameState.lockStartedAt=0;const ship=$('playerShip');if(ship)ship.classList.remove('lockReady');const hint=$('lockHint');if(hint)hint.textContent='LOCK'}
 function updateTargetLock(target,now,moving){if(!gameState)return false;if(!target||moving){resetTargetLock();return false}if(gameState.lockTargetId!==target.id){resetTargetLock();gameState.lockTargetId=target.id;gameState.lockStartedAt=now;target.el.classList.add('locking')}const elapsed=Math.max(0,now-gameState.lockStartedAt),pct=Math.min(1,elapsed/gameState.lockDuration);target.el.style.setProperty('--lock',(pct*360)+'deg');const hint=$('lockHint');if(hint)hint.textContent=pct>=1?'LOCKED':'LOCK '+Math.round(pct*100)+'%';if(pct>=1){target.el.classList.add('locked');const ship=$('playerShip');if(ship)ship.classList.add('lockReady');return true}return false}
 function weaponRollDamage(lv){
