@@ -158,7 +158,8 @@ button,.setting select,.scriptinput{font-family:inherit}
 
 
 /* V2.0 score, gold, weapon lab, top mission layout */
-.learning-nav{grid-template-columns:repeat(5,minmax(0,1fr))}.learning-nav button.lab{background:#fff0df;color:#a25f14}
+.learning-nav{grid-template-columns:repeat(3,minmax(0,1fr))}
+.learning-nav #statusMenuBtn,.learning-nav #labMenuBtn{display:none!important}
 .gameTopMission{order:1;margin-bottom:7px}.gameTopMission .actionQuestion{margin:0;border:2px solid #d8e8f7;box-shadow:0 5px 14px rgba(30,73,112,.08)}
 .gameTopMission .missionIdle{display:flex;align-items:center;justify-content:center;min-height:40px;border-radius:14px;background:#eef6ff;color:#5d7186;font-size:12px;font-weight:900}
 .gameScoreHud{order:2;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;margin-bottom:7px}.scoreChip{border-radius:12px;padding:7px 5px;background:#eef5fb;text-align:center;font-size:10px;font-weight:850;color:#5b6f84}.scoreChip b{display:block;margin-top:2px;font-size:15px;color:#243b58}.scoreChip.gold b{color:#a66d00}.scoreChip.best b{color:#7258d7}.scoreChip.weapon b{font-size:12px;color:#287bd6}
@@ -750,17 +751,16 @@ button,.setting select,.scriptinput{font-family:inherit}
 
 
 
+<!-- MENU3_BUILD_20260818_72: TEST/LAB removed -->
 <nav class="learning-nav" aria-label="학습 메뉴">
-  <button id="statusMenuBtn" type="button"><span>🎙️</span>TEST</button>
   <button id="gamesMenuBtn" class="games" type="button"><span>🚀</span>GAMES</button>
   <button id="grammarMenuBtn" class="grammar" type="button"><span>📖</span>Grammar</button>
   <button id="quizMenuBtn" class="quiz" type="button"><span>✏️</span>Quiz</button>
-  <button id="labMenuBtn" class="lab" type="button"><span>🛠️</span>LAB</button>
 </nav>
 
 <div id="learningOverlay" class="overlay hide" role="dialog" aria-modal="true">
   <div class="sheet statusSheet">
-    <div class="sheethead"><h2 id="learningTitle">TEST</h2><button id="closeLearning" class="closebtn" type="button">닫기</button></div>
+    <div class="sheethead"><h2 id="learningTitle">LEARNING</h2><button id="closeLearning" class="closebtn" type="button">닫기</button></div>
     <div id="learningBody" class="statusBody"></div>
   </div>
 </div>
@@ -905,8 +905,8 @@ function speakSequence(items,textFn,onItem,onDone,speakerFn){
   };
   nextItem();
 }
-function playFullStory(){mode='story';index=0;isPlayingAll=true;$('modeBadge').textContent='전체 듣기';speakSequence(story,x=>x.text,i=>{index=i;render();$('hint').textContent=story[i].speaker+' 목소리로 자연스럽게 읽는 중'},()=>{isPlayingAll=false;$('hint').textContent='전체 듣기가 끝났습니다.'},x=>x.speaker)}
-function playAllWords(){mode='words';index=0;isPlayingWords=true;$('modeBadge').textContent='주요 단어';speakSequence(words,x=>x.word,i=>{index=i;render();$('hint').textContent='핵심 단어를 천천히 재생 중'},()=>{isPlayingWords=false;$('hint').textContent='주요 단어 재생이 끝났습니다.'},()=> 'KEY WORD')}
+function playFullStory(){mode='story';index=0;isPlayingAll=true;$('modeBadge').textContent='전체 듣기';speakSequence(story,x=>x.text,i=>{index=i;render();$('hint').textContent=''},()=>{isPlayingAll=false;$('hint').textContent='전체 듣기가 끝났습니다.'},x=>x.speaker)}
+function playAllWords(){mode='words';index=0;isPlayingWords=true;$('modeBadge').textContent='주요 단어';speakSequence(words,x=>x.word,i=>{index=i;render();$('hint').textContent=''},()=>{isPlayingWords=false;$('hint').textContent='주요 단어 재생이 끝났습니다.'},()=> 'KEY WORD')}
 function playSentence(){
   if(!ensureSpeech())return;
   stopAll();
@@ -914,10 +914,10 @@ function playSentence(){
   const text=mode==='words'?item.word:item.text;
   const chunks=mode==='words'?[normalizeSpokenEnglish(text)]:splitIntoCompleteSentences(text);
   const speaker=mode==='words'?'KEY WORD':item.speaker;
-  speakChunks(chunks,token,()=>{$('hint').textContent=mode==='words'?'단어 재생 중':speaker+' 목소리로 재생 중'},()=>{$('hint').textContent=mode==='words'?'단어 재생 완료':'현재 화면 문장 재생 완료'},speaker);
+  speakChunks(chunks,token,()=>{$('hint').textContent=''},()=>{$('hint').textContent=mode==='words'?'단어 재생 완료':'현재 화면 문장 재생 완료'},speaker);
 }
 function nextItem(){stopAll();if(index<currentTotal()-1){index++;render()}else{index=0;render();$('hint').textContent='처음으로 돌아왔습니다.'}}
-try{$('fullListenBtn').addEventListener('click',playFullStory);}catch(__y1e){window.__Y1_BOOT_ERRORS=window.__Y1_BOOT_ERRORS||[];window.__Y1_BOOT_ERRORS.push({step:'TOP_28',message:String(__y1e&&__y1e.message||__y1e)});console.error('[Y1 bootstrap TOP_28]',__y1e);}try{$('stopBtn').addEventListener('click',()=>{stopAll();$('hint').textContent='정지되었습니다.'});}catch(__y1e){window.__Y1_BOOT_ERRORS=window.__Y1_BOOT_ERRORS||[];window.__Y1_BOOT_ERRORS.push({step:'TOP_29',message:String(__y1e&&__y1e.message||__y1e)});console.error('[Y1 bootstrap TOP_29]',__y1e);}try{$('translationBtn').addEventListener('click',()=>{stopAll();if(mode==='words')index=0;mode='translation';$('modeBadge').textContent='해석 보기';render();if(story[index]&&story[index].ko&&story[index].ko!=='해석 미입력')playSentence();else $('hint').textContent='현재 스크립트에는 등록된 해석이 없습니다.';});}catch(__y1e){window.__Y1_BOOT_ERRORS=window.__Y1_BOOT_ERRORS||[];window.__Y1_BOOT_ERRORS.push({step:'TOP_30',message:String(__y1e&&__y1e.message||__y1e)});console.error('[Y1 bootstrap TOP_30]',__y1e);}try{$('wordsBtn').addEventListener('click',playAllWords);}catch(__y1e){window.__Y1_BOOT_ERRORS=window.__Y1_BOOT_ERRORS||[];window.__Y1_BOOT_ERRORS.push({step:'TOP_31',message:String(__y1e&&__y1e.message||__y1e)});console.error('[Y1 bootstrap TOP_31]',__y1e);}try{$('sentenceBtn').addEventListener('click',playSentence);}catch(__y1e){window.__Y1_BOOT_ERRORS=window.__Y1_BOOT_ERRORS||[];window.__Y1_BOOT_ERRORS.push({step:'TOP_32',message:String(__y1e&&__y1e.message||__y1e)});console.error('[Y1 bootstrap TOP_32]',__y1e);}try{$('nextBtn').addEventListener('click',nextItem);}catch(__y1e){window.__Y1_BOOT_ERRORS=window.__Y1_BOOT_ERRORS||[];window.__Y1_BOOT_ERRORS.push({step:'TOP_33',message:String(__y1e&&__y1e.message||__y1e)});console.error('[Y1 bootstrap TOP_33]',__y1e);}
+try{$('fullListenBtn').addEventListener('click',playFullStory);}catch(__y1e){window.__Y1_BOOT_ERRORS=window.__Y1_BOOT_ERRORS||[];window.__Y1_BOOT_ERRORS.push({step:'TOP_28',message:String(__y1e&&__y1e.message||__y1e)});console.error('[Y1 bootstrap TOP_28]',__y1e);}try{$('stopBtn').addEventListener('click',()=>{stopAll();$('hint').textContent='재생이 중지되었습니다.'});}catch(__y1e){window.__Y1_BOOT_ERRORS=window.__Y1_BOOT_ERRORS||[];window.__Y1_BOOT_ERRORS.push({step:'TOP_29',message:String(__y1e&&__y1e.message||__y1e)});console.error('[Y1 bootstrap TOP_29]',__y1e);}try{$('translationBtn').addEventListener('click',()=>{stopAll();if(mode==='words')index=0;mode='translation';$('modeBadge').textContent='해석 보기';render();if(story[index]&&story[index].ko&&story[index].ko!=='해석 미입력')playSentence();else $('hint').textContent='현재 스크립트에는 등록된 해석이 없습니다.';});}catch(__y1e){window.__Y1_BOOT_ERRORS=window.__Y1_BOOT_ERRORS||[];window.__Y1_BOOT_ERRORS.push({step:'TOP_30',message:String(__y1e&&__y1e.message||__y1e)});console.error('[Y1 bootstrap TOP_30]',__y1e);}try{$('wordsBtn').addEventListener('click',playAllWords);}catch(__y1e){window.__Y1_BOOT_ERRORS=window.__Y1_BOOT_ERRORS||[];window.__Y1_BOOT_ERRORS.push({step:'TOP_31',message:String(__y1e&&__y1e.message||__y1e)});console.error('[Y1 bootstrap TOP_31]',__y1e);}try{$('sentenceBtn').addEventListener('click',playSentence);}catch(__y1e){window.__Y1_BOOT_ERRORS=window.__Y1_BOOT_ERRORS||[];window.__Y1_BOOT_ERRORS.push({step:'TOP_32',message:String(__y1e&&__y1e.message||__y1e)});console.error('[Y1 bootstrap TOP_32]',__y1e);}try{$('nextBtn').addEventListener('click',nextItem);}catch(__y1e){window.__Y1_BOOT_ERRORS=window.__Y1_BOOT_ERRORS||[];window.__Y1_BOOT_ERRORS.push({step:'TOP_33',message:String(__y1e&&__y1e.message||__y1e)});console.error('[Y1 bootstrap TOP_33]',__y1e);}
 // iPhone에서는 첫 사용자 터치에서 음성 엔진과 음성 목록을 깨웁니다.
 try{document.addEventListener('touchstart',()=>{loadVoices();if(synth&&synth.paused)try{synth.resume()}catch(e){}},{once:true,passive:true});}catch(__y1e){window.__Y1_BOOT_ERRORS=window.__Y1_BOOT_ERRORS||[];window.__Y1_BOOT_ERRORS.push({step:'TOP_34',message:String(__y1e&&__y1e.message||__y1e)});console.error('[Y1 bootstrap TOP_34]',__y1e);}
 const cameraInput=$('cameraInput'),libraryInput=$('libraryInput'),previewWrap=$('previewWrap'),previewImg=$('previewImg'),previewName=$('previewName');
@@ -1461,11 +1461,10 @@ function finishCityMission(saved){
  const hero=saved?(finalStage?'10 STAGES COMPLETE! 세계 도시 방어 미션을 완료했습니다.':city.landmark+' is safe because of YOU!<br>Next mission: '+nextCity.flag+' '+nextCity.city+' · '+nextCity.landmark):'You defeated '+gameState.removed+' targets. 다시 도전하면 더 잘할 수 있어요!';
  const nextBtn=saved&&!finalStage?'<button id="nextLevelGame" class="nextLevelBtn" type="button">NEXT STAGE · '+nextLevel+' / '+Y1_TOTAL_STAGES+' · '+nextCity.city+'</button>':'';
  const campaignBtn=finalStage?'<button id="newCampaignGame" class="nextLevelBtn" type="button">NEW 10-STAGE CAMPAIGN</button>':'';
- $('learningBody').innerHTML='<div class="gameWrap"><div class="missionResult"><div class="resultIcon">'+(saved?city.flag+' '+city.icon:'🌟🛡️')+'</div><h3>'+title+'</h3><div class="heroLine">'+hero+'</div><div class="rewardBox" style="flex-wrap:wrap;justify-content:center"><span>🎯 Score '+finalScore.toLocaleString()+'</span><span>🪙 +'+earnedGold.toLocaleString()+' Gold</span><span>🏆 BEST '+newBest.toLocaleString()+'</span><span>Grade '+grade+'</span><span>❤️ '+gameState.health+'/10</span><span>STAGE '+stage+' / '+Y1_TOTAL_STAGES+'</span></div><div style="margin:6px 0 14px;font-weight:900;color:#7b5a00">Gold Wallet · '+getGold().toLocaleString()+'</div>'+nextBtn+campaignBtn+'<button id="playAgainGame" class="playAgainGame" type="button">'+(saved?'REPLAY STAGE '+stage:'TRY AGAIN')+'</button><button id="resultLabBtn" class="playAgainGame" type="button" style="margin-top:8px;background:#e9a62d">🛠️ WEAPON LAB</button></div></div>';
+ $('learningBody').innerHTML='<div class="gameWrap"><div class="missionResult"><div class="resultIcon">'+(saved?city.flag+' '+city.icon:'🌟🛡️')+'</div><h3>'+title+'</h3><div class="heroLine">'+hero+'</div><div class="rewardBox" style="flex-wrap:wrap;justify-content:center"><span>🎯 Score '+finalScore.toLocaleString()+'</span><span>🪙 +'+earnedGold.toLocaleString()+' Gold</span><span>🏆 BEST '+newBest.toLocaleString()+'</span><span>Grade '+grade+'</span><span>❤️ '+gameState.health+'/10</span><span>STAGE '+stage+' / '+Y1_TOTAL_STAGES+'</span></div><div style="margin:6px 0 14px;font-weight:900;color:#7b5a00">Gold Wallet · '+getGold().toLocaleString()+'</div>'+nextBtn+campaignBtn+'<button id="playAgainGame" class="playAgainGame" type="button">'+(saved?'REPLAY STAGE '+stage:'TRY AGAIN')+'</button></div></div>';
  if(saved&&!finalStage){const b=$('nextLevelGame');if(b)b.onclick=()=>{const hp=Math.max(1,gameState.health||10);window.startCityGame(nextLevel,hp);};}
  if(finalStage){const b=$('newCampaignGame');if(b)b.onclick=()=>{resetY1StageOrder();window.startCityGame(1,10);};}
  const replay=$('playAgainGame');if(replay)replay.onclick=()=>window.startCityGame(stage,10);
- const lab=$('resultLabBtn');if(lab)lab.onclick=()=>renderWeaponLab();
 }
 
 
@@ -1613,7 +1612,7 @@ try{initializeCumulativeLearning();}catch(__y1e){window.__Y1_BOOT_ERRORS=window.
     });
   }
   function boot(){
-    bind('gamesMenuBtn','renderGameStart');bind('grammarMenuBtn','renderGrammar');bind('quizMenuBtn','renderQuiz');bind('statusMenuBtn','renderTestStart');bind('labMenuBtn','renderWeaponLab');
+    bind('gamesMenuBtn','renderGameStart');bind('grammarMenuBtn','renderGrammar');bind('quizMenuBtn','renderQuiz');
   }
   if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',boot); else boot();
 })();
@@ -1664,7 +1663,6 @@ function installAllUfos(){document.querySelectorAll('#cityArena .actionBomb.norm
 window.renderGameStart=function(){try{stopGameLoop();stopGameMusic();}catch(e){}openLearning('GAMES');$('learningBody').innerHTML='<div class="gameWrap"><div class="gameStart"><div class="planet">🌍🚀</div><h3>Save the Cities</h3><p>외계인의 공격으로부터 세계의 도시를 지켜 주세요.<br>콤보 풍선을 2번 맞히면 English Mission이 열립니다.</p><button id="startGameBtn" class="startGameBtn" type="button">START MISSION</button><div class="soundNote">화면을 좌우로 드래그하면 함선이 이동합니다.</div></div></div>';$('startGameBtn').onclick=()=>{resetY1StageOrder();window.startCityGame(1,10);};};
 window.openSpecialQuestion=function(b,delay=0){if(!gameState||gameState.specialQuestionOpen)return false;gameState.specialQuestionOpen=true;gameState.specialBomb=b||null;const q=safeQuestion();setTimeout(()=>{const arena=$('cityArena');if(!arena||!gameState)return;let ov=$('missionQuizOverlay');if(!ov){ov=document.createElement('div');ov.id='missionQuizOverlay';ov.className='missionQuizOverlay';arena.appendChild(ov);}ov.innerHTML='<div class="actionQuestion"><div class="missionPauseBadge">⏸ GAME PAUSED · ENGLISH MISSION</div><div class="questionLabel">🎈 COMBO BALLOON · 2 HIT CLEAR</div><div class="questionText"></div><div class="answers"></div></div>';ov.querySelector('.questionText').textContent=q.q;const ans=ov.querySelector('.answers');q.opts.forEach(opt=>{const btn=document.createElement('button');btn.className='answerBtn';btn.type='button';btn.textContent=opt;btn.onclick=()=>{if(opt===q.a){btn.classList.add('correct');try{soundCorrect();}catch(e){}if(b&&b.el){const i=gameState.bombs.indexOf(b);if(i>=0)gameState.bombs.splice(i,1);b.el.remove();gameState.removed++;try{addRunScore(20);}catch(e){}}setTimeout(()=>window.closeSpecialQuestion(),420);}else{btn.classList.add('wrong');try{soundWrong();}catch(e){}setTimeout(()=>btn.classList.remove('wrong'),350);}};ans.appendChild(btn);});ov.classList.add('show');},Math.max(0,delay));return true;};
 window.closeSpecialQuestion=function(){if(!gameState)return;const ov=$('missionQuizOverlay');if(ov)ov.remove();gameState.specialQuestionOpen=false;gameState.specialBomb=null;};
-window.renderWeaponLab=function(){openLearning('WEAPON LAB');$('learningBody').innerHTML='<div class="weaponLab"><div class="labBackRow"><button id="labBackBtn" class="labBackBtn">← GAMES</button></div><div class="studyHead"><div><h3>🛠️ WEAPON LAB</h3><p class="studySub">현재 장착 무기로 게임을 진행할 수 있습니다.</p></div></div></div>';$('labBackBtn').onclick=window.renderGameStart;};
 window.startCityGame=function(level=1,health=10){
  try{stopGameLoop();stopGameMusic();}catch(e){}openLearning('GAMES');const city=cityForLevel(level),weapon=getEquippedWeapon();
  $('learningBody').innerHTML='<div class="gameWrap v2Game referenceGameUI"><div id="cityArena" class="cityArena actionArena referenceArena"><div class="arenaVignette"></div><div class="referenceInfoPanel unifiedGameHud"><div class="referenceCityTitle"><span class="cityFlag">'+city.flag+'</span>'+city.city+' · '+city.landmark+'</div><div class="referenceScoreHud"><div class="refStat"><span>SCORE</span><b id="scoreHud">0</b></div><div class="refStat gold"><span>GOLD</span><b>'+getGold()+'</b></div><div class="refStat best"><span>BEST</span><b>'+getHighScore()+'</b></div><div class="refStat weapon"><span>WEAPON</span><b>'+weaponInfo(weapon).name+'</b></div></div><div class="unifiedVitals"><div class="refHealth"><b id="healthText">'+health+' / 10</b><span id="healthCells" class="healthCells"></span></div><div class="refFuel">⛽ '+getMissionFuel()+'</div><div class="refLevel">LV '+level+'</div><div id="shieldHud" class="refShield">🛡️'+(getShieldOwned()?1:0)+'</div></div></div><div id="playerShip" class="playerShip referenceShip weapon'+weapon+'"><div class="playerShield"></div></div><div id="missionQuizOverlay" class="missionQuizOverlay"></div><div id="gameMessage" class="referenceToast"></div></div></div>';
@@ -1673,7 +1671,7 @@ window.startCityGame=function(level=1,health=10){
 };
 // patch the only active spawner once; no MutationObserver
 if(typeof spawnActionBomb==='function'){const oldSpawn=spawnActionBomb;spawnActionBomb=function(){const r=oldSpawn.apply(this,arguments);requestAnimationFrame(installAllUfos);return r;};window.spawnActionBomb=spawnActionBomb;}
-try{renderGameStart=window.renderGameStart;startCityGame=window.startCityGame;openSpecialQuestion=window.openSpecialQuestion;closeSpecialQuestion=window.closeSpecialQuestion;renderWeaponLab=window.renderWeaponLab;}catch(e){}
+try{renderGameStart=window.renderGameStart;startCityGame=window.startCityGame;openSpecialQuestion=window.openSpecialQuestion;closeSpecialQuestion=window.closeSpecialQuestion;}catch(e){}
 })();
 </script>
 
