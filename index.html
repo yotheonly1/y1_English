@@ -807,14 +807,17 @@ function browserLabel(){const ua=navigator.userAgent||'';if(/KAKAOTALK/i.test(ua
 function loadVoices(){try{voices=synth?synth.getVoices():[];updateVoiceInfo()}catch(e){voices=[];updateVoiceInfo()}}
 try{if(synth){synth.onvoiceschanged=loadVoices;[0,100,300,700,1500,3000].forEach(ms=>setTimeout(loadVoices,ms))}}catch(__y1e){window.__Y1_BOOT_ERRORS=window.__Y1_BOOT_ERRORS||[];window.__Y1_BOOT_ERRORS.push({step:'TOP_8',message:String(__y1e&&__y1e.message||__y1e)});console.error('[Y1 bootstrap TOP_8]',__y1e);}
 function voiceProfile(){const t=$('voiceType').value;const region=t==='gb'?'GB':t==='au'?'AU':'US';return {lang:'en-'+region,region}}
-function chooseVoice(){
+function chooseVoice(speaker=''){
   const p=voiceProfile();
   const exact=voices.filter(v=>v.lang===p.lang||v.lang.startsWith(p.lang));
   const quality=v=>/Premium|Enhanced|Natural|Neural|Siri/i.test((v.name||'')+' '+(v.voiceURI||''));
+  const role=String(speaker||'').toLowerCase();
+  const male=/diego|minh|boy|man|father|mr\.?/.test(role);
+  const female=/lena|yeji|girl|woman|mother|weather caster|teacher|ms\.?|mrs\.?/.test(role);
   const keyMap={
-    GB:['Arthur','Daniel','Serena','Martha','Google UK English'],
-    US:['Samantha','Ava','Allison','Susan','Alex','Tom','Google US English'],
-    AU:['Karen','Lee','Gordon','Google Australian English']
+    GB:male?['Arthur','Daniel','Oliver','Google UK English Male']:female?['Serena','Martha','Kate','Google UK English Female']:['Serena','Arthur','Daniel','Martha','Google UK English'],
+    US:male?['Aaron','Alex','Tom','Fred','Google US English Male']:female?['Samantha','Ava','Allison','Susan','Google US English Female']:['Samantha','Ava','Aaron','Alex','Google US English'],
+    AU:male?['Lee','Gordon']:female?['Karen','Catherine']:['Karen','Lee','Gordon','Google Australian English']
   };
   const preferred=exact.filter(quality);
   for(const k of keyMap[p.region]){
@@ -823,17 +826,30 @@ function chooseVoice(){
   }
   return preferred.find(v=>v.localService)||preferred[0]||exact.find(v=>v.localService)||exact[0]||voices.find(v=>v.lang&&v.lang.startsWith('en')&&quality(v))||voices.find(v=>v.lang&&v.lang.startsWith('en'))||null;
 }
-function updateVoiceInfo(){const v=chooseVoice(),label=browserLabel();$('voiceBadge').textContent=v?v.name:voiceProfile().lang;$('voiceInfo').textContent=(v?'사용 음성: '+v.name:'기기 기본 영어 음성 사용')+' · '+label}
+function updateVoiceInfo(){const v=chooseVoice('Weather Caster'),label=browserLabel();$('voiceBadge').textContent='Natural Voice';$('voiceInfo').textContent=(v?'대표 음성: '+v.name:'기기 기본 영어 음성 사용')+' · 캐릭터별 자동 조절 · '+label}
 try{$('voiceType').addEventListener('change',()=>{stopAll();loadVoices()});}catch(__y1e){window.__Y1_BOOT_ERRORS=window.__Y1_BOOT_ERRORS||[];window.__Y1_BOOT_ERRORS.push({step:'TOP_12',message:String(__y1e&&__y1e.message||__y1e)});console.error('[Y1 bootstrap TOP_12]',__y1e);}try{$('rate').addEventListener('change',()=>{stopAll();$('hint').textContent='재생 속도가 '+$('rate').selectedOptions[0].textContent+'로 변경되었습니다.';});}catch(__y1e){window.__Y1_BOOT_ERRORS=window.__Y1_BOOT_ERRORS||[];window.__Y1_BOOT_ERRORS.push({step:'TOP_13',message:String(__y1e&&__y1e.message||__y1e)});console.error('[Y1 bootstrap TOP_13]',__y1e);}
 function currentTotal(){return mode==='words'?words.length:story.length}
 function render(){const item=mode==='words'?words[index]:story[index];$('translation').classList.add('hide');$('wordMeaning').classList.add('hide');if(mode==='words'){$('speaker').textContent='KEY WORD';$('line').textContent=item.word;$('wordMeaning').textContent=item.meaning;$('wordMeaning').classList.remove('hide');$('hint').textContent='뜻은 화면으로만 확인하고, 음성은 영어 단어만 읽습니다.'}else{$('speaker').textContent=item.speaker;$('line').textContent=item.text;if(mode==='translation'){$('translation').textContent=item.ko;$('translation').classList.remove('hide');$('hint').textContent='영어 음성을 들으며 해석을 확인하세요.'}else{$('hint').textContent='한 문장 재생으로 반복해서 듣고, 다음 버튼으로 이동하세요.'}}$('countBadge').textContent=(index+1)+' / '+currentTotal();$('bar').style.width=((index+1)/currentTotal()*100)+'%'}
-function makeUtterance(text,token,onStart,onEnd){
+function characterVoiceProfile(speaker,text){
+  const role=String(speaker||'').toLowerCase(),line=String(text||'').trim();
+  let rate=Number($('rate').value),pitch=1;
+  if(/weather caster|teacher|narrator/.test(role)){rate*=.94;pitch=.98;}
+  else if(/children/.test(role)){rate*=1.02;pitch=1.14;}
+  else if(/lena|yeji|girl/.test(role)){rate*=.98;pitch=1.10;}
+  else if(/diego|minh|boy/.test(role)){rate*=.97;pitch=.92;}
+  else if(/key word|word/.test(role)){rate*=.88;pitch=1.02;}
+  if(/\?$/.test(line)){rate*=.97;pitch+=.05;}
+  if(/!$/.test(line)){rate*=1.03;pitch+=.04;}
+  return {rate:Math.max(.65,Math.min(1.2,rate)),pitch:Math.max(.75,Math.min(1.25,pitch))};
+}
+function makeUtterance(text,token,onStart,onEnd,speaker=''){
   const u=new SpeechSynthesisUtterance(text),p=voiceProfile();
   u.lang=p.lang;
-  u.rate=Number($('rate').value);
-  u.pitch=1;
+  const style=characterVoiceProfile(speaker,text);
+  u.rate=style.rate;
+  u.pitch=style.pitch;
   u.volume=1;
-  const v=chooseVoice();if(v)u.voice=v;
+  const v=chooseVoice(speaker);if(v)u.voice=v;
   u.onstart=()=>{if(token!==playToken)return;if(onStart)onStart()};
   const finish=()=>{if(token!==playToken)return;if(onEnd)onEnd()};
   u.onend=finish;u.onerror=finish;return u
@@ -859,7 +875,7 @@ function splitIntoSentences(text){
   return splitIntoCompleteSentences(text);
 }
 try{window.splitIntoSentences=splitIntoSentences;}catch(e){}
-function speakChunks(chunks,token,onFirstStart,onDone){
+function speakChunks(chunks,token,onFirstStart,onDone,speaker=''){
   let part=0,started=false;
   const speakNext=()=>{
     if(token!==playToken)return;
@@ -867,12 +883,12 @@ function speakChunks(chunks,token,onFirstStart,onDone){
     const spoken=chunks[part++];
     const u=makeUtterance(spoken,token,()=>{
       if(!started){started=true;if(onFirstStart)onFirstStart();}
-    },()=>{setTimeout(speakNext,naturalPause(spoken))});
+    },()=>{setTimeout(speakNext,naturalPause(spoken))},speaker);
     try{synth.speak(u)}catch(e){$('hint').textContent='음성 재생 오류: '+e.message;}
   };
   speakNext();
 }
-function speakSequence(items,textFn,onItem,onDone){
+function speakSequence(items,textFn,onItem,onDone,speakerFn){
   if(!ensureSpeech())return;
   stopAll();
   const token=playToken;
@@ -884,19 +900,21 @@ function speakSequence(items,textFn,onItem,onDone){
     const chunks=splitIntoCompleteSentences(textFn(items[current]));
     if(!chunks.length){nextItem();return;}
     // 한 대화 묶음의 모든 문장이 끝날 때까지 화면을 넘기지 않습니다.
-    speakChunks(chunks,token,()=>{if(onItem)onItem(current)},()=>setTimeout(nextItem,220));
+    const speaker=speakerFn?speakerFn(items[current],current):'';
+    speakChunks(chunks,token,()=>{if(onItem)onItem(current)},()=>setTimeout(nextItem,260),speaker);
   };
   nextItem();
 }
-function playFullStory(){mode='story';index=0;isPlayingAll=true;$('modeBadge').textContent='전체 듣기';speakSequence(story,x=>x.text,i=>{index=i;render();$('hint').textContent='문장을 끝까지 자연스럽게 읽는 중'},()=>{isPlayingAll=false;$('hint').textContent='전체 듣기가 끝났습니다.'})}
-function playAllWords(){mode='words';index=0;isPlayingWords=true;$('modeBadge').textContent='주요 단어';speakSequence(words,x=>x.word,i=>{index=i;render();$('hint').textContent='선택한 영어 음성으로 주요 단어만 재생 중'},()=>{isPlayingWords=false;$('hint').textContent='주요 단어 재생이 끝났습니다.'})}
+function playFullStory(){mode='story';index=0;isPlayingAll=true;$('modeBadge').textContent='전체 듣기';speakSequence(story,x=>x.text,i=>{index=i;render();$('hint').textContent=story[i].speaker+' 목소리로 자연스럽게 읽는 중'},()=>{isPlayingAll=false;$('hint').textContent='전체 듣기가 끝났습니다.'},x=>x.speaker)}
+function playAllWords(){mode='words';index=0;isPlayingWords=true;$('modeBadge').textContent='주요 단어';speakSequence(words,x=>x.word,i=>{index=i;render();$('hint').textContent='핵심 단어를 천천히 재생 중'},()=>{isPlayingWords=false;$('hint').textContent='주요 단어 재생이 끝났습니다.'},()=> 'KEY WORD')}
 function playSentence(){
   if(!ensureSpeech())return;
   stopAll();
   const token=playToken,item=mode==='words'?words[index]:story[index];
   const text=mode==='words'?item.word:item.text;
   const chunks=mode==='words'?[normalizeSpokenEnglish(text)]:splitIntoCompleteSentences(text);
-  speakChunks(chunks,token,()=>{$('hint').textContent=mode==='words'?'단어 재생 중':'현재 화면의 문장을 끝까지 재생 중'},()=>{$('hint').textContent=mode==='words'?'단어 재생 완료':'현재 화면 문장 재생 완료'});
+  const speaker=mode==='words'?'KEY WORD':item.speaker;
+  speakChunks(chunks,token,()=>{$('hint').textContent=mode==='words'?'단어 재생 중':speaker+' 목소리로 재생 중'},()=>{$('hint').textContent=mode==='words'?'단어 재생 완료':'현재 화면 문장 재생 완료'},speaker);
 }
 function nextItem(){stopAll();if(index<currentTotal()-1){index++;render()}else{index=0;render();$('hint').textContent='처음으로 돌아왔습니다.'}}
 try{$('fullListenBtn').addEventListener('click',playFullStory);}catch(__y1e){window.__Y1_BOOT_ERRORS=window.__Y1_BOOT_ERRORS||[];window.__Y1_BOOT_ERRORS.push({step:'TOP_28',message:String(__y1e&&__y1e.message||__y1e)});console.error('[Y1 bootstrap TOP_28]',__y1e);}try{$('stopBtn').addEventListener('click',()=>{stopAll();$('hint').textContent='정지되었습니다.'});}catch(__y1e){window.__Y1_BOOT_ERRORS=window.__Y1_BOOT_ERRORS||[];window.__Y1_BOOT_ERRORS.push({step:'TOP_29',message:String(__y1e&&__y1e.message||__y1e)});console.error('[Y1 bootstrap TOP_29]',__y1e);}try{$('translationBtn').addEventListener('click',()=>{stopAll();if(mode==='words')index=0;mode='translation';$('modeBadge').textContent='해석 보기';render();if(story[index]&&story[index].ko&&story[index].ko!=='해석 미입력')playSentence();else $('hint').textContent='현재 스크립트에는 등록된 해석이 없습니다.';});}catch(__y1e){window.__Y1_BOOT_ERRORS=window.__Y1_BOOT_ERRORS||[];window.__Y1_BOOT_ERRORS.push({step:'TOP_30',message:String(__y1e&&__y1e.message||__y1e)});console.error('[Y1 bootstrap TOP_30]',__y1e);}try{$('wordsBtn').addEventListener('click',playAllWords);}catch(__y1e){window.__Y1_BOOT_ERRORS=window.__Y1_BOOT_ERRORS||[];window.__Y1_BOOT_ERRORS.push({step:'TOP_31',message:String(__y1e&&__y1e.message||__y1e)});console.error('[Y1 bootstrap TOP_31]',__y1e);}try{$('sentenceBtn').addEventListener('click',playSentence);}catch(__y1e){window.__Y1_BOOT_ERRORS=window.__Y1_BOOT_ERRORS||[];window.__Y1_BOOT_ERRORS.push({step:'TOP_32',message:String(__y1e&&__y1e.message||__y1e)});console.error('[Y1 bootstrap TOP_32]',__y1e);}try{$('nextBtn').addEventListener('click',nextItem);}catch(__y1e){window.__Y1_BOOT_ERRORS=window.__Y1_BOOT_ERRORS||[];window.__Y1_BOOT_ERRORS.push({step:'TOP_33',message:String(__y1e&&__y1e.message||__y1e)});console.error('[Y1 bootstrap TOP_33]',__y1e);}
